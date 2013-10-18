@@ -1,0 +1,19 @@
+# ServerDefault
+# The default PVP value of the server.
+# Will be used as the PVP value unless overridden by world or player.
+# Default: false
+# Must be a boolean value (true or false).
+#
+# Broadcast Message - Example for later - Change this later
+# Default: -sender &3rolled (-min to -max) and got &6-result!
+# Will be broadcast to the server when someone generates a random number.
+# Use -sender in place of the sender of the command.
+# Use -min in place of the minimum value that could have been generated.
+# Use -max in place of the maximum value that could have been generated.
+# Use -result in place of the random number generated.
+# The message can also be formatted, for more information visit http://www.minecraftwiki.net/wiki/Formatting_codes
+# The following characters can be used for formatting: '§', '&'
+# Using the '§' character works, but leaves a strange character behind.
+# I'd recommend using '&', as I have in the default message.
+ServerDefault: false
+BroadcastMessage: -sender &3rolled (-min to -max) and got &6'-result'!

@@ -1,0 +1,84 @@
+author: JamesHealey94
+website: https://github.com/JamesHealey94
+
+name: SimplePVPToggle
+main: com.gmail.jameshealey1994.simplepvptoggle.SimplePVPToggle
+version: 0.1
+
+commands:
+    spt:
+        description: Example description
+        aliases: [pvp, pvptoggle, simplepvptoggle, togglepvp]
+        usage: Command used incorrectly! Use /<command> help for help!
+permissions:
+    spt.*:
+        description: Gives access to all commands
+        default: false
+        children:
+            spt.toggle.*: true
+            spt.status.*: true
+            spt.setdefault.*: true
+            spt.reload: true
+            spt.help: true
+
+    spt.user:
+        description: Gives access to all commands
+        default: false
+        children:
+            spt.toggle.self: true
+            spt.status.*: true
+            spt.help: true
+
+    spt.toggle.self:
+        description: Allows you to change your PVP status for that world
+        default: false
+    spt.toggle.other:
+        description: Allows you to change someone elses PVP status for that world
+        default: false
+    spt.toggle.*:
+        description: Gives access to all toggle commands
+        default: false
+        children:
+            spt.toggle.self: true
+            spt.toggle.other: true
+
+    spt.status.self:
+        description: Allows you to see your current PVP status for that world
+        default: false
+    spt.status.other:
+        description: Allows you to see someone elses PVP status for that world
+        default: false
+    spt.status.world:
+        description: Allows you to see the default PVP status of that worlds
+        default: false
+    spt.status.server:
+        description: Allows you to see the default PVP status of the server
+        default: false
+    spt.status.*:
+        description: Gives access to all status commands
+        default: false
+        children:
+            spt.status.self: true
+            spt.status.other: true
+            spt.status.world: true
+            spt.status.server: true
+
+    spt.setdefault.world:
+        description: Allows you to set the default PVP status of that world
+        default: false
+    spt.setdefault.server:
+        description: Allows you to set the default PVP status of the server
+        default: false
+    spt.setdefault.*:
+        description: Gives access to all setdefault commands
+        default: false
+        children:
+            spt.setdefault.world: true
+            spt.setdefault.server: true
+
+    spt.reload:
+        description: Allows you to reload the config
+        default: false
+    spt.help:
+        description: Allows you to view the help menu
+        default: false
