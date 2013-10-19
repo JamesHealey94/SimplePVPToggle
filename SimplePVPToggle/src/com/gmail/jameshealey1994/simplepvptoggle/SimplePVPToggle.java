@@ -1,5 +1,6 @@
 package com.gmail.jameshealey1994.simplepvptoggle;
 
+import com.gmail.jameshealey1994.simplepvptoggle.commands.SimplePVPToggleCommandExecutor;
 import com.gmail.jameshealey1994.simplepvptoggle.listeners.SimplePVPToggleListener;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -14,8 +15,13 @@ public class SimplePVPToggle extends JavaPlugin {
     @Override
     public void onEnable() {
         
-        getServer().getPluginManager().registerEvents(new SimplePVPToggleListener(this), this);;
+        // Save a copy of the default config.yml if one is not there
+        saveDefaultConfig();
+        
+        // Register events
+        getServer().getPluginManager().registerEvents(new SimplePVPToggleListener(this), this);
 
+        // Set command executors
         // This will throw a NullPointerException if you don't have the command defined in your plugin.yml file!
         getCommand("spt").setExecutor(new SimplePVPToggleCommandExecutor(this));
     }
