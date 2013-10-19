@@ -11,8 +11,8 @@ public class SimplePVPToggle extends JavaPlugin {
 
     @Override
     public void onEnable() {
-
-        getServer().getPluginManager().registerEvents(new SimplePVPToggleListener(), this);
+        
+        getServer().getPluginManager().registerEvents(new SimplePVPToggleListener(getConfig()), this);
 
         // This will throw a NullPointerException if you don't have the command defined in your plugin.yml file!
         getCommand("basic").setExecutor(new SimplePVPToggleCommandExecutor(this));
