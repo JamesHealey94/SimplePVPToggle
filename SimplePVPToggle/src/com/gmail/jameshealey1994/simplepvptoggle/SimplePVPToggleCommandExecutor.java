@@ -1,5 +1,6 @@
 package com.gmail.jameshealey1994.simplepvptoggle;
 
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -25,10 +26,11 @@ public class SimplePVPToggleCommandExecutor implements CommandExecutor {
     }
 
     @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String string, String[] strings) {
-        if (cmd.getName().equalsIgnoreCase("basic")) { // If the player typed /basic then do the following...
-		// do something...
-		return true;
+    public boolean onCommand(CommandSender sender, Command cmd, String string, String[] args) {
+        if (cmd.getName().equalsIgnoreCase("spt")) {
+            if ((args.length > 0) && (args[0].equalsIgnoreCase("reload"))) {
+                return plugin.reload(sender);
+            }
 	} else if (cmd.getName().equalsIgnoreCase("basic2")) {
 		if (!(sender instanceof Player)) {
 			sender.sendMessage("This command can only be run by a player.");

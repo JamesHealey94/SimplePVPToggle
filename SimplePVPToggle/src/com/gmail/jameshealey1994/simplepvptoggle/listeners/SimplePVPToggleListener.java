@@ -1,6 +1,7 @@
 package com.gmail.jameshealey1994.simplepvptoggle.listeners;
 
-import org.bukkit.configuration.file.FileConfiguration;
+import com.gmail.jameshealey1994.simplepvptoggle.SimplePVPToggle;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -14,16 +15,16 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 public class SimplePVPToggleListener implements Listener {
 
     /**
-     * Configuration file used to get PvP value.
+     * Plugin with config file used to get PvP value.
      */
-    FileConfiguration config;
+    SimplePVPToggle plugin;
     
     /**
-     * Constructor used to set config.
-     * @param config Config used to retrieve PvP values from
+     * Constructor used to set plugin.
+     * @param plugin Plugin used for config to retrieve PvP values from
      */
-    public SimplePVPToggleListener(FileConfiguration config) {
-        this.config = config;
+    public SimplePVPToggleListener(SimplePVPToggle plugin) {
+        this.plugin = plugin;
     }
     
     /**
@@ -33,18 +34,23 @@ public class SimplePVPToggleListener implements Listener {
      */
     @EventHandler (priority = EventPriority.LOWEST)
     public void onDamage(EntityDamageByEntityEvent event) {
+        // TODO: Check - Does it work with projectiles, e.g. bow and arrow?
         if (event.getEntity() instanceof Player) {
             if (event.getDamager() instanceof Player) {
                 final Player attacker = (Player) event.getDamager();
                 if (canPVP(attacker)) {
                     final Player attackedPlayer = (Player) event.getEntity();
                     if (canPVP(attackedPlayer)) {
+                        attacker.sendMessage(ChatColor.GRAY + "Attacked " + attackedPlayer.getDisplayName() + " for " + event.getDamage() + " damage.");
+                        attackedPlayer.sendMessage(ChatColor.GRAY + "Attacked by " + attacker.getDisplayName() + " for " + event.getDamage() + " damage.");
                         // PVP is allowed. No changes needed.
                     } else {
-                        attacker.sendMessage("Attack Cancelled - " + attackedPlayer.getDisplayName() + " does not have PvP enabled.");
+                        event.setCancelled(true);
+                        attacker.sendMessage(ChatColor.GRAY + "Attack Cancelled - " + attackedPlayer.getDisplayName() + " does not have PvP enabled.");
                     }
                 } else {
-                    attacker.sendMessage("Attack Cancelled - You do not have PvP enabled.");
+                    event.setCancelled(true);
+                    attacker.sendMessage(ChatColor.GRAY + "Attack Cancelled - You do not have PvP enabled.");
                 }
             }
         }
@@ -60,7 +66,10 @@ public class SimplePVPToggleListener implements Listener {
      * @return If the player can PVP in that world
      */
     public boolean canPVP(Player player) {
-        // TODO: use correct strings
-        return (config.getBoolean("Server.WorldName.PlayerName", config.getBoolean("ServerDefault.WorldName", config.getBoolean("ServerDefault", false))));
+        // TODO: Test use of correct strings (especially with different spaces and cases).
+        return (plugin.getConfig().getBoolean("Server." + player.getWorld().getName() + "." + player.getName(),
+                plugin.getConfig().getBoolean("Server." + player.getWorld().getName() + ".Default",
+                plugin.getConfig().getBoolean("Server." + player.getWorld().getName(),
+                plugin.getConfig().getBoolean("Server.Default", false)))));
     }
 }

@@ -15,7 +15,6 @@
 # The following characters can be used for formatting: '§', '&'
 # Using the '§' character works, but leaves a strange character behind.
 # I'd recommend using '&', as I have in the default message.
-ServerDefault: false
 BroadcastMessage: -sender &3rolled (-min to -max) and got &6'-result'!
 
 # Possible layout
