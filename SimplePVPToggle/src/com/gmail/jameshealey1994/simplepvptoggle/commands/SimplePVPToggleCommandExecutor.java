@@ -1,5 +1,6 @@
-package com.gmail.jameshealey1994.simplepvptoggle;
+package com.gmail.jameshealey1994.simplepvptoggle.commands;
 
+import com.gmail.jameshealey1994.simplepvptoggle.SimplePVPToggle;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -27,6 +28,11 @@ public class SimplePVPToggleCommandExecutor implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String string, String[] args) {
+        
+        /*
+         * TODO: Add commands from plugin.yml
+         */
+        
         if (cmd.getName().equalsIgnoreCase("spt")) {
             if ((args.length > 0) && (args[0].equalsIgnoreCase("reload"))) {
                 return plugin.reload(sender);
