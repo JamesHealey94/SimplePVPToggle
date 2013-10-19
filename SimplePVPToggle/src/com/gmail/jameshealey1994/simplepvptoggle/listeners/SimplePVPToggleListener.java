@@ -3,6 +3,7 @@ package com.gmail.jameshealey1994.simplepvptoggle.listeners;
 import com.gmail.jameshealey1994.simplepvptoggle.SimplePVPToggle;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -34,24 +35,40 @@ public class SimplePVPToggleListener implements Listener {
      */
     @EventHandler (priority = EventPriority.LOWEST)
     public void onDamage(EntityDamageByEntityEvent event) {
-        // TODO: Check - Does it work with projectiles, e.g. bow and arrow?
+        
+        
+        /*
+         * Currently works with melee, but not with arrows or potions.
+         * TODO: Get it to work with arrows and potions.
+         */
+        
         if (event.getEntity() instanceof Player) {
+            final Player attackedPlayer = (Player) event.getEntity();
+            final Player attacker;
+            
             if (event.getDamager() instanceof Player) {
-                final Player attacker = (Player) event.getDamager();
-                if (canPVP(attacker)) {
-                    final Player attackedPlayer = (Player) event.getEntity();
-                    if (canPVP(attackedPlayer)) {
-                        attacker.sendMessage(ChatColor.GRAY + "Attacked " + attackedPlayer.getDisplayName() + " for " + event.getDamage() + " damage.");
-                        attackedPlayer.sendMessage(ChatColor.GRAY + "Attacked by " + attacker.getDisplayName() + " for " + event.getDamage() + " damage.");
-                        // PVP is allowed. No changes needed.
-                    } else {
-                        event.setCancelled(true);
-                        attacker.sendMessage(ChatColor.GRAY + "Attack Cancelled - " + attackedPlayer.getDisplayName() + " does not have PvP enabled.");
-                    }
+                attacker = (Player) event.getDamager();
+            } else if (event.getDamager() instanceof Projectile) {
+                attacker = ((Projectile) event.getDamager()).getShooter().getKiller();
+                if (attacker == null) {
+                    return;
+                }
+            } else {
+                return;
+            }
+
+            if (canPVP(attacker)) {
+                if (canPVP(attackedPlayer)) {
+                    attacker.sendMessage(ChatColor.GRAY + "Attacked " + attackedPlayer.getDisplayName() + " for " + event.getDamage() + " damage.");
+                    attackedPlayer.sendMessage(ChatColor.GRAY + "Attacked by " + attacker.getDisplayName() + " for " + event.getDamage() + " damage.");
+                    // PVP is allowed. No changes needed.
                 } else {
                     event.setCancelled(true);
-                    attacker.sendMessage(ChatColor.GRAY + "Attack Cancelled - You do not have PvP enabled.");
+                    attacker.sendMessage(ChatColor.GRAY + "Attack Cancelled - " + attackedPlayer.getDisplayName() + " does not have PvP enabled.");
                 }
+            } else {
+                event.setCancelled(true);
+                attacker.sendMessage(ChatColor.GRAY + "Attack Cancelled - You do not have PvP enabled.");
             }
         }
     }
@@ -66,10 +83,14 @@ public class SimplePVPToggleListener implements Listener {
      * @return If the player can PVP in that world
      */
     public boolean canPVP(Player player) {
-        // TODO: Test use of correct strings (especially with different spaces and cases).
-        return (plugin.getConfig().getBoolean("Server." + player.getWorld().getName() + "." + player.getName(),
-                plugin.getConfig().getBoolean("Server." + player.getWorld().getName() + ".Default",
-                plugin.getConfig().getBoolean("Server." + player.getWorld().getName(),
+        // TODO: Add some more statements to help players with "lazy" configs (without .Default, for example).
+        player.sendMessage("Server.Worlds." + player.getWorld().getName() + ".Players." + player.getName() + ": " + plugin.getConfig().getBoolean("Server.Worlds." + player.getWorld().getName() + ".Players." + player.getName()));
+        player.sendMessage("Server.Worlds." + player.getWorld().getName() + ".Default" + ": " + plugin.getConfig().getBoolean("Server.Worlds." + player.getWorld().getName() + ".Default"));
+        player.sendMessage("Server.Worlds." + player.getWorld().getName() + ": " + plugin.getConfig().getBoolean("Server.Worlds." + player.getWorld().getName()));
+        player.sendMessage("Server.Default" + ": " + plugin.getConfig().getBoolean("Server.Default"));
+        return (plugin.getConfig().getBoolean("Server.Worlds." + player.getWorld().getName() + ".Players." + player.getName(),
+                plugin.getConfig().getBoolean("Server.Worlds." + player.getWorld().getName() + ".Default",
+                plugin.getConfig().getBoolean("Server.Worlds." + player.getWorld().getName(),
                 plugin.getConfig().getBoolean("Server.Default", false)))));
     }
 }
