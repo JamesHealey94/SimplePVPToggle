@@ -34,12 +34,11 @@ public class SimplePVPToggleListener implements Listener {
      * @param event The event being handled
      */
     @EventHandler (priority = EventPriority.LOWEST)
-    public void onDamage(EntityDamageByEntityEvent event) {
-        
+    public void onEntityDamageByEntityEvent(EntityDamageByEntityEvent event) {
         
         /*
-         * Currently works with melee, but not with arrows or potions.
-         * TODO: Get it to work with arrows and potions.
+         * Currently works with melee, arrows and potions, but not from dispensers.
+         * Should it work with dispensers? Perhaps some config values for dispensers?.
          */
         
         if (event.getEntity() instanceof Player) {
@@ -49,8 +48,9 @@ public class SimplePVPToggleListener implements Listener {
             if (event.getDamager() instanceof Player) {
                 attacker = (Player) event.getDamager();
             } else if (event.getDamager() instanceof Projectile) {
-                attacker = ((Projectile) event.getDamager()).getShooter().getKiller();
-                if (attacker == null) {
+                if (((Projectile) event.getDamager()).getShooter() instanceof Player) {
+                    attacker = (Player) ((Projectile) event.getDamager()).getShooter();
+                } else {
                     return;
                 }
             } else {
@@ -59,6 +59,8 @@ public class SimplePVPToggleListener implements Listener {
 
             if (canPVP(attacker)) {
                 if (canPVP(attackedPlayer)) {
+                    // Debug messages to show the config values
+                    // TODO: Remove
                     attacker.sendMessage(ChatColor.GRAY + "Attacked " + attackedPlayer.getDisplayName() + " for " + event.getDamage() + " damage.");
                     attackedPlayer.sendMessage(ChatColor.GRAY + "Attacked by " + attacker.getDisplayName() + " for " + event.getDamage() + " damage.");
                     // PVP is allowed. No changes needed.
@@ -69,6 +71,11 @@ public class SimplePVPToggleListener implements Listener {
             } else {
                 event.setCancelled(true);
                 attacker.sendMessage(ChatColor.GRAY + "Attack Cancelled - You do not have PvP enabled.");
+            }
+            
+            // Stop arrows bouncing back, possibly hitting you.
+            if ((event.isCancelled()) && (event.getDamager() instanceof Projectile)) {
+                ((Projectile) event.getDamager()).setBounce(false);
             }
         }
     }
@@ -83,6 +90,7 @@ public class SimplePVPToggleListener implements Listener {
      * @return If the player can PVP in that world
      */
     public boolean canPVP(Player player) {
+        // Debug messages to show the config values
         // TODO: Add some more statements to help players with "lazy" configs (without .Default, for example).
         player.sendMessage("Server.Worlds." + player.getWorld().getName() + ".Players." + player.getName() + ": " + plugin.getConfig().getBoolean("Server.Worlds." + player.getWorld().getName() + ".Players." + player.getName()));
         player.sendMessage("Server.Worlds." + player.getWorld().getName() + ".Default" + ": " + plugin.getConfig().getBoolean("Server.Worlds." + player.getWorld().getName() + ".Default"));
