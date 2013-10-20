@@ -7,7 +7,6 @@ version: 0.1
 
 commands:
     spt:
-        description: Example description
         aliases: [pvp, pvptoggle, simplepvptoggle, togglepvp]
         usage: Command used incorrectly! Use /<command> help for help!
 permissions:
