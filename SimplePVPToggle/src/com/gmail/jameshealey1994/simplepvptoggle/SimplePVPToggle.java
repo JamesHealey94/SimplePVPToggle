@@ -28,7 +28,6 @@ public class SimplePVPToggle extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new SimplePVPToggleListener(this), this);
 
         // Set command executors
-        // This will throw a NullPointerException if you don't have the command defined in your plugin.yml file!
         getCommand("spt").setExecutor(new SimplePVPToggleCommandExecutor(this, new HelpCommand()));
     }
 
