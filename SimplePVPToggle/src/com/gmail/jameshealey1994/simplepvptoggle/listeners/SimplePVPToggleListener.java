@@ -11,7 +11,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
 /**
  * Listener class for the SimplePVPToggle plugin.
- * @author James Healey
+ * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
 public class SimplePVPToggleListener implements Listener {
 
