@@ -4,11 +4,10 @@ import com.gmail.jameshealey1994.simplepvptoggle.SimplePVPToggle;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 
 /**
  * Command executor for the SimplePVPToggle plugin.
- * @author James Healey
+ * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
 public class SimplePVPToggleCommandExecutor implements CommandExecutor {
 
@@ -16,35 +15,38 @@ public class SimplePVPToggleCommandExecutor implements CommandExecutor {
      * Plugin the commands are executed for.
      */
     private SimplePVPToggle plugin;
+    
+    /**
+     * The default command, executed when no arguments are given.
+     * Can be null, in which case no command is executed.
+     */
+    private SimplePVPToggleCommand defaultCommand;
 
     /**
      * Constructor to set plugin instance variable.
      * @param plugin The plugin used to set internal plugin value
+     * @param defaultCommand The default command, executed when no arguments are given.
      */
-    public SimplePVPToggleCommandExecutor(SimplePVPToggle plugin) {
+    public SimplePVPToggleCommandExecutor(SimplePVPToggle plugin, SimplePVPToggleCommand defaultCommand) {
         this.plugin = plugin;
+        this.defaultCommand = defaultCommand;
     }
 
     @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String string, String[] args) {
-        
-        /*
-         * TODO: Add commands from plugin.yml
-         */
-        
-        if (cmd.getName().equalsIgnoreCase("spt")) {
-            if ((args.length > 0) && (args[0].equalsIgnoreCase("reload"))) {
-                return plugin.reload(sender);
+    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {        
+        if (args.length > 0) {
+            for (SimplePVPToggleCommand command : plugin.getCommands()) {
+                if (command.getAliases().contains(args[1].toLowerCase())) {
+                    return command.execute(plugin, sender, label, args);
+                }
             }
-	} else if (cmd.getName().equalsIgnoreCase("basic2")) {
-		if (!(sender instanceof Player)) {
-			sender.sendMessage("This command can only be run by a player.");
-		} else {
-			Player player = (Player) sender;
-			// do something
-		}
-		return true;
-	}
-	return false;
+        } else { // No args given
+            if (defaultCommand == null) {
+                return false;
+            } else {
+                return defaultCommand.execute(plugin, sender, label, args);
+            }
+        }
+        return false;
     }
 }
