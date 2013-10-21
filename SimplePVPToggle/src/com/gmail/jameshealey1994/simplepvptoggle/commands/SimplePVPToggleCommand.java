@@ -1,7 +1,7 @@
 package com.gmail.jameshealey1994.simplepvptoggle.commands;
 
 import com.gmail.jameshealey1994.simplepvptoggle.SimplePVPToggle;
-import java.util.List;
+import java.util.ArrayList;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.Permission;
@@ -14,14 +14,22 @@ import org.bukkit.permissions.Permission;
 public abstract class SimplePVPToggleCommand {
     
     /**
-     * A list of aliases for the command.
+     * An ArrayList of aliases for the command.
      */
-    protected List<String> aliases;
+    protected ArrayList<String> aliases;
     
     /**
-     * A list of permissions for the command.
+     * An ArrayList of permissions for the command.
      */
-    protected List<Permission> permissions;
+    protected ArrayList<Permission> permissions;
+
+    /**
+     * Constructor to initialise alises and permissions ArrayLists.
+     */
+    public SimplePVPToggleCommand() {
+        this.aliases = new ArrayList<>();
+        this.permissions = new ArrayList<>();
+    }
     
     /**
      * Executes the command.
@@ -37,7 +45,7 @@ public abstract class SimplePVPToggleCommand {
      * Returns the list of aliases.
      * @return The list of aliases
      */
-    final public List<String> getAliases() {
+    final public ArrayList<String> getAliases() {
         return aliases;
     }
 
@@ -45,7 +53,7 @@ public abstract class SimplePVPToggleCommand {
      * Returns the list of permissions.
      * @return The list of permissions
      */
-    final public List<Permission> getPermissions() {
+    final public ArrayList<Permission> getPermissions() {
         return permissions;
     }
     
@@ -55,7 +63,7 @@ public abstract class SimplePVPToggleCommand {
      * @param permissions The list of permissions to check from
      * @return If a player has a permission from a list of permissions passed
      */
-    protected boolean hasPerms(Player player, List<Permission> permissions) {
+    protected boolean hasPerms(Player player, ArrayList<Permission> permissions) {
         boolean hasPerms = false;
         for (Permission p : permissions) {
             if (player.hasPermission(p)) {

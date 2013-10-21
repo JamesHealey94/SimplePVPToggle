@@ -1,10 +1,12 @@
 package com.gmail.jameshealey1994.simplepvptoggle;
 
 import com.gmail.jameshealey1994.simplepvptoggle.commands.HelpCommand;
+import com.gmail.jameshealey1994.simplepvptoggle.commands.ReloadCommand;
+import com.gmail.jameshealey1994.simplepvptoggle.commands.SetDefaultServerCommand;
 import com.gmail.jameshealey1994.simplepvptoggle.commands.SimplePVPToggleCommand;
 import com.gmail.jameshealey1994.simplepvptoggle.commands.SimplePVPToggleCommandExecutor;
 import com.gmail.jameshealey1994.simplepvptoggle.listeners.SimplePVPToggleListener;
-import java.util.List;
+import java.util.ArrayList;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
@@ -16,7 +18,7 @@ public class SimplePVPToggle extends JavaPlugin {
     /**
      * Commands belonging to the plugin.
      */
-    private List<SimplePVPToggleCommand> commands;
+    private ArrayList<SimplePVPToggleCommand> commands = new ArrayList<>();
 
     @Override
     public void onEnable() {
@@ -29,13 +31,17 @@ public class SimplePVPToggle extends JavaPlugin {
 
         // Set command executors
         getCommand("spt").setExecutor(new SimplePVPToggleCommandExecutor(this, new HelpCommand()));
+        
+        commands.add(new HelpCommand());
+        commands.add(new ReloadCommand());
+        commands.add(new SetDefaultServerCommand());
     }
 
     /**
      * Returns commands belonging to the plugin.
      * @return Commands belonging to the plugin
      */
-    public List<SimplePVPToggleCommand> getCommands() {
+    public ArrayList<SimplePVPToggleCommand> getCommands() {
         return commands;
     }
 }
