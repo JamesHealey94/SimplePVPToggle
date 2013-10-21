@@ -19,7 +19,6 @@ abstract public class SetDefaultCommand extends SimplePVPToggleCommand {
 //     * Constructor to add aliases and permissions.
 //     */
 //    public SetDefaultCommand() {
-//        super();
 //        super.aliases.add("setdefault");
 //        super.aliases.add("h");
 //        

@@ -32,6 +32,7 @@ public class SimplePVPToggle extends JavaPlugin {
         // Set command executors
         getCommand("spt").setExecutor(new SimplePVPToggleCommandExecutor(this, new HelpCommand()));
         
+        // TODO: Take volatile code out of stable class.
         commands.add(new HelpCommand());
         commands.add(new ReloadCommand());
         commands.add(new SetDefaultServerCommand());

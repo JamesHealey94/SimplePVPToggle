@@ -17,7 +17,6 @@ public class ReloadCommand extends SimplePVPToggleCommand {
      * Constructor to add aliases and permissions.
      */
     public ReloadCommand() {
-        super();
         this.aliases.add("reload");
         this.aliases.add("r");
         

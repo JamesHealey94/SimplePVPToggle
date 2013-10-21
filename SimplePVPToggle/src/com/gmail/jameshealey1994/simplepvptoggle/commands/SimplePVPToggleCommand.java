@@ -16,20 +16,12 @@ public abstract class SimplePVPToggleCommand {
     /**
      * An ArrayList of aliases for the command.
      */
-    protected ArrayList<String> aliases;
+    protected ArrayList<String> aliases = new ArrayList<>();
     
     /**
      * An ArrayList of permissions for the command.
      */
-    protected ArrayList<Permission> permissions;
-
-    /**
-     * Constructor to initialise alises and permissions ArrayLists.
-     */
-    public SimplePVPToggleCommand() {
-        this.aliases = new ArrayList<>();
-        this.permissions = new ArrayList<>();
-    }
+    protected ArrayList<Permission> permissions = new ArrayList<>();
     
     /**
      * Executes the command.

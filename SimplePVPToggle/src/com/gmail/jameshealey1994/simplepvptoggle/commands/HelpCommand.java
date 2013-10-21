@@ -17,10 +17,10 @@ public class HelpCommand extends SimplePVPToggleCommand {
      * Constructor to add aliases and permissions.
      */
     public HelpCommand() {
-        super();
         this.aliases.add("help");
         this.aliases.add("h");
         
+        // TODO: Sort out permission structure (class for permissions?)
         this.permissions.add(new Permission("spt.help"));
     }
     
