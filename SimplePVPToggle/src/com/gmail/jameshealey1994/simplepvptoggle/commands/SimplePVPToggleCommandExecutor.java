@@ -36,7 +36,7 @@ public class SimplePVPToggleCommandExecutor implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {        
         if (args.length > 0) {
             for (SimplePVPToggleCommand command : plugin.getCommands()) {
-                if (command.getAliases().contains(args[1].toLowerCase())) {
+                if (command.getAliases().contains(args[0].toLowerCase())) {
                     return command.execute(plugin, sender, label, args);
                 }
             }
