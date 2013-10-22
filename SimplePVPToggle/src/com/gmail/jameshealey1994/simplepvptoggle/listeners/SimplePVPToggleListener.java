@@ -57,8 +57,8 @@ public class SimplePVPToggleListener implements Listener {
                 return;
             }
 
-            if (canPVP(attacker)) {
-                if (canPVP(attackedPlayer)) {
+            if (plugin.canPVP(attacker)) {
+                if (plugin.canPVP(attackedPlayer)) {
                     // Debug messages to show the config values
                     // TODO: Remove
                     attacker.sendMessage(ChatColor.GRAY + "Attacked " + attackedPlayer.getDisplayName() + " for " + event.getDamage() + " damage.");
@@ -78,27 +78,5 @@ public class SimplePVPToggleListener implements Listener {
                 ((Projectile) event.getDamager()).setBounce(false);
             }
         }
-    }
-    
-    /**
-     * Helper method used to check if a player's PvP value is set to true in the config.
-     * It first looks for a specific value for that player in that world.
-     * If that is not found, it is set to the default value for the world the player is currently in.
-     * If that is not found, it is set to the default value for the server.
-     * If there is an error with the default value for the server, it is set to false by default.
-     * @param player The player being checked
-     * @return If the player can PVP in that world
-     */
-    public boolean canPVP(Player player) {
-        // Debug messages to show the config values
-        // TODO: Add some more statements to help players with "lazy" configs (without .Default, for example).
-        player.sendMessage("Server.Worlds." + player.getWorld().getName() + ".Players." + player.getName() + ": " + plugin.getConfig().getBoolean("Server.Worlds." + player.getWorld().getName() + ".Players." + player.getName()));
-        player.sendMessage("Server.Worlds." + player.getWorld().getName() + ".Default" + ": " + plugin.getConfig().getBoolean("Server.Worlds." + player.getWorld().getName() + ".Default"));
-        player.sendMessage("Server.Worlds." + player.getWorld().getName() + ": " + plugin.getConfig().getBoolean("Server.Worlds." + player.getWorld().getName()));
-        player.sendMessage("Server.Default" + ": " + plugin.getConfig().getBoolean("Server.Default"));
-        return (plugin.getConfig().getBoolean("Server.Worlds." + player.getWorld().getName() + ".Players." + player.getName(),
-                plugin.getConfig().getBoolean("Server.Worlds." + player.getWorld().getName() + ".Default",
-                plugin.getConfig().getBoolean("Server.Worlds." + player.getWorld().getName(),
-                plugin.getConfig().getBoolean("Server.Default", false)))));
     }
 }
