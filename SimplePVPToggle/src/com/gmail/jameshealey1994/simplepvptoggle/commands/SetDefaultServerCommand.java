@@ -17,6 +17,7 @@ public class SetDefaultServerCommand extends SetDefaultCommand {
      * Constructor to add aliases and permissions, and set path.
      */
     public SetDefaultServerCommand() {
+        // TODO: Some way of using the superclasses aliases, then this classes.
         this.aliases.add("server");
         this.aliases.add("s");
         

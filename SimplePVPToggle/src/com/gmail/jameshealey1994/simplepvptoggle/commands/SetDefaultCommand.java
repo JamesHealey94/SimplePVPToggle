@@ -12,20 +12,15 @@ abstract public class SetDefaultCommand extends SimplePVPToggleCommand {
      * e.g. "Server.Default", for editing the default server PVP status
      */
     protected String path;
-    
+
+    /**
+     * Constructor to add aliases and permissions.
+     */
+    public SetDefaultCommand() {
+        this.aliases.add("setdefault"); 
+    }
+        
     // TODO: Remove ?
-//
-//    /**
-//     * Constructor to add aliases and permissions.
-//     */
-//    public SetDefaultCommand() {
-//        super.aliases.add("setdefault");
-//        super.aliases.add("h");
-//        
-//        this.permissions.add(new Permission("spt.setdefault.*"));
-//        this.permissions.add(new Permission("spt.setdefault.server"));
-//        this.permissions.add(new Permission("spt.setdefault.world"));        
-//    }
 //    
 //    @Override
 //    public boolean execute(SimplePVPToggle plugin, CommandSender sender, String commandLabel, String[] args) {
