@@ -1,6 +1,7 @@
 package com.gmail.jameshealey1994.simplepvptoggle.commands;
 
 import com.gmail.jameshealey1994.simplepvptoggle.SimplePVPToggle;
+import java.util.Arrays;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -33,18 +34,18 @@ public class SimplePVPToggleCommandExecutor implements CommandExecutor {
     }
 
     @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {        
+    public boolean onCommand(CommandSender sender, Command cmd, String commandlabel, String[] args) {        
         if (args.length > 0) {
             for (SimplePVPToggleCommand command : plugin.getCommands()) {
                 if (command.getAliases().contains(args[0].toLowerCase())) {
-                    return command.execute(plugin, sender, label, args);
+                    return command.execute(plugin, sender, args[0], Arrays.copyOfRange(args, 1, args.length));
                 }
             }
         } else { // No args given
             if (defaultCommand == null) {
                 return false;
             } else {
-                return defaultCommand.execute(plugin, sender, label, args);
+                return defaultCommand.execute(plugin, sender, commandlabel, args);
             }
         }
         return false;

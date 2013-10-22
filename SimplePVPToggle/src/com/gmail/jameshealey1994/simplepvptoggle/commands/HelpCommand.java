@@ -4,7 +4,6 @@ import com.gmail.jameshealey1994.simplepvptoggle.SimplePVPToggle;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.permissions.Permission;
 
 /**
  * Class representing a SimplePVPToggle reload command.
@@ -20,28 +19,24 @@ public class HelpCommand extends SimplePVPToggleCommand {
         this.aliases.add("help");
         this.aliases.add("h");
         
-        // TODO: Sort out permission structure (class for permissions?)
-        this.permissions.add(new Permission("spt.help"));
+        // TODO: Sort out permission structure (class for Permissions?)
     }
     
     @Override
     public boolean execute(SimplePVPToggle plugin, CommandSender sender, String commandLabel, String[] args) {
+
         /*
-         * Command can be used by console, and any players with the correct permission.
+         * Command can be used by anyone.
          */
+        sender.sendMessage(ChatColor.LIGHT_PURPLE + "------ " + plugin.getDescription().getFullName() + " ------");
         
-        if (sender instanceof Player) {
-            if (!hasPerms((Player) sender, this.getPermissions())) {
-                sender.sendMessage(ChatColor.RED + "You do not have permission to use this command.");
-                return false;
+        for (SimplePVPToggleCommand command : plugin.getCommands()) {
+            if ((!(sender instanceof Player)) || (command.hasPerms((Player) sender))) {
+                // TODO: What if a command has no aliases? Perhaps a name property is needed.
+                // TODO: Add a description property to commands?
+                sender.sendMessage(command.aliases.get(0) + " - description here"/* + command.getDescription()*/);
             }
         }
-
-        sender.sendMessage(ChatColor.LIGHT_PURPLE + "------ " + plugin.getDescription().getFullName() + " ------");
-        /*
-         * TODO: Check permissions, if they have permissions, show the help for that command.
-         * If no other permissions were found, display ????
-         */
         return true;
     }
 }

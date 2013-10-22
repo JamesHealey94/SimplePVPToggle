@@ -34,9 +34,9 @@ public class SetDefaultServerCommand extends SetDefaultCommand {
          * Command can be used by console, and any players with the correct permission.
          */
         if (sender instanceof Player) {
-            if (!hasPerms((Player) sender, this.getPermissions())) {
+            if (!hasPerms((Player) sender)) {
                 sender.sendMessage(ChatColor.RED + "You do not have permission to use this command.");
-                return false;
+                return true;
             }
         }
 
