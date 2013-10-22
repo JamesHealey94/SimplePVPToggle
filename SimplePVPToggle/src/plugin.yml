@@ -78,6 +78,3 @@ permissions:
     spt.reload:
         description: Allows you to reload the config
         default: false
-    spt.help:
-        description: Allows you to view the help menu
-        default: false
