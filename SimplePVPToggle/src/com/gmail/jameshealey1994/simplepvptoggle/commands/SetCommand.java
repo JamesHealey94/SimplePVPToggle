@@ -34,14 +34,10 @@ public class SetCommand extends SimplePVPToggleCommand {
             return false;
         }
         
-        Boolean status = null;
-        
-        
         /*
-         * TODO: Read again and check.
+         * Set up status
          */
-        
-        
+        Boolean status = null;
         if (args[0].equalsIgnoreCase("toggle")) { // /pvp toggle ...
             if (args[1] == null) { // /pvp toggle
                 if (sender instanceof Player) {
@@ -57,35 +53,37 @@ public class SetCommand extends SimplePVPToggleCommand {
         
         if (status == null) {
             return false;
-            
         }
         
-        if (args[1] == null) {
+        /*
+         * Use status to set a players status
+         */
+        if (args[1] == null) { // /pvp <on / off>
             if (sender instanceof Player) {
                 final Player player = (Player) sender;
-                setPlayersPVPStatus(player, player.getWorld(), status, plugin); // /pvp <on / off>
+                setPlayersPVPStatus(player, player.getWorld(), status, plugin);
                 return true;
-            } else {
-                return false;
             }
-        } else {
+        } else { // /pvp <on / off / toggle> ...
             final Player player = plugin.getServer().getPlayer(args[1]);
             if (player == null) {
                 sender.sendMessage(ChatColor.RED + "Player '" + args[1] + "' is not online or is invalid");
             } else {
-                if (args[2] == null) {
+                if (args[2] == null) { // /pvp <on / off / toggle> <username>
                     setPlayersPVPStatus(player, player.getWorld(), status, plugin);
-                } else {
-                    final World world = plugin.getServer().getWorld(args[2]); // /pvp <on / off> <username>
+                    return true;
+                } else { // /pvp <on / off / toggle> <username> ...
+                    final World world = plugin.getServer().getWorld(args[2]);
                     if (world == null) {
-                        sender.sendMessage(ChatColor.RED + "World '" + args[1] + "' not found");
+                        sender.sendMessage(ChatColor.RED + "World '" + args[2] + "' not found");
                     } else {
-                        setPlayersPVPStatus(player, world, status, plugin); // /pvp <on / off> <username> <world>
+                        setPlayersPVPStatus(player, world, status, plugin); // /pvp <on / off / toggle> <username> <world>
+                        return true;
                     }
                 }    
             }
-            return true;
         }
+        return false;
     }
     
     /**
