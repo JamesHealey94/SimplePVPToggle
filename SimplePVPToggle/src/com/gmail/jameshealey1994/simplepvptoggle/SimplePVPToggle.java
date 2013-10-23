@@ -1,27 +1,47 @@
 package com.gmail.jameshealey1994.simplepvptoggle;
 
 import com.gmail.jameshealey1994.simplepvptoggle.commands.HelpCommand;
-import com.gmail.jameshealey1994.simplepvptoggle.commands.ReloadCommand;
 import com.gmail.jameshealey1994.simplepvptoggle.commands.SimplePVPToggleCommand;
 import com.gmail.jameshealey1994.simplepvptoggle.commands.SimplePVPToggleCommandExecutor;
-import com.gmail.jameshealey1994.simplepvptoggle.commands.StatusCommand;
 import com.gmail.jameshealey1994.simplepvptoggle.listeners.SimplePVPToggleListener;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
  * Plugin to simply and easily set the PVP status of players, worlds, or the entire server.
+ * 
  * @author James Healey
  */
 public class SimplePVPToggle extends JavaPlugin {
 
     /**
-     * Commands belonging to the plugin.
-     * Listed in priority order (earlier items in the array have a higher priority, when it comes to aliases for example).
+     * The current command environment for the plugin (subset of commands accessible from the
+     * current state of the plugin).
      */
-    //TODO: Find a nice way to take this relatively unstable code out of this otherwise relatively stable class.
-    final private SimplePVPToggleCommand[] commands = new SimplePVPToggleCommand[]{new HelpCommand(), new ReloadCommand(), new StatusCommand()};
+    private SimplePVPToggleCommandEnvironment commandEnvironment = new DefaultSimplePVPToggleCommandEnvironment();
 
+    /**
+     * Gets the current command environment for the plugin.
+     * 
+     * @return  the current command environment for the plugin
+     */
+    public SimplePVPToggleCommandEnvironment getCommandEnvironment() {
+        
+        return commandEnvironment;
+        
+    }
+    
+    /**
+     * Sets the current command environment for the plugin.
+     * 
+     * @param commandEnvironment    the new current command environment for the plugin
+     */
+    public void setCommandEnvironment(SimplePVPToggleCommandEnvironment commandEnvironment) {
+        
+        this.commandEnvironment = commandEnvironment;
+        
+    }
+    
     @Override
     public void onEnable() {
 
@@ -33,14 +53,16 @@ public class SimplePVPToggle extends JavaPlugin {
 
         // Set command executors
         getCommand("spt").setExecutor(new SimplePVPToggleCommandExecutor(this, new HelpCommand()));
+        
     }
 
     /**
      * Returns commands belonging to the plugin.
+     * 
      * @return Commands belonging to the plugin
      */
     public SimplePVPToggleCommand[] getCommands() {
-        return commands;
+        return commandEnvironment.getCommands();
     }
     
     /**
