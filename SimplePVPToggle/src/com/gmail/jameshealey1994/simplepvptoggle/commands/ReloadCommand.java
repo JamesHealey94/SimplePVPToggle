@@ -9,6 +9,7 @@ import org.bukkit.permissions.Permission;
 /**
  * Class representing a SimplePVPToggle reload command.
  * Allows you to reload the config
+ * 
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
 public class ReloadCommand extends SimplePVPToggleCommand {

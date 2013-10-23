@@ -8,15 +8,16 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
- * Plugin to simply and easily set the PVP status of players, worlds, or the entire server.
+ * Plugin to simply and easily set the PVP status of players, worlds, or the
+ * entire server.
  * 
- * @author James Healey
+ * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
 public class SimplePVPToggle extends JavaPlugin {
 
     /**
-     * The current command environment for the plugin (subset of commands accessible from the
-     * current state of the plugin).
+     * The current command environment for the plugin (subset of commands
+     * accessible from the current state of the plugin).
      */
     private SimplePVPToggleCommandEnvironment commandEnvironment = new DefaultSimplePVPToggleCommandEnvironment();
 
@@ -26,20 +27,17 @@ public class SimplePVPToggle extends JavaPlugin {
      * @return  the current command environment for the plugin
      */
     public SimplePVPToggleCommandEnvironment getCommandEnvironment() {
-        
         return commandEnvironment;
-        
     }
     
     /**
      * Sets the current command environment for the plugin.
      * 
-     * @param commandEnvironment    the new current command environment for the plugin
+     * @param commandEnvironment    the new current command environment for
+     *                              the plugin
      */
     public void setCommandEnvironment(SimplePVPToggleCommandEnvironment commandEnvironment) {
-        
         this.commandEnvironment = commandEnvironment;
-        
     }
     
     @Override
@@ -53,26 +51,31 @@ public class SimplePVPToggle extends JavaPlugin {
 
         // Set command executors
         getCommand("spt").setExecutor(new SimplePVPToggleCommandExecutor(this, new HelpCommand()));
-        
     }
 
     /**
-     * Returns commands belonging to the plugin.
+     * Returns an array of commands belonging to the plugin.
      * 
-     * @return Commands belonging to the plugin
+     * @return  commands belonging to the plugin
      */
     public SimplePVPToggleCommand[] getCommands() {
         return commandEnvironment.getCommands();
     }
     
     /**
-     * Helper method used to check if a player's PvP value is set to true in the config.
+     * Check if a player's PvP value is set to true in the config.
      * It first looks for a specific value for that player in that world.
-     * If that is not found, it is set to the default value for the world the player is currently in.
+     * 
+     * If that is not found, it is set to the default value for the world the
+     * player is currently in.
+     * 
      * If that is not found, it is set to the default value for the server.
-     * If there is an error with the default value for the server, it is set to false by default.
-     * @param player The player being checked
-     * @return If the player can PVP in that world
+     * 
+     * If there is an error with the default value for the server, it is set to
+     * false by default.
+     * 
+     * @param player    the player being checked
+     * @return          if the player can PVP in that world
      */
     public boolean canPVP(Player player) {
         // Debug messages to show the config values

@@ -8,6 +8,7 @@ import org.bukkit.command.CommandSender;
 
 /**
  * Command executor for the SimplePVPToggle plugin.
+ * 
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
 public class SimplePVPToggleCommandExecutor implements CommandExecutor {
@@ -25,8 +26,9 @@ public class SimplePVPToggleCommandExecutor implements CommandExecutor {
 
     /**
      * Constructor to set plugin instance variable.
-     * @param plugin The plugin used to set internal plugin value
-     * @param defaultCommand The default command, executed when no arguments are given.
+     * 
+     * @param plugin            plugin used to set internal plugin value
+     * @param defaultCommand    default command, executed when no args are given
      */
     public SimplePVPToggleCommandExecutor(SimplePVPToggle plugin, SimplePVPToggleCommand defaultCommand) {
         this.plugin = plugin;

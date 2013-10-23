@@ -8,6 +8,7 @@ import org.bukkit.permissions.Permission;
 
 /**
  * Allows you to see your current PVP status for your current world.
+ * 
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
 public class StatusCommand extends SimplePVPToggleCommand {

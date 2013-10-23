@@ -10,8 +10,12 @@ import org.bukkit.permissions.Permission;
 
 /**
  * Allows you to change the PVP status of players.
- * /pvp <on / off> [username] [world]              Turns PVP <on / off> for [username] in [world]
- * /pvp toggle [username] [world]                  Changes PVP status for [username] in [world]
+ * /pvp <on / off> [username] [world]       Turns PVP <on / off> for [username]
+ *                                          in [world]
+ * 
+ * /pvp toggle [username] [world]           Changes PVP status for [username]
+ *                                          in [world]
+ * 
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
 public class SetCommand extends SimplePVPToggleCommand {
@@ -87,14 +91,17 @@ public class SetCommand extends SimplePVPToggleCommand {
     }
     
     /**
-     * Sets the players PVP status in the passed world to the passed state, then sends a message to the player.
-     * @param player The player to set the PVP status of
-     * @param world The world in which to set the player's PVP status
-     * @param status The status to change to
-     * @param plugin The plugin with the config storing PVP status values
+     * Sets the players PVP status in the passed world to the passed state,
+     * saves the config, then sends a message to the player.
+     * 
+     * @param player    player to set the PVP status of
+     * @param world     world in which to set the player's PVP status
+     * @param status    status to change to
+     * @param plugin    plugin with the config storing PVP status values
      */
     public void setPlayersPVPStatus(Player player, World world, boolean status, SimplePVPToggle plugin) {
         plugin.getConfig().set("Server.Worlds." + world.getName() + "." + player.getName(), status);
+        plugin.saveConfig();
         player.sendMessage(ChatColor.GRAY + "Current PVP status is " + plugin.canPVP(player));
     }
 }

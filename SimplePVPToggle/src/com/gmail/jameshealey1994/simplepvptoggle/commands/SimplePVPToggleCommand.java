@@ -8,35 +8,40 @@ import org.bukkit.permissions.Permission;
 
 /**
  * Abstract class to represent a SimplePVPToggle command.
- * Perhaps subcommand may be a better term, as the commands will be /spt <commandnamehere> [args]
+ * TODO: Perhaps subcommand may be a better term, as the commands will be
+ * /spt <commandnamehere> [args]
+ * 
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
 // TODO: Should this extend JavaPlugin or Plugin or something similar?
 public abstract class SimplePVPToggleCommand {
     
     /**
-     * An ArrayList of aliases for the command.
+     * Aliases for the command.
      */
     protected ArrayList<String> aliases = new ArrayList<>();
     
     /**
-     * An ArrayList of permissions for the command.
+     * Permissions for the command.
      */
     protected ArrayList<Permission> permissions = new ArrayList<>();
     
     /**
      * Executes the command.
-     * @param plugin The plugin relating to the command
-     * @param sender The sender of the command
-     * @param commandLabel The actual command used (not an alias)
-     * @param args The arguments given with the command (args[0] will be /spt or an alias, args[1] will be a subcommand alias)
-     * @return If the sender used the command correctly (if false, Bukkit sends a usage message to the sender)
+     * 
+     * @param plugin        plugin relating to the command
+     * @param sender        sender of the command
+     * @param commandLabel  actual command used (not an alias)
+     * @param args          arguments given with the command
+     * @return              if the sender used the command correctly (if false,
+     *                      Bukkit sends a usage message to the sender)
      */
     abstract public boolean execute(SimplePVPToggle plugin, CommandSender sender, String commandLabel, String[] args);
 
     /**
      * Returns the list of aliases.
-     * @return The list of aliases
+     * 
+     * @return  list of aliases
      */
     final public ArrayList<String> getAliases() {
         return aliases;
@@ -44,7 +49,7 @@ public abstract class SimplePVPToggleCommand {
 
     /**
      * Returns the list of permissions.
-     * @return The list of permissions
+     * @return  list of permissions
      */
     final public ArrayList<Permission> getPermissions() {
         return permissions;
@@ -52,8 +57,9 @@ public abstract class SimplePVPToggleCommand {
 
     /**
      * Returns if a player has a permission from a list of permissions passed.
-     * @param player The player to check if they have permissions
-     * @return If a player has a permission from a list of permissions passed
+     * 
+     * @param player    player to check permissions against
+     * @return          if a player has permissions for the command
      */
     final protected boolean hasPerms(Player player) {
         boolean hasPerms = false;

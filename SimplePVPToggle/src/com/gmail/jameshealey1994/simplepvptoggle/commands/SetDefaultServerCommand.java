@@ -9,6 +9,7 @@ import org.bukkit.permissions.Permission;
 /**
  * Class representing a SimplePVPToggle set default server command.
  * Allows you to set the default PVP status of the server
+ * 
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
 public class SetDefaultServerCommand extends SetDefaultCommand {
@@ -48,7 +49,7 @@ public class SetDefaultServerCommand extends SetDefaultCommand {
                 return true;
             }
             plugin.getConfig().set(path, newValue.booleanValue());
-            plugin.saveConfig(); // TODO: Is this necessary?
+            plugin.saveConfig();
             sender.sendMessage(ChatColor.GRAY + "Server default PVP status set to: " + plugin.getConfig().getBoolean("Server.Default"));
             return true;
         } else {

@@ -11,6 +11,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
 /**
  * Listener class for the SimplePVPToggle plugin.
+ * 
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
 public class SimplePVPToggleListener implements Listener {
@@ -22,7 +23,8 @@ public class SimplePVPToggleListener implements Listener {
     
     /**
      * Constructor used to set plugin.
-     * @param plugin Plugin used for config to retrieve PvP values from
+     * 
+     * @param plugin    plugin used for config to retrieve PvP values from
      */
     public SimplePVPToggleListener(SimplePVPToggle plugin) {
         this.plugin = plugin;
@@ -30,15 +32,18 @@ public class SimplePVPToggleListener implements Listener {
     
     /**
      * Entity damaged by another entity event.
-     * Cancels the event and sends damager a message if either damager or attacked player have not enabled PvP
-     * @param event The event being handled
+     * Cancels the event and sends damager a message if either damager or
+     * attacked player have not enabled PvP
+     * 
+     * @param event event being handled
      */
     @EventHandler (priority = EventPriority.LOWEST)
     public void onEntityDamageByEntityEvent(EntityDamageByEntityEvent event) {
         
         /*
-         * Currently works with melee, arrows and potions, but not from dispensers.
-         * Should it work with dispensers? Perhaps some config values for dispensers?.
+         * Works with melee, arrows and potions, but not from dispensers.
+         * Should it work with dispensers?
+         * Perhaps some config values for dispensers?.
          */
         
         if (event.getEntity() instanceof Player) {

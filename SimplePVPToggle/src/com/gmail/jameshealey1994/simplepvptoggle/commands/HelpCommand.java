@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 /**
  * Class representing a SimplePVPToggle reload command.
  * Allows you to reload the config
+ * 
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
 public class HelpCommand extends SimplePVPToggleCommand {

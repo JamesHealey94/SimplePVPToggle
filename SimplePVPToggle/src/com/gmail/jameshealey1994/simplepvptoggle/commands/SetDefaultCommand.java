@@ -3,13 +3,14 @@ package com.gmail.jameshealey1994.simplepvptoggle.commands;
 /**
  * Abstract Class representing a SimplePVPToggle set default command.
  * Allows you to set the default PVP status of the server or a world
+ * 
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
 abstract public class SetDefaultCommand extends SimplePVPToggleCommand {
     
     /**
      * The path being edited.
-     * e.g. "Server.Default", for editing the default server PVP status
+     * for example: "Server.Default", for editing the default server PVP status
      */
     protected String path;
 
