@@ -1,0 +1,11 @@
+-----------
+COMMANDS
+-----------
+/pvp <on / off> [username] [world]              Turns PVP <on / off> for [username] in [world]
+/pvp toggle [username] [world]                  Changes PVP status for [username] in [world]
+/pvp status <world / server>                    Shows default PVP status of [world / server]
+/pvp status <username> [world]                  Shows default PVP status of <username> in [world]
+/pvp setdefault world <world> <on / off>        Sets default PVP status for <world>
+/pvp setdefault server <on / off>               Sets default PVP status for server
+/pvp reload                                     Reloads config values
+/pvp [help]                                     Shows help menu

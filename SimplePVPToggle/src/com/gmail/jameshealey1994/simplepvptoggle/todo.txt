@@ -1,0 +1,7 @@
+-----------
+TODO
+-----------
+Continue with current command structure for a while.
+Consider using http://dev.bukkit.org/bukkit-plugins/mondocommand/ if command structure isn't working well.
+Add localisation
+Change <on / off> to a list of possible values for true and false (true, t, yes, y, etc.)
