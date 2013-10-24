@@ -9,6 +9,8 @@ import org.bukkit.entity.Player;
  * Class representing a SimplePVPToggle reload command.
  * Allows you to reload the config
  * 
+ * /pvp [help]      Shows help menu
+ * 
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
 public class HelpCommand extends SimplePVPToggleCommand {

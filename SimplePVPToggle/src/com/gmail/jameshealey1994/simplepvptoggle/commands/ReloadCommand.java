@@ -1,7 +1,7 @@
 package com.gmail.jameshealey1994.simplepvptoggle.commands;
 
+import com.gmail.jameshealey1994.simplepvptoggle.Localisation;
 import com.gmail.jameshealey1994.simplepvptoggle.SimplePVPToggle;
-import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.Permission;
@@ -9,6 +9,8 @@ import org.bukkit.permissions.Permission;
 /**
  * Class representing a SimplePVPToggle reload command.
  * Allows you to reload the config
+ * 
+ * /pvp reload      Reloads config values
  * 
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
@@ -32,13 +34,13 @@ public class ReloadCommand extends SimplePVPToggleCommand {
          */
         if (sender instanceof Player) {
             if (!hasPerms((Player) sender)) {
-                sender.sendMessage(ChatColor.RED + "You do not have permission to use this command.");
+                sender.sendMessage(Localisation.NO_PERMS);
                 return true;
             }
         }
         
         plugin.reloadConfig();
-        sender.sendMessage(ChatColor.LIGHT_PURPLE + "Configuration reloaded.");
+        sender.sendMessage(Localisation.CONFIG_RELOADED);
         return true;
     }
  }
