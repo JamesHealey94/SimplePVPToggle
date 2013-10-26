@@ -1,9 +1,4 @@
-package com.gmail.jameshealey1994.simplepvptoggle;
-
-import com.gmail.jameshealey1994.simplepvptoggle.commands.HelpCommand;
-import com.gmail.jameshealey1994.simplepvptoggle.commands.ReloadCommand;
-import com.gmail.jameshealey1994.simplepvptoggle.commands.SimplePVPToggleCommand;
-import com.gmail.jameshealey1994.simplepvptoggle.commands.StatusCommand;
+package com.gmail.jameshealey1994.simplepvptoggle.commands;
 
 /**
  * Represents the default command environment for the SimplePVPToggle plugin.

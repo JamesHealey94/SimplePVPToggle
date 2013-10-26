@@ -1,6 +1,4 @@
-package com.gmail.jameshealey1994.simplepvptoggle;
-
-import com.gmail.jameshealey1994.simplepvptoggle.commands.SimplePVPToggleCommand;
+package com.gmail.jameshealey1994.simplepvptoggle.commands;
 
 /**
  * Represents a plugin command environment (set of plugin commands).

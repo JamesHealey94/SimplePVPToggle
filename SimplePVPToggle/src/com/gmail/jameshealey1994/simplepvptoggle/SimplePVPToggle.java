@@ -1,5 +1,7 @@
 package com.gmail.jameshealey1994.simplepvptoggle;
 
+import com.gmail.jameshealey1994.simplepvptoggle.commands.SimplePVPToggleCommandEnvironment;
+import com.gmail.jameshealey1994.simplepvptoggle.commands.DefaultSimplePVPToggleCommandEnvironment;
 import com.gmail.jameshealey1994.simplepvptoggle.commands.HelpCommand;
 import com.gmail.jameshealey1994.simplepvptoggle.commands.SimplePVPToggleCommand;
 import com.gmail.jameshealey1994.simplepvptoggle.commands.SimplePVPToggleCommandExecutor;
