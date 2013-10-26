@@ -1,4 +1,4 @@
-package com.gmail.jameshealey1994.simplepvptoggle;
+package com.gmail.jameshealey1994.simplepvptoggle.localisation;
 
 import org.bukkit.ChatColor;
 

@@ -1,6 +1,6 @@
 package com.gmail.jameshealey1994.simplepvptoggle.commands;
 
-import com.gmail.jameshealey1994.simplepvptoggle.Localisation;
+import com.gmail.jameshealey1994.simplepvptoggle.localisation.Localisation;
 import com.gmail.jameshealey1994.simplepvptoggle.SimplePVPToggle;
 import com.gmail.jameshealey1994.simplepvptoggle.utils.Helper;
 import org.bukkit.command.CommandSender;
