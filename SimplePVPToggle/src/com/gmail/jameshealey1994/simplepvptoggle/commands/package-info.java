@@ -1,4 +1,4 @@
 /**
- * This package contains all command related classes and files.
+ * Package containing all command related classes and files.
  */
 package com.gmail.jameshealey1994.simplepvptoggle.commands;
