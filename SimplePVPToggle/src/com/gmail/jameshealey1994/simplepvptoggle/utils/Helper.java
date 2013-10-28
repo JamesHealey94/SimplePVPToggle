@@ -9,6 +9,16 @@ package com.gmail.jameshealey1994.simplepvptoggle.utils;
 public abstract class Helper {
     
     /**
+     * Strings representing a positive value.
+     */
+    public static final String[] POSITIVE_VALUES = new String[] {"true", "t", "yes", "y", "on"};
+    
+    /**
+     * Strings representing a negative value.
+     */
+    public static final String[] NEGATIVE_VALUES = new String[] {"false", "f", "no", "n", "off"};
+    
+    /**
      * Converts a string to a Boolean depending on the contents of the String.
      * Case insensitive.
      * Can be null.
@@ -19,19 +29,16 @@ public abstract class Helper {
      *                  if no matches are found
      */
     public static Boolean parseBoolean(String string) {
-        final String[] positiveValues = new String[] {"true", "t", "yes", "y"};
-        final String[] negativeValues = new String[] {"false", "f", "no", "n"};
-        Boolean status = null;
-        for (String s : positiveValues) {
+        for (String s : POSITIVE_VALUES) {
             if (string.equalsIgnoreCase(s)) {
-                status = true;
+                return true;
             }
         }
-        for (String s : negativeValues) {
+        for (String s : NEGATIVE_VALUES) {
             if (string.equalsIgnoreCase(s)) {
-                status = false;
+                return false;
             }
         }
-        return status;
+        return null;
     }
 }
