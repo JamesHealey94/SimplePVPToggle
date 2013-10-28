@@ -4,6 +4,7 @@ package com.gmail.jameshealey1994.simplepvptoggle.commands;
  * Represents the default command environment for the SimplePVPToggle plugin.
  * 
  * @author Saul Johnson
+ * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
 public class DefaultSimplePVPToggleCommandEnvironment extends SimplePVPToggleCommandEnvironment {
     
@@ -12,6 +13,13 @@ public class DefaultSimplePVPToggleCommandEnvironment extends SimplePVPToggleCom
      * SimplePVPToggle plugin.
      */
     public DefaultSimplePVPToggleCommandEnvironment() {
-        super(new SimplePVPToggleCommand[] {new HelpCommand(), new ReloadCommand(), new StatusCommand()});
+        super(new SimplePVPToggleCommand[] {
+            new HelpCommand(),
+            new InfoCommand(),
+            new ReloadCommand(),
+            new SetCommand(),
+            new SetServerDefaultCommand(),
+            new SetWorldDefaultCommand(),
+            new StatusCommand()});
     }
 }
