@@ -6,6 +6,7 @@ import com.gmail.jameshealey1994.simplepvptoggle.commands.HelpCommand;
 import com.gmail.jameshealey1994.simplepvptoggle.commands.SimplePVPToggleCommand;
 import com.gmail.jameshealey1994.simplepvptoggle.commands.SimplePVPToggleCommandExecutor;
 import com.gmail.jameshealey1994.simplepvptoggle.listeners.SimplePVPToggleListener;
+import com.gmail.jameshealey1994.simplepvptoggle.localisation.Localisation;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -22,25 +23,11 @@ public class SimplePVPToggle extends JavaPlugin {
      * accessible from the current state of the plugin).
      */
     private SimplePVPToggleCommandEnvironment commandEnvironment = new DefaultSimplePVPToggleCommandEnvironment();
-
-    /**
-     * Gets the current command environment for the plugin.
-     * 
-     * @return  the current command environment for the plugin
-     */
-    public SimplePVPToggleCommandEnvironment getCommandEnvironment() {
-        return commandEnvironment;
-    }
     
     /**
-     * Sets the current command environment for the plugin.
-     * 
-     * @param commandEnvironment    the new current command environment for
-     *                              the plugin
+     * The current localisation for the plugin.
      */
-    public void setCommandEnvironment(SimplePVPToggleCommandEnvironment commandEnvironment) {
-        this.commandEnvironment = commandEnvironment;
-    }
+    private Localisation localisation = new Localisation(this);
     
     @Override
     public void onEnable() {
@@ -51,19 +38,13 @@ public class SimplePVPToggle extends JavaPlugin {
         // Register events
         getServer().getPluginManager().registerEvents(new SimplePVPToggleListener(this), this);
 
-        // Set command executors
+        // Set command executors and default command
         getCommand("spt").setExecutor(new SimplePVPToggleCommandExecutor(this, new HelpCommand()));
+        
+        // Set localisation
+        localisation = new Localisation(this);
     }
 
-    /**
-     * Returns an array of commands belonging to the plugin.
-     * 
-     * @return  commands belonging to the plugin
-     */
-    public SimplePVPToggleCommand[] getCommands() {
-        return commandEnvironment.getCommands();
-    }
-    
     /**
      * Check if a player's PvP value is set to true in the config.
      * It first looks for a specific value for that player in that world.
@@ -91,5 +72,50 @@ public class SimplePVPToggle extends JavaPlugin {
                 this.getConfig().getBoolean("Server.Worlds." + player.getWorld().getName() + ".Default",
                 this.getConfig().getBoolean("Server.Worlds." + player.getWorld().getName(),
                 this.getConfig().getBoolean("Server.Default", false)))));
+    }
+
+    /**
+     * Returns an array of commands belonging to the plugin.
+     * 
+     * @return  commands belonging to the plugin
+     */
+    public SimplePVPToggleCommand[] getCommands() {
+        return commandEnvironment.getCommands();
+    }
+
+    /**
+     * Gets the current command environment for the plugin.
+     * 
+     * @return  the current command environment for the plugin
+     */
+    public SimplePVPToggleCommandEnvironment getCommandEnvironment() {
+        return commandEnvironment;
+    }
+    
+    /**
+     * Sets the current command environment for the plugin.
+     * 
+     * @param commandEnvironment    the new command environment for the plugin
+     */
+    public void setCommandEnvironment(SimplePVPToggleCommandEnvironment commandEnvironment) {
+        this.commandEnvironment = commandEnvironment;
+    }
+
+    /**
+     * Gets the current localisation for the plugin.
+     * 
+     * @return the current localisation for the plugin
+     */
+    public Localisation getLocalisation() {
+        return localisation;
+    }
+
+    /**
+     * Sets the current command environment for the plugin.
+     * 
+     * @param localisation  the new localisation for the plugin
+     */
+    public void setLocalisation(Localisation localisation) {
+        this.localisation = localisation;
     }
 }
