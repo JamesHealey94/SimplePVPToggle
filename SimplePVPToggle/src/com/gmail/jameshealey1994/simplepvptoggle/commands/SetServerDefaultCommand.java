@@ -1,7 +1,7 @@
 package com.gmail.jameshealey1994.simplepvptoggle.commands;
 
-import com.gmail.jameshealey1994.simplepvptoggle.localisation.Localisation;
 import com.gmail.jameshealey1994.simplepvptoggle.SimplePVPToggle;
+import com.gmail.jameshealey1994.simplepvptoggle.localisation.LocalisationEntry;
 import com.gmail.jameshealey1994.simplepvptoggle.utils.Helper;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -37,7 +37,7 @@ public class SetServerDefaultCommand extends SimplePVPToggleCommand {
          */
         if (sender instanceof Player) {
             if (!hasPerms((Player) sender)) {
-                sender.sendMessage(Localisation.NO_PERMS);
+                sender.sendMessage(plugin.getLocalisation().get(LocalisationEntry.MSG_PERMISSION_DENIED));
                 return true;
             }
         }
@@ -48,17 +48,17 @@ public class SetServerDefaultCommand extends SimplePVPToggleCommand {
              */
             final Boolean newValue = Helper.parseBoolean(args[0]);
             if (newValue == null) {
-                sender.sendMessage(Localisation.SPECIFY_PVP_STATUS);
+                sender.sendMessage(plugin.getLocalisation().get(LocalisationEntry.MSG_SPECIFY_PVP_STATUS));
                 return true;
             }
             
             final String path = "Server.Default";
             plugin.getConfig().set(path, newValue.booleanValue());
             plugin.saveConfig();
-            sender.sendMessage(Localisation.SERVER_DEFAULT_SET_TO + plugin.getConfig().getBoolean(path));
+            sender.sendMessage(plugin.getLocalisation().get(LocalisationEntry.MSG_SERVER_DEFAULT_SET_TO) + plugin.getConfig().getBoolean(path));
             return true;
         } else {
-            sender.sendMessage(Localisation.SPECIFY_PVP_STATUS);
+            sender.sendMessage(plugin.getLocalisation().get(LocalisationEntry.MSG_SPECIFY_PVP_STATUS));
             return false;
         }
     }

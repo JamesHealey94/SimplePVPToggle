@@ -1,7 +1,7 @@
 package com.gmail.jameshealey1994.simplepvptoggle.commands;
 
-import com.gmail.jameshealey1994.simplepvptoggle.localisation.Localisation;
 import com.gmail.jameshealey1994.simplepvptoggle.SimplePVPToggle;
+import com.gmail.jameshealey1994.simplepvptoggle.localisation.LocalisationEntry;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.Permission;
@@ -34,13 +34,13 @@ public class ReloadCommand extends SimplePVPToggleCommand {
          */
         if (sender instanceof Player) {
             if (!hasPerms((Player) sender)) {
-                sender.sendMessage(Localisation.NO_PERMS);
+                sender.sendMessage(plugin.getLocalisation().get(LocalisationEntry.MSG_PERMISSION_DENIED));
                 return true;
             }
         }
         
         plugin.reloadConfig();
-        sender.sendMessage(Localisation.CONFIG_RELOADED);
+        sender.sendMessage(plugin.getLocalisation().get(LocalisationEntry.MSG_CONFIG_RELOADED));
         return true;
     }
  }
