@@ -55,8 +55,8 @@ public class Localisation {
         if (localisations.containsKey(key.getName())) {
             return addColor(String.valueOf(localisations.get(key.getName())));
         } else {
-            plugin.getLogger().log(Level.WARNING, "Missing localisation: {0}", key.getName());
-            return "ERROR:Missing localisation: '" + key.getName() + "'";
+            plugin.getLogger().log(Level.WARNING, ChatColor.RED + "Missing localisation: {0}", key.getName());
+            return ChatColor.RED + "ERROR: Missing localisation: '" + key.getName() + "'";
         }
     }
 
@@ -117,7 +117,7 @@ public class Localisation {
                 writer.write(entry.toString());
             }
         } catch (IOException ex) {
-            plugin.getLogger().log(Level.SEVERE, "IOException when creating new localisation file: {0}", title);
+            plugin.getLogger().log(Level.SEVERE, ChatColor.RED + "IOException when creating new localisation file: {0}", title);
             plugin.getLogger().severe(ex.getMessage());
         }
     }
