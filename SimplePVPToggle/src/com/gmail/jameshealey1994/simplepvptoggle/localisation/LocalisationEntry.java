@@ -6,6 +6,9 @@ package com.gmail.jameshealey1994.simplepvptoggle.localisation;
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
 public enum LocalisationEntry {
+    // TODO Perhaps change to Messages.messagehere and Commands.CommandName.Description
+    // TODO Perhaps change to different classes for each section (messages, each command)
+    
     /**
      * Message telling player they do not have permission to use a command.
      */
@@ -38,7 +41,47 @@ public enum LocalisationEntry {
     /**
      * Message telling user the configuration has been reloaded.
      */
-    MSG_CONFIG_RELOADED ("MsgConfigReloaded", "&7Configuration reloaded.");
+    MSG_CONFIG_RELOADED ("MsgConfigReloaded", "&7Configuration reloaded."),
+    
+    /**
+     * Description for Help command.
+     */
+    DESCRIPTION_HELP ("DescHelp", "Shows help menu"),
+    
+    /**
+     * Description for Info command.
+     */
+    DESCRIPTION_INFO ("DescInfo", "Displays default PVP status of server and worlds"),
+    
+    /**
+     * Description for Reload command.
+     */
+    DESCRIPTION_RELOAD ("DescReload", "Reloads config values"),
+    
+    /**
+     * Description for Set command.
+     */
+    DESCRIPTION_SET ("DescSet", "Changes PVP status for [username] in [world] to <on / off>"),
+    
+    /**
+     * Description for Set Server Default command.
+     */
+    DESCRIPTION_SET_SERVER_DEFAULT ("DescSetServerDefault", "Sets default PVP status for server to <on / off>"),
+    
+    /**
+     * Description for Set World Default command.
+     */
+    DESCRIPTION_SET_WORLD_DEFAULT ("DescSetWorldDefault", "Sets default PVP status for [world] to <on / off>"),
+    
+    /**
+     * Description for Status command.
+     */
+    DESCRIPTION_STATUS ("DescStatus", "Displays PVP status of [username] in [world]"),
+    
+    /**
+     * Used between command name and description in the help command.
+     */
+    HELP_SEPARATOR ("HelpSeparator", " - ");
     
     /**
      * The name of the entry, as found in the localisation file.

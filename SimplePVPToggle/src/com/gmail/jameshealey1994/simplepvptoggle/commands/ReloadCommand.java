@@ -1,6 +1,7 @@
 package com.gmail.jameshealey1994.simplepvptoggle.commands;
 
 import com.gmail.jameshealey1994.simplepvptoggle.SimplePVPToggle;
+import com.gmail.jameshealey1994.simplepvptoggle.localisation.Localisation;
 import com.gmail.jameshealey1994.simplepvptoggle.localisation.LocalisationEntry;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -42,5 +43,10 @@ public class ReloadCommand extends SimplePVPToggleCommand {
         plugin.reloadConfig();
         sender.sendMessage(plugin.getLocalisation().get(LocalisationEntry.MSG_CONFIG_RELOADED));
         return true;
+    }
+
+    @Override
+    public String getDescription(Localisation localisation) {
+        return localisation.get(LocalisationEntry.DESCRIPTION_RELOAD);
     }
  }

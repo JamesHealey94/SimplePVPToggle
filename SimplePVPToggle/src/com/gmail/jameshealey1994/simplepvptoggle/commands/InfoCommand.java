@@ -1,6 +1,8 @@
 package com.gmail.jameshealey1994.simplepvptoggle.commands;
 
 import com.gmail.jameshealey1994.simplepvptoggle.SimplePVPToggle;
+import com.gmail.jameshealey1994.simplepvptoggle.localisation.Localisation;
+import com.gmail.jameshealey1994.simplepvptoggle.localisation.LocalisationEntry;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
@@ -41,5 +43,10 @@ public class InfoCommand extends SimplePVPToggleCommand {
                       false))));
         }
         return true;
+    }
+
+    @Override
+    public String getDescription(Localisation localisation) {
+        return localisation.get(LocalisationEntry.DESCRIPTION_INFO);
     }
 }

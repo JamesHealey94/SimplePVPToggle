@@ -1,6 +1,7 @@
 package com.gmail.jameshealey1994.simplepvptoggle.commands;
 
 import com.gmail.jameshealey1994.simplepvptoggle.SimplePVPToggle;
+import com.gmail.jameshealey1994.simplepvptoggle.localisation.Localisation;
 import com.gmail.jameshealey1994.simplepvptoggle.localisation.LocalisationEntry;
 import com.gmail.jameshealey1994.simplepvptoggle.utils.Helper;
 import org.bukkit.World;
@@ -117,5 +118,10 @@ public class SetWorldDefaultCommand extends SimplePVPToggleCommand {
         plugin.getConfig().set(path, status);
         plugin.saveConfig();
         sender.sendMessage(world.getName() + plugin.getLocalisation().get(LocalisationEntry.MSG_SERVER_DEFAULT_SET_TO) + plugin.getConfig().getBoolean(path));
+    }
+
+    @Override
+    public String getDescription(Localisation localisation) {
+        return localisation.get(LocalisationEntry.DESCRIPTION_SET_WORLD_DEFAULT);
     }
 }

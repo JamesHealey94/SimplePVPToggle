@@ -1,6 +1,7 @@
 package com.gmail.jameshealey1994.simplepvptoggle.commands;
 
 import com.gmail.jameshealey1994.simplepvptoggle.SimplePVPToggle;
+import com.gmail.jameshealey1994.simplepvptoggle.localisation.Localisation;
 import com.gmail.jameshealey1994.simplepvptoggle.localisation.LocalisationEntry;
 import com.gmail.jameshealey1994.simplepvptoggle.utils.Helper;
 import java.util.Arrays;
@@ -122,5 +123,10 @@ public class SetCommand extends SimplePVPToggleCommand {
                 player.sendMessage(ChatColor.GRAY + sender.getName() + " set your current PVP status to '" + plugin.canPVP(player) + "' in world '" + world.getName() + "'");
             }
         }
+    }
+
+    @Override
+    public String getDescription(Localisation localisation) {
+        return localisation.get(LocalisationEntry.DESCRIPTION_SET);
     }
 }

@@ -1,6 +1,7 @@
 package com.gmail.jameshealey1994.simplepvptoggle.commands;
 
 import com.gmail.jameshealey1994.simplepvptoggle.SimplePVPToggle;
+import com.gmail.jameshealey1994.simplepvptoggle.localisation.Localisation;
 import java.util.ArrayList;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -54,6 +55,14 @@ public abstract class SimplePVPToggleCommand {
     final public ArrayList<Permission> getPermissions() {
         return permissions;
     }
+    
+    /**
+     * Returns the description specified in the localisation passed.
+     * @param localisation  the localisation containing the description
+     * 
+     * @return the description specified in the localisation passed
+     */
+    public abstract String getDescription(Localisation localisation);
 
     /**
      * Returns if a player has a permission from a list of permissions passed.
