@@ -3,6 +3,7 @@
 # Will be used as the PVP value unless overridden by world or player.
 # Default: false
 # Must be a boolean value (true or false).
+Localisation Filename: localisation.yml
 
 Server:
   Default: false

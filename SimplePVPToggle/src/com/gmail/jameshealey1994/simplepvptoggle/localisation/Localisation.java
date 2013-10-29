@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.logging.Level;
 import org.bukkit.ChatColor;
@@ -24,7 +25,7 @@ public class Localisation {
      * The default localisation filename.
      */
     public static final String DEFAULT_FILENAME = "localisation.yml";
-    
+
     /**
      * Plugin associated with the localisation.
      */
@@ -39,17 +40,7 @@ public class Localisation {
         if (plugin == null) {
             throw new IllegalArgumentException("plugin cannot be null");
         }
-//        if (!plugin.isInitialized()) {
-//            throw new IllegalArgumentException("plugin must be initialized");
-//        }
         this.plugin = plugin;
-
-//        if (plugin.getDataFolder() == null) {
-//            throw new IllegalStateException();
-//        }
-        
-//        getConfigFile(plugin);        
-//        this.localisations = getLocalisation();
     }
 
     /**
@@ -62,15 +53,9 @@ public class Localisation {
         final HashMap<String, Object> localisations = getLocalisations();
 
         if (localisations.containsKey(key.getName())) {
-            // TODO - Check if String conversion is needed
-            if (localisations.get(key.getName()) instanceof String) {
-                return addColor((String) localisations.get(key.getName()));
-            } else {
-                plugin.getLogger().log(Level.WARNING, "[{0}] Value should be a String: {1}", new Object[]{plugin.getName(), localisations.get(key.getName())});
-                return "ERROR:Value should be a String: '" + key.getName() + "'";
-            }
+            return addColor(String.valueOf(localisations.get(key.getName())));
         } else {
-            plugin.getLogger().log(Level.WARNING, "[{0}] Missing localisation: {1}", new Object[]{plugin.getName(), key});
+            plugin.getLogger().log(Level.WARNING, "Missing localisation: {0}", key.getName());
             return "ERROR:Missing localisation: '" + key.getName() + "'";
         }
     }
@@ -84,7 +69,7 @@ public class Localisation {
     public static String addColor(String string) {
         return ChatColor.translateAlternateColorCodes('&', string);
     }
-    
+
     /**
      * Returns either a custom or default HashMap of localisations.
      *
@@ -92,127 +77,57 @@ public class Localisation {
      *          default is returned
      */
     private HashMap<String, Object> getLocalisations() {
-//
-//        // Look for defaults in the jar
-//        final InputStream defConfigStream = plugin.getResource(filename);
-//        if (defConfigStream != null) {
-//            final YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
-//            fileConfiguration.setDefaults(defConfig);
-//        } else {
-//            createDefaultConfig(configFile);
-//        }
         return (HashMap<String, Object>) getConfig().getValues(true);
     }
-    
+
     /**
      * Returns the FileConfiguration of getFile().
-     * 
+     *
      * @return the FileConfiguration of getFile()
      */
     public FileConfiguration getConfig() {
         return YamlConfiguration.loadConfiguration(getFile());
     }
-    
+
     /**
      * Returns the file containing localisation values.
-     * 
+     * If the file with the filename specified in the config.yml does not exist,
+     * a file is created with that name and filled with default values.
+     *
      * @return  the file containing localisation values
      */
     private File getFile() {
-        if (!(new File(plugin.getDataFolder(), getFilename()).exists())) {
-            createDefaultConfig();   
+        final File file = new File(plugin.getDataFolder(), getFilename());
+        if (!(file.exists())) {
+            createDefaultConfig();
         }
-        return new File(plugin.getDataFolder(), getFilename());
+        return file;
     }
-    
+
     /**
      * Fills the file specified in the config with default localisation values.
      */
     private void createDefaultConfig() {
         final String title = plugin.getName() + " localisation configuration";
+        final File file = new File(plugin.getDataFolder(), getFilename());
 
-        try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File(plugin.getDataFolder(), getFilename()), true), "UTF-8"))) {
+        try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, true), StandardCharsets.UTF_8))) {
             writer.write("# " + title + "\n");
             for (LocalisationEntry entry : LocalisationEntry.values()) {
                 writer.write(entry.toString());
             }
         } catch (IOException ex) {
-            plugin.getLogger().log(Level.SEVERE, "[{0}] IOException when creating new localisation file : {1}!", new Object[]{plugin.getName(), title});
+            plugin.getLogger().log(Level.SEVERE, "IOException when creating new localisation file: {0}", title);
             plugin.getLogger().severe(ex.getMessage());
         }
     }
-    
+
     /**
      * Returns the filename as specified in config.yml.
-     * 
+     *
      * @return  filename as specified in config.yml
      */
     public final String getFilename() {
-        return plugin.getConfig().getString("localisation filename", DEFAULT_FILENAME);
+        return plugin.getConfig().getString("Localisation Filename", DEFAULT_FILENAME);
     }
-    
-//    /**
-//     * Name of the configFile.
-//     */
-//    private String filename;
-
-//    /**
-//     * The file containing Localisations.
-//     */
-//    private File configFile;
-
-//    /**
-//     * The configuration of the configFile.
-//     */
-//    private FileConfiguration fileConfiguration;
-
-//    /**
-//     * The values of the localisation.
-//     */
-//    private HashMap<String, Object> localisations;   
-    
-//    /**
-//     * Returns all localisation entries and their default values as a HashMap.
-//     *
-//     * @return all localisation entries and their default values as a HashMap
-//     */
-//    private HashMap<String, Object> getDefaultLocalisation() {
-//        final HashMap<String, Object> defaultLocalisation = new HashMap<>();
-//        for (LocalisationEntry entry : LocalisationEntry.values()) {
-//            defaultLocalisation.put(entry.getName(), entry.getDefaultValue());
-//        }
-//        return defaultLocalisation;
-//    }
-
-//    public void reloadConfig() {
-//        fileConfiguration = YamlConfiguration.loadConfiguration(getFile());
-//
-//        // Look for defaults in the jar
-//        final InputStream defConfigStream = plugin.getResource(getFilename());
-//        if (defConfigStream != null) {
-//            final YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
-//            fileConfiguration.setDefaults(defConfig);
-//        } else {
-//            createDefaultConfig();
-//        }
-//    }
-    
-//    public void saveConfig() {
-//        if (/*fileConfiguration != null && */getFile() != null) {
-//            try {
-//                getConfig().save(getFile());
-//            } catch (IOException ex) {
-//                plugin.getLogger().log(Level.SEVERE, "Could not save config to " + getFile(), ex);
-//            }
-//        }
-//    }
-//
-//    /**
-//     * Creates or overwrites the localisation file with default values.
-//     */
-//    public void saveDefaultConfig() {
-//        if (!getFile().exists()) {
-//            plugin.saveResource(getFilename(), false);
-//        }
-//    }
 }
