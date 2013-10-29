@@ -59,7 +59,6 @@ public class Localisation {
      * @return      value obtained, or error message if no valid value is found
      */
     public String get(LocalisationEntry key) {
-
         final HashMap<String, Object> localisations = getLocalisations();
 
         if (localisations.containsKey(key.getName())) {
@@ -120,7 +119,7 @@ public class Localisation {
      * @return  the file containing localisation values
      */
     private File getFile() {
-        if (new File(plugin.getDataFolder(), getFilename()).exists()) {
+        if (!(new File(plugin.getDataFolder(), getFilename()).exists())) {
             createDefaultConfig();   
         }
         return new File(plugin.getDataFolder(), getFilename());
@@ -132,11 +131,7 @@ public class Localisation {
     private void createDefaultConfig() {
         final String title = plugin.getName() + " localisation configuration";
 
-        try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(getFile(), true), "UTF-8"))) {
-            // Test - needed?
-//            final File dir = new File(plugin.getDataFolder(), "");
-//            dir.mkdirs();
-
+        try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File(plugin.getDataFolder(), getFilename()), true), "UTF-8"))) {
             writer.write("# " + title + "\n");
             for (LocalisationEntry entry : LocalisationEntry.values()) {
                 writer.write(entry.toString());
