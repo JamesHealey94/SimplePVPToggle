@@ -34,7 +34,7 @@ public class SetWorldDefaultCommand extends SimplePVPToggleCommand {
         // if a player has spt.setdefault.world in another world,
         // then does /spt setworlddefault thatworld true,
         // it won't work currently, but would be nice to
-        // -- Vault will fix, but will mean adding a dependancy --
+        // -- Vault will fix, but will mean adding a dependency --
     }
 
     @Override
