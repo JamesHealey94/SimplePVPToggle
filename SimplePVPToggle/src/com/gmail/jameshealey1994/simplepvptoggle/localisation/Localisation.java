@@ -47,7 +47,8 @@ public class Localisation {
      * Gets the corresponding localisation to the key passed.
      *
      * @param key   key used to obtain localisation value
-     * @return      value obtained, or error message if no valid value is found
+     * @return      value obtained, or, if no valid value is found, the default
+     *              message belonging to key
      */
     public String get(LocalisationEntry key) {
         final HashMap<String, Object> localisations = getLocalisations();
@@ -55,8 +56,9 @@ public class Localisation {
         if (localisations.containsKey(key.getName())) {
             return addColor(String.valueOf(localisations.get(key.getName())));
         } else {
-            plugin.getLogger().log(Level.WARNING, ChatColor.RED + "Missing localisation: {0}", key.getName());
-            return ChatColor.RED + "ERROR: Missing localisation: '" + key.getName() + "'";
+            plugin.getLogger().log(Level.WARNING, ChatColor.RED + "Missing localisation: ''{0}''", key.getName());
+            plugin.getLogger().log(Level.WARNING, "{0}Update your localisation config to resolve", ChatColor.RED);
+            return addColor(key.getDefaultValue());
         }
     }
 

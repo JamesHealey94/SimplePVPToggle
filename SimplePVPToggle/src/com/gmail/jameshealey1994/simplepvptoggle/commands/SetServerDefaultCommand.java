@@ -36,9 +36,10 @@ public class SetServerDefaultCommand extends SimplePVPToggleCommand {
         /*
          * Command can be used by console and players with the correct permission.
          */
+        final Localisation localisation = plugin.getLocalisation();
         if (sender instanceof Player) {
             if (!hasPerms((Player) sender)) {
-                sender.sendMessage(plugin.getLocalisation().get(LocalisationEntry.MSG_PERMISSION_DENIED));
+                sender.sendMessage(localisation.get(LocalisationEntry.ERR_PERMISSION_DENIED));
                 return true;
             }
         }
@@ -49,17 +50,17 @@ public class SetServerDefaultCommand extends SimplePVPToggleCommand {
              */
             final Boolean newValue = Helper.parseBoolean(args[0]);
             if (newValue == null) {
-                sender.sendMessage(plugin.getLocalisation().get(LocalisationEntry.MSG_SPECIFY_PVP_STATUS));
+                sender.sendMessage(localisation.get(LocalisationEntry.ERR_SPECIFY_PVP_STATUS));
                 return true;
             }
             
             final String path = "Server.Default";
             plugin.getConfig().set(path, newValue.booleanValue());
             plugin.saveConfig();
-            sender.sendMessage(plugin.getLocalisation().get(LocalisationEntry.MSG_SERVER_DEFAULT_SET_TO) + plugin.getConfig().getBoolean(path));
+            sender.sendMessage(localisation.get(LocalisationEntry.MSG_SERVER_DEFAULT_SET_TO) + plugin.getConfig().getBoolean(path));
             return true;
         } else {
-            sender.sendMessage(plugin.getLocalisation().get(LocalisationEntry.MSG_SPECIFY_PVP_STATUS));
+            sender.sendMessage(localisation.get(LocalisationEntry.ERR_SPECIFY_PVP_STATUS));
             return false;
         }
     }

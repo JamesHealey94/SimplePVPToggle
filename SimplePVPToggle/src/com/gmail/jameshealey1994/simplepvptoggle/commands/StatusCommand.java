@@ -28,14 +28,21 @@ public class StatusCommand extends SimplePVPToggleCommand {
 
     @Override
     public boolean execute(SimplePVPToggle plugin, CommandSender sender, String commandLabel, String[] args) {
+
+        /*
+         * Command can be used by console, and any players with the correct permission.
+         * Although it depends on the arguments given.
+         */
+        // TODO Edit to work with different world and players.
         if (!(sender instanceof Player)) {
-            sender.sendMessage(ChatColor.RED + "Only players may use that command.");
+            sender.sendMessage("This command is not yet supported on console");
             return true;
         }
 
         final Player player = (Player) sender;
+        final Localisation localisation = plugin.getLocalisation();
         if (!hasPerms(player)) {
-            sender.sendMessage(ChatColor.RED + "You do not have permission to use this command.");
+            sender.sendMessage(localisation.get(LocalisationEntry.ERR_PERMISSION_DENIED));
             return true;
         }
 
@@ -44,7 +51,7 @@ public class StatusCommand extends SimplePVPToggleCommand {
                 plugin.getConfig().getBoolean("Server.Worlds." + player.getWorld().getName(),
                 plugin.getConfig().getBoolean("Server.Default"))));
 
-        player.sendMessage(ChatColor.GRAY + "Current PVP status is " + status);
+        player.sendMessage(localisation.get(LocalisationEntry.MSG_CURRENT_PVP_STATUS) + status);
         return true;
     }
 

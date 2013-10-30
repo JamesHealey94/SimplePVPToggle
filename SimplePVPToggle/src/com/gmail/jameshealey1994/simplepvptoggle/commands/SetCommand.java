@@ -38,55 +38,86 @@ public class SetCommand extends SimplePVPToggleCommand {
 
     @Override
     public boolean execute(SimplePVPToggle plugin, CommandSender sender, String commandLabel, String[] args) {
-
+        
         /*
-         * Set up status
+         * Command can be used by console, and any players with the correct permission.
+         * Although it depends on the arguments given.
          */
-        Boolean status = null;
-        if (commandLabel.equalsIgnoreCase("toggle")) { // /pvp toggle ...
-            if (args.length == 0) { // /pvp toggle
+        final Localisation localisation = plugin.getLocalisation();
+        final Boolean status;
+        if (commandLabel.equalsIgnoreCase("toggle")) {
+            // /pvp toggle ...
+            if (args.length == 0) {
+                // /pvp toggle
                 if (sender instanceof Player) {
                     status = !plugin.canPVP((Player) sender);
                 } else {
-                    sender.sendMessage(plugin.getLocalisation().get(LocalisationEntry.MSG_ONLY_PLAYERS_CAN_USE_THIS_COMMAND));
+                    sender.sendMessage(localisation.get(LocalisationEntry.ERR_SPECIFY_PLAYER));
                     return false;
                 }
             } else {
-                sender.sendMessage("/pvp toggle ... ([username] [world] ?)");
-                // /pvp toggle ... ([username] [world] ?)
-                // TODO
+                // /pvp toggle <username> ...
+                final Player target = plugin.getServer().getPlayer(args[0]);
+                if (target == null) {
+                    sender.sendMessage(localisation.get(LocalisationEntry.ERR_PLAYER_NOT_FOUND) + args[0]);
+                    return false;
+                }
+                status = !plugin.canPVP(target);
+                
+                if (args.length > 1) {
+                    // /pvp toggle <username> <world>
+                    final World world = plugin.getServer().getWorld(args[1]);
+                    if (world != null) {
+                        setPlayerPVPStatus(sender, target, world, status, plugin);
+                        return true;
+                    } else {
+                        sender.sendMessage(localisation.get(LocalisationEntry.ERR_PLAYER_NOT_FOUND) + args[0]);
+                        return false;
+                    }
+                } else {
+                    // /pvp toggle <username>
+                    setPlayerPVPStatus(sender, target, target.getWorld(), status, plugin);
+                    return true;
+                }
             }
         } else {
-            status = Helper.parseBoolean(commandLabel); // /pvp on ...     /pvp off ...
+             // /pvp on ...     /pvp off ...
+            status = Helper.parseBoolean(commandLabel);
         }
         
         if (status == null) {
+            sender.sendMessage(localisation.get(LocalisationEntry.ERR_SPECIFY_PVP_STATUS));
             return false;
         }
         
-        /*
-         * Use status to set a players status
-         */
-        if (args.length == 0) { // /pvp <on / off>
+        if (args.length == 0) {
+            // /pvp <on / off>
             if (sender instanceof Player) {
                 final Player player = (Player) sender;
                 setPlayerPVPStatus(sender, player, player.getWorld(), status, plugin);
                 return true;
+            } else {
+                sender.sendMessage(localisation.get(LocalisationEntry.ERR_SPECIFY_PLAYER));
+                return false;
             }
-        } else { // /pvp <on / off / toggle> ...
+        } else {
+            // /pvp <on / off / toggle> ...
             final Player player = plugin.getServer().getPlayer(args[0]);
             if (player == null) {
-                sender.sendMessage(ChatColor.RED + "Player '" + args[0] + "' is not online or is invalid");
+                sender.sendMessage(localisation.get(LocalisationEntry.ERR_PLAYER_NOT_FOUND) + args[0]);
             } else {
-                if (args.length == 1) { // /pvp <on / off / toggle> <username>
+                if (args.length == 1) {
+                    // /pvp <on / off / toggle> <username>
                     setPlayerPVPStatus(sender, player, player.getWorld(), status, plugin);
                     return true;
-                } else { // /pvp <on / off / toggle> <username> ...
+                } else {
+                    // /pvp <on / off / toggle> <username> ...
                     final World world = plugin.getServer().getWorld(args[1]);
                     if (world == null) {
-                        sender.sendMessage(ChatColor.RED + "World '" + args[1] + "' not found");
+                        sender.sendMessage(localisation.get(LocalisationEntry.ERR_WORLD_NOT_FOUND) + args[1]);
                     } else {
-                        setPlayerPVPStatus(sender, player, world, status, plugin); // /pvp <on / off / toggle> <username> <world>
+                        // /pvp <on / off / toggle> <username> <world>
+                        setPlayerPVPStatus(sender, player, world, status, plugin);
                         return true;
                     }
                 }    
@@ -105,23 +136,14 @@ public class SetCommand extends SimplePVPToggleCommand {
      * @param status    status to change to
      * @param plugin    plugin with the config storing PVP status values
      */
-    public void setPlayerPVPStatus(CommandSender sender, Player player, World world, boolean status, SimplePVPToggle plugin) {
+    public void setPlayerPVPStatus(CommandSender sender, Player player, World world, boolean status, SimplePVPToggle plugin) {      
         plugin.getConfig().set("Server.Worlds." + world.getName() + ".Players." + player.getName(), status);
         plugin.saveConfig();
         if (sender.equals(player)) { // player set their own PVP status
-            if (world.equals(player.getWorld())) {
-                player.sendMessage(ChatColor.GRAY + "You set your current PVP status to '" + plugin.canPVP(player) + "'");
-            } else {
-                player.sendMessage(ChatColor.GRAY + "You set your current PVP status to '" + plugin.canPVP(player) + "' in world '" + world.getName() + "'");
-            }
+            player.sendMessage(ChatColor.GRAY + "You set your current PVP status to '" + plugin.canPVP(player) + "' in world '" + world.getName() + "'");
         } else {
-            if (world.equals(player.getWorld())) {
-                sender.sendMessage(ChatColor.GRAY + "You set the current PVP status of '" + player.getDisplayName() + "' to '" + plugin.canPVP(player) + "'");
-                player.sendMessage(ChatColor.GRAY + sender.getName() + " set your current PVP status to '" + plugin.canPVP(player) + "'");
-            } else {
-                sender.sendMessage(ChatColor.GRAY + "You set the current PVP status of '" + player.getDisplayName() + "' to '" + plugin.canPVP(player) + "' in world '" + world.getName() + "'");
-                player.sendMessage(ChatColor.GRAY + sender.getName() + " set your current PVP status to '" + plugin.canPVP(player) + "' in world '" + world.getName() + "'");
-            }
+            sender.sendMessage(ChatColor.GRAY + "You set the current PVP status of '" + player.getDisplayName() + "' to '" + plugin.canPVP(player) + "' in world '" + world.getName() + "'");
+            player.sendMessage(ChatColor.GRAY + sender.getName() + " set your current PVP status to '" + plugin.canPVP(player) + "' in world '" + world.getName() + "'");
         }
     }
 

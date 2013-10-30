@@ -61,14 +61,14 @@ public class SetWorldDefaultCommand extends SimplePVPToggleCommand {
                     if (args.length > 1) {
                         newState = Helper.parseBoolean(args[1]);
                         if (newState == null) {
-                            sender.sendMessage(plugin.getLocalisation().get(LocalisationEntry.MSG_SPECIFY_PVP_STATUS));
+                            sender.sendMessage(plugin.getLocalisation().get(LocalisationEntry.ERR_SPECIFY_PVP_STATUS));
                         } else {
                             // /pvp setworlddefault [world] <on / off> 
                             if (sender instanceof Player) {
                                 final Player player = (Player) sender;
                                 // TODO check player has perm "spt.setdefault.world" in world specified instead of world where they sent command
                                 if (!player.hasPermission("spt.setdefault.world")) {
-                                    player.sendMessage(plugin.getLocalisation().get(LocalisationEntry.MSG_PERMISSION_DENIED));
+                                    player.sendMessage(plugin.getLocalisation().get(LocalisationEntry.ERR_PERMISSION_DENIED));
                                     return true;
                                 }
                             }
@@ -77,7 +77,7 @@ public class SetWorldDefaultCommand extends SimplePVPToggleCommand {
                             return true;
                         }
                     } else {
-                        sender.sendMessage(plugin.getLocalisation().get(LocalisationEntry.MSG_SPECIFY_PVP_STATUS));
+                        sender.sendMessage(plugin.getLocalisation().get(LocalisationEntry.ERR_SPECIFY_PVP_STATUS));
                     }
                 }
             } else {
@@ -85,13 +85,13 @@ public class SetWorldDefaultCommand extends SimplePVPToggleCommand {
                 final Player player = (Player) sender;
                 
                 if (player == null) {
-                    sender.sendMessage(plugin.getLocalisation().get(LocalisationEntry.MSG_ONLY_PLAYERS_CAN_USE_THIS_COMMAND));
+                    sender.sendMessage(plugin.getLocalisation().get(LocalisationEntry.ERR_PLAYER_ONLY_COMMAND));
                     return true;
                 }
                 
                 // TODO check player has perm "spt.setdefault.world" in world specified instead of world where they sent command
                 if (!player.hasPermission("spt.setdefault.world")) {
-                    player.sendMessage(plugin.getLocalisation().get(LocalisationEntry.MSG_PERMISSION_DENIED));
+                    player.sendMessage(plugin.getLocalisation().get(LocalisationEntry.ERR_PERMISSION_DENIED));
                     return true;
                 }
                 
@@ -99,7 +99,7 @@ public class SetWorldDefaultCommand extends SimplePVPToggleCommand {
                 return true;
             }
         } else {
-            sender.sendMessage(plugin.getLocalisation().get(LocalisationEntry.MSG_SPECIFY_PVP_STATUS));
+            sender.sendMessage(plugin.getLocalisation().get(LocalisationEntry.ERR_SPECIFY_PVP_STATUS));
         }
         return false;
     }

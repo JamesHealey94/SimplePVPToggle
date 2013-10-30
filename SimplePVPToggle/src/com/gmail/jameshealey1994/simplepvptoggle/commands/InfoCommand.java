@@ -32,8 +32,9 @@ public class InfoCommand extends SimplePVPToggleCommand {
 
         /*
          * Command can be used by anyone.
-         */
-        sender.sendMessage(ChatColor.GRAY + "--- Default PVP Status ---");
+         */        
+        final Localisation localisation = plugin.getLocalisation();
+        sender.sendMessage(ChatColor.LIGHT_PURPLE + localisation.get(LocalisationEntry.HELP_SEPARATOR) + " Default PVP Status " + localisation.get(LocalisationEntry.HELP_SEPARATOR));
         sender.sendMessage(ChatColor.GRAY + "Server: " + plugin.getConfig().getBoolean("Server.Default", false));
         for (World world : plugin.getServer().getWorlds()) {
             sender.sendMessage(ChatColor.GRAY + world.getName() + ": "

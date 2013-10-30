@@ -35,7 +35,7 @@ public class ReloadCommand extends SimplePVPToggleCommand {
          */
         if (sender instanceof Player) {
             if (!hasPerms((Player) sender)) {
-                sender.sendMessage(plugin.getLocalisation().get(LocalisationEntry.MSG_PERMISSION_DENIED));
+                sender.sendMessage(plugin.getLocalisation().get(LocalisationEntry.ERR_PERMISSION_DENIED));
                 return true;
             }
         }

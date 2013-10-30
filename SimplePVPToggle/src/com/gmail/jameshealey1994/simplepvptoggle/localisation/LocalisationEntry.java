@@ -1,5 +1,7 @@
 package com.gmail.jameshealey1994.simplepvptoggle.localisation;
 
+import org.bukkit.ChatColor;
+
 /**
  * Enum to represent a single entry in a Localisation, holds Faction and related deathPoints variable.
  * 
@@ -12,17 +14,38 @@ public enum LocalisationEntry {
     /**
      * Message telling player they do not have permission to use a command.
      */
-    MSG_PERMISSION_DENIED("MsgPermissionDenied", "&cPermission denied"),
+    ERR_PERMISSION_DENIED("MsgPermissionDenied", "&cPermission denied"),
     
     /**
      * Message telling user the command can only be used by players.
      */
-    MSG_ONLY_PLAYERS_CAN_USE_THIS_COMMAND("MsgOnlyPlayersCanUseThisCommand", "&cOnly players can use this command"),
+    ERR_PLAYER_ONLY_COMMAND("MsgOnlyPlayersCanUseThisCommand", "&cOnly players can use this command"),
     
     /**
      * Message telling user to specify a valid PvP status ('true' or 'false').
      */
-    MSG_SPECIFY_PVP_STATUS("MsgSpecifyPVPStatus", "&cPlease specify a PVP status ('true' or 'false')"),
+    ERR_SPECIFY_PVP_STATUS("MsgSpecifyPVPStatus", "&cPlease specify a PVP status ('true' or 'false')"),
+        
+    /**
+     * Message telling user that the player specified cannot be found.
+     * The player is online or is invalid.
+     */
+    ERR_PLAYER_NOT_FOUND ("MsgPlayerNotFound", "&cPlayer is not online or is invalid: "),
+    
+    /**
+     * Message telling user that the world specified cannot be found.
+     */
+    ERR_WORLD_NOT_FOUND ("MsgWorldNotFound", "&cWorld not found: "),
+    
+    /**
+     * Message telling user that they need to specify a world.
+     */
+    ERR_SPECIFY_WORLD ("MsgSpecifyWorld", "&cPlease specify a world"),
+    
+    /**
+     * Message telling user that they need to specify a player.
+     */
+    ERR_SPECIFY_PLAYER ("MsgSpecifyPlayer", "&cPlease specify a player"),
     
     /**
      * Message telling user the default PVP status of the server has been set.
@@ -42,6 +65,12 @@ public enum LocalisationEntry {
      * Message telling user the configuration has been reloaded.
      */
     MSG_CONFIG_RELOADED ("MsgConfigReloaded", "&7Configuration reloaded."),
+    
+    /**
+     * Message telling user their current PVP status.
+     * Intended to be followed by the status as a boolean.
+     */
+    MSG_CURRENT_PVP_STATUS ("MsgCurrentPVPStatusIs", "&7Current PVP status is "),
     
     /**
      * Description for Help command.
