@@ -52,14 +52,14 @@ public enum LocalisationEntry {
      * Intended to precede a boolean value.
      * For example: "Server default PVP status set to:"
      */
-    MSG_SERVER_DEFAULT_SET_TO ("MsgServerDefaultSetTo", "&7Server default PVP status set to:"),
+    MSG_SERVER_DEFAULT_SET_TO ("MsgServerDefaultSetTo", "&7Server default PVP status set to: "),
     
     /**
      * Message telling user the default PVP status of a world has been set.
      * Intended to follow a world name and precede a boolean value.
      * For example: "default PVP status set to:"
      */
-    MSG_WORLD_DEFAULT_SET_TO("MsgWorldDefaultSetTo", "&7default PVP status set to:"),
+    MSG_WORLD_DEFAULT_SET_TO("MsgWorldDefaultSetTo", "&7default PVP status set to: "),
 
     /**
      * Message telling user the configuration has been reloaded.
