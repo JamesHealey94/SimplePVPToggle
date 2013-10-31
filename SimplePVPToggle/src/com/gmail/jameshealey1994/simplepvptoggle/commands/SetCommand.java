@@ -104,6 +104,8 @@ public class SetCommand extends SimplePVPToggleCommand {
             // /pvp <on / off / toggle> ...
             final Player player = plugin.getServer().getPlayer(args[0]);
             if (player == null) {
+                // /pvp <on / off / toggle> world
+                // TODO - use status command as a guide
                 sender.sendMessage(localisation.get(LocalisationEntry.ERR_PLAYER_NOT_FOUND) + args[0]);
             } else {
                 if (args.length == 1) {
@@ -140,10 +142,10 @@ public class SetCommand extends SimplePVPToggleCommand {
         plugin.getConfig().set("Server.Worlds." + world.getName() + ".Players." + player.getName(), status);
         plugin.saveConfig();
         if (sender.equals(player)) { // player set their own PVP status
-            player.sendMessage(ChatColor.GRAY + "You set your current PVP status to '" + plugin.canPVP(player) + "' in world '" + world.getName() + "'");
+            player.sendMessage(ChatColor.GRAY + "You set your current PVP status in '" + world.getName() + "' to '" + plugin.canPVP(player) + "'");
         } else {
-            sender.sendMessage(ChatColor.GRAY + "You set the current PVP status of '" + player.getDisplayName() + "' to '" + plugin.canPVP(player) + "' in world '" + world.getName() + "'");
-            player.sendMessage(ChatColor.GRAY + sender.getName() + " set your current PVP status to '" + plugin.canPVP(player) + "' in world '" + world.getName() + "'");
+            sender.sendMessage(ChatColor.GRAY + "You set the current PVP status of '" + player.getDisplayName() + "' in '" + world.getName() + "' to '" + plugin.canPVP(player) + "'");
+            player.sendMessage(ChatColor.GRAY + sender.getName() + " set your current PVP status in '" + world.getName() + "' to '" + plugin.canPVP(player) + "'");
         }
     }
 
