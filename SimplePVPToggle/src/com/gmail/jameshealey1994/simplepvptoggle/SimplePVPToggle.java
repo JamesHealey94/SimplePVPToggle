@@ -7,7 +7,6 @@ import com.gmail.jameshealey1994.simplepvptoggle.commands.SimplePVPToggleCommand
 import com.gmail.jameshealey1994.simplepvptoggle.commands.SimplePVPToggleCommandExecutor;
 import com.gmail.jameshealey1994.simplepvptoggle.listeners.SimplePVPToggleListener;
 import com.gmail.jameshealey1994.simplepvptoggle.localisation.Localisation;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
@@ -43,35 +42,6 @@ public class SimplePVPToggle extends JavaPlugin {
         
         // Set localisation
         localisation = new Localisation(this);
-    }
-
-    /**
-     * Check if a player's PvP value is set to true in the config.
-     * It first looks for a specific value for that player in that world.
-     * 
-     * If that is not found, it is set to the default value for the world the
-     * player is currently in.
-     * 
-     * If that is not found, it is set to the default value for the server.
-     * 
-     * If there is an error with the default value for the server, it is set to
-     * false by default.
-     * 
-     * @param player    the player being checked
-     * @return          if the player can PVP in that world
-     */
-    public boolean canPVP(Player player) {
-        // Debug messages to show the config values
-        // TODO: Add some more statements to help players with "lazy" configs (without .Default, for example).
-//        player.sendMessage("Server.Worlds." + player.getWorld().getName() + ".Players." + player.getName() + ": " + this.getConfig().getBoolean("Server.Worlds." + player.getWorld().getName() + ".Players." + player.getName()));
-//        player.sendMessage("Server.Worlds." + player.getWorld().getName() + ".Default" + ": " + this.getConfig().getBoolean("Server.Worlds." + player.getWorld().getName() + ".Default"));
-//        player.sendMessage("Server.Worlds." + player.getWorld().getName() + ": " + this.getConfig().getBoolean("Server.Worlds." + player.getWorld().getName()));
-//        player.sendMessage("Server.Default" + ": " + plugin.getConfig().getBoolean("Server.Default"));
-        
-        return (this.getConfig().getBoolean("Server.Worlds." + player.getWorld().getName() + ".Players." + player.getName(),
-                this.getConfig().getBoolean("Server.Worlds." + player.getWorld().getName() + ".Default",
-                this.getConfig().getBoolean("Server.Worlds." + player.getWorld().getName(),
-                this.getConfig().getBoolean("Server.Default", false)))));
     }
 
     /**

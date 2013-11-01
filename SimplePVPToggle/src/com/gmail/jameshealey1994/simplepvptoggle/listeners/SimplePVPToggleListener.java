@@ -1,6 +1,7 @@
 package com.gmail.jameshealey1994.simplepvptoggle.listeners;
 
 import com.gmail.jameshealey1994.simplepvptoggle.SimplePVPToggle;
+import com.gmail.jameshealey1994.simplepvptoggle.utils.PVPConfigUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
@@ -62,8 +63,8 @@ public class SimplePVPToggleListener implements Listener {
                 return;
             }
 
-            if (plugin.canPVP(attacker)) {
-                if (plugin.canPVP(attackedPlayer)) {
+            if (PVPConfigUtils.getPVPStatus(attacker, attacker.getWorld(), plugin)) {
+                if (PVPConfigUtils.getPVPStatus(attackedPlayer, attackedPlayer.getWorld(), plugin)) {
                     // Debug messages to show the config values
                     // TODO: Remove
                     attacker.sendMessage(ChatColor.GRAY + "Attacked " + attackedPlayer.getDisplayName() + " for " + event.getDamage() + " damage.");
