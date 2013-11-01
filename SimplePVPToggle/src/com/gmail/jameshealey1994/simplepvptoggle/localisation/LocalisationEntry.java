@@ -1,7 +1,5 @@
 package com.gmail.jameshealey1994.simplepvptoggle.localisation;
 
-import org.bukkit.ChatColor;
-
 /**
  * Enum to represent a single entry in a Localisation, holds Faction and related deathPoints variable.
  * 
@@ -48,6 +46,12 @@ public enum LocalisationEntry {
     ERR_SPECIFY_PLAYER ("MsgSpecifyPlayer", "&cPlease specify a player"),
     
     /**
+     * Message telling user that they have sent an invalid number of arguments
+     * for a command.
+     */
+    ERR_INVALID_NUMBER_OF_ARGUMENTS ("MsgInvalidNumberOfArguments", "&cIncorrect number of arguments"),
+    
+    /**
      * Message telling user the default PVP status of the server has been set.
      * Intended to precede a boolean value.
      * For example: "Server default PVP status set to:"
@@ -70,7 +74,13 @@ public enum LocalisationEntry {
      * Message telling user their current PVP status.
      * Intended to be followed by the status as a boolean.
      */
-    MSG_CURRENT_PVP_STATUS ("MsgCurrentPVPStatusIs", "&7Current PVP status is "),
+    MSG_YOUR_CURRENT_PVP_STATUS ("MsgYourCurrentPVPStatus", "&7Your current PVP status "),
+    
+    /**
+     * Message telling user the current PVP status of a user.
+     * Intended to be followed by the status as a boolean.
+     */
+    MSG_CURRENT_PVP_STATUS_OF ("MsgCurrentPVPStatusOf", "&7Current PVP status of "),
     
     /**
      * Description for Help command.
