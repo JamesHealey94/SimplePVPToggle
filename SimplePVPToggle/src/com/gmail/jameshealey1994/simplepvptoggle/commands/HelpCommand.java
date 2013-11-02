@@ -8,8 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 /**
- * Class representing a SimplePVPToggle reload command.
- * Allows you to reload the config
+ * Class representing a SimplePVPToggle help command.
  * 
  * /pvp [help]      Shows help menu
  * 
@@ -24,9 +23,6 @@ public class HelpCommand extends SimplePVPToggleCommand {
         // TODO Make aliases configurable?
         this.aliases.add("help");
         this.aliases.add("h");
-        
-        // TODO: Sort out permission structure (class for Permissions?)
-        // TODO Make permissions configurable?
     }
     
     @Override
