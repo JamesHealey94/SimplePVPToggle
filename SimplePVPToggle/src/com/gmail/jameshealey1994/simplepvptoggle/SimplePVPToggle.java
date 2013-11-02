@@ -39,9 +39,6 @@ public class SimplePVPToggle extends JavaPlugin {
 
         // Set command executors and default command
         getCommand("spt").setExecutor(new SimplePVPToggleCommandExecutor(this, new HelpCommand()));
-        
-        // Set localisation
-        localisation = new Localisation(this);
     }
 
     /**
