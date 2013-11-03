@@ -1,12 +1,12 @@
 package com.gmail.jameshealey1994.simplepvptoggle.utils;
 
 /**
- * Helper class with some static methods to help keep the rest of the project's
- * code clean.
+ * Utility class with some static methods and values, stored here to help keep
+ * the rest of the project's code clean.
  * 
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
-public abstract class Helper {
+public abstract class BooleanValuesUtils {
     
     /**
      * Strings representing a positive value.
@@ -28,7 +28,7 @@ public abstract class Helper {
      *                  in the positive or negative values String arrays, null
      *                  if no matches are found
      */
-    public static Boolean parseBoolean(String string) {
+    public static Boolean parse(String string) {
         for (String s : POSITIVE_VALUES) {
             if (string.equalsIgnoreCase(s)) {
                 return true;

@@ -4,6 +4,7 @@
 # Default: false
 # Must be a boolean value (true or false).
 Localisation Filename: localisation.yml
+Debug: false
 
 Server:
   Default: false

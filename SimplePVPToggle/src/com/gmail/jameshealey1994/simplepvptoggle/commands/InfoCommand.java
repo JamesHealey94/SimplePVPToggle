@@ -3,7 +3,7 @@ package com.gmail.jameshealey1994.simplepvptoggle.commands;
 import com.gmail.jameshealey1994.simplepvptoggle.SimplePVPToggle;
 import com.gmail.jameshealey1994.simplepvptoggle.localisation.Localisation;
 import com.gmail.jameshealey1994.simplepvptoggle.localisation.LocalisationEntry;
-import org.bukkit.ChatColor;
+import com.gmail.jameshealey1994.simplepvptoggle.utils.PVPConfigUtils;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 
@@ -24,9 +24,9 @@ public class InfoCommand extends SimplePVPToggleCommand {
         this.aliases.add("info");
         this.aliases.add("i");
         
-        // TODO: Sort out permission structure (class for Permissions?)
+        this.permissions.add(SimplePVPTogglePermissions.INFO.getPermission());
     }
-    
+
     @Override
     public boolean execute(SimplePVPToggle plugin, CommandSender sender, String commandLabel, String[] args) {
 
@@ -34,14 +34,10 @@ public class InfoCommand extends SimplePVPToggleCommand {
          * Command can be used by anyone.
          */        
         final Localisation localisation = plugin.getLocalisation();
-        sender.sendMessage(ChatColor.LIGHT_PURPLE + localisation.get(LocalisationEntry.HELP_SEPARATOR) + " Default PVP Status " + localisation.get(LocalisationEntry.HELP_SEPARATOR));
-        sender.sendMessage(ChatColor.GRAY + "Server: " + plugin.getConfig().getBoolean("Server.Default", false));
+        sender.sendMessage(localisation.get(LocalisationEntry.INFO_HEADER));
+        sender.sendMessage(localisation.get(LocalisationEntry.INFO_SERVER, new Object[] {PVPConfigUtils.getServerStatus(plugin)}));
         for (World world : plugin.getServer().getWorlds()) {
-            sender.sendMessage(ChatColor.GRAY + world.getName() + ": "
-                    + plugin.getConfig().getBoolean("Server.Worlds." + world.getName() + ".Default",
-                      plugin.getConfig().getBoolean("Server.Worlds." + world.getName(),
-                      plugin.getConfig().getBoolean("Server.Default",
-                      false))));
+            sender.sendMessage(localisation.get(LocalisationEntry.INFO_WORLD, new Object[] {world.getName(), PVPConfigUtils.getWorldStatus(world, plugin)}));
         }
         return true;
     }
