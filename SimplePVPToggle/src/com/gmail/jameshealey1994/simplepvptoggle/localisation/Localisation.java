@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
+import java.util.IllegalFormatException;
 import java.util.logging.Level;
 import org.bukkit.ChatColor;
 
@@ -57,8 +58,27 @@ public class Localisation {
             return addColor(String.valueOf(localisations.get(key.getName())));
         } else {
             plugin.getLogger().log(Level.WARNING, ChatColor.RED + "Missing localisation: ''{0}''", key.getName());
-            plugin.getLogger().log(Level.WARNING, "{0}Update your localisation config to resolve", ChatColor.RED);
+            plugin.getLogger().log(Level.WARNING, "{0}Edit or update your localisation config to resolve", ChatColor.RED);
             return addColor(key.getDefaultValue());
+        }
+    }
+
+    /**
+     * Gets the corresponding localisation to the key passed, then formats the
+     * message using the objects passed.
+     *
+     * @param key               key used to obtain localisation value
+     * @param formatObjects     arguments to format the string with
+     * @return                  value obtained, or, if no valid value is found,
+     *                          the default message belonging to key
+     */
+    public String get(LocalisationEntry key, Object[] formatObjects) {
+        try {
+            return String.format(get(key), formatObjects);
+        } catch (IllegalFormatException  ex) {
+            plugin.getLogger().log(Level.WARNING, ChatColor.RED + "Error in localisation: ''{0}''", key.getName());
+            plugin.getLogger().log(Level.WARNING, "{0}Edit or update your localisation config to resolve", ChatColor.RED);
+            return addColor(String.format(key.getDefaultValue(), formatObjects));
         }
     }
 
@@ -110,11 +130,13 @@ public class Localisation {
      * Fills the file specified in the config with default localisation values.
      */
     private void createDefaultConfig() {
-        final String title = plugin.getName() + " localisation configuration";
+        final String title = "# " + plugin.getName() + " localisation configuration\n";
+        final String info = "# Generated with " + plugin.getDescription().getVersion() + " of the plugin\n";
         final File file = new File(plugin.getDataFolder(), getFilename());
 
         try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, true), StandardCharsets.UTF_8))) {
-            writer.write("# " + title + "\n");
+            writer.write(title);
+            writer.write(info);
             for (LocalisationEntry entry : LocalisationEntry.values()) {
                 writer.write(entry.toString());
             }
