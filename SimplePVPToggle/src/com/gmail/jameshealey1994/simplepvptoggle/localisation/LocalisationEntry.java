@@ -8,7 +8,7 @@ package com.gmail.jameshealey1994.simplepvptoggle.localisation;
 public enum LocalisationEntry {
     // TODO Perhaps change to Messages.messagehere and Commands.CommandName.Description
     // TODO Perhaps change to different classes for each section (messages, each command)
-    
+
     /**
      * Message telling player they do not have permission to use a command.
      */
