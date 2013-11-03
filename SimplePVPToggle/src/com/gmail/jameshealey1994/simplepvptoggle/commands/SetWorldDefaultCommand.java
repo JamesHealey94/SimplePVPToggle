@@ -12,10 +12,10 @@ import org.bukkit.entity.Player;
 /**
  * Abstract class representing a SimplePVPToggle set world default command.
  * Allows you to set the default PVP status of a world
- * 
+ *
  * /pvp setworlddefault [world] <on / off>      Sets default PVP status for
  *                                              [world] to <on / off>
- * 
+ *
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
 public class SetWorldDefaultCommand extends SimplePVPToggleCommand {
@@ -27,8 +27,8 @@ public class SetWorldDefaultCommand extends SimplePVPToggleCommand {
         this.aliases.add("setworlddefault");
 
         this.permissions.add(SimplePVPTogglePermissions.SETWORLDDEFAULT.getPermission());
-        
-        // TODO - Try to fix: 
+
+        // TODO - Try to fix:
         // if a player has spt.setdefault.world in another world,
         // then does /spt setworlddefault thatworld true,
         // it won't work currently, but would be nice to
@@ -39,7 +39,7 @@ public class SetWorldDefaultCommand extends SimplePVPToggleCommand {
     public boolean execute(SimplePVPToggle plugin, CommandSender sender, String commandLabel, String[] args) {
         /*
          * Possible:
-         * /pvp setworlddefault [world] <on / off> 
+         * /pvp setworlddefault [world] <on / off>
          * /pvp setworlddefault <on / off>
          */
         final Localisation localisation = plugin.getLocalisation();
@@ -53,14 +53,14 @@ public class SetWorldDefaultCommand extends SimplePVPToggleCommand {
             }
             case 1: {
                 // /pvp setworlddefault <on / off>              if player, set world default, else error
-                // /pvp setworlddefault error                   specify PVP status
+                // /pvp setworlddefault error                   specify PVP status, or world if sender is not a player
                 if (sender instanceof Player) {
                     world = ((Player) sender).getWorld();
                 } else {
-                    sender.sendMessage(localisation.get(LocalisationEntry.ERR_PLAYER_ONLY_COMMAND));
+                    sender.sendMessage(localisation.get(LocalisationEntry.ERR_SPECIFY_WORLD));
                     return false;
                 }
-                
+
                 status = BooleanValuesUtils.parse(args[0]);
                 break;
             }
@@ -71,7 +71,7 @@ public class SetWorldDefaultCommand extends SimplePVPToggleCommand {
                     sender.sendMessage(localisation.get(LocalisationEntry.ERR_WORLD_NOT_FOUND, new Object[] {args[0]}));
                     return false;
                 }
-                
+
                 status = BooleanValuesUtils.parse(args[1]);
                 break;
             }
@@ -88,65 +88,6 @@ public class SetWorldDefaultCommand extends SimplePVPToggleCommand {
 
         PVPConfigUtils.setWorldStatus(sender, world, status, plugin);
         return true;
-        
-//        if (args.length > 0) {
-//            /*
-//             * Using Boolean instead of boolean as it can be null (if player gives something other than 'true' or 'false')
-//             */
-//            Boolean newState = BooleanValuesUtils.parse(args[0]);
-//            if (newState == null) {
-//                final World world = plugin.getServer().getWorld(args[0]);
-//                if (world == null) {
-//                    return false;
-//                } else {
-//                    /*
-//                     * Possible:
-//                     * /pvp setworlddefault [world] <on / off> 
-//                     */
-//                    if (args.length > 1) {
-//                        newState = BooleanValuesUtils.parse(args[1]);
-//                        if (newState == null) {
-//                            sender.sendMessage(localisation.get(LocalisationEntry.ERR_SPECIFY_PVP_STATUS));
-//                        } else {
-//                            // /pvp setworlddefault [world] <on / off> 
-//                            if (sender instanceof Player) {
-//                                final Player player = (Player) sender;
-//                                // TODO check player has perm "spt.setdefault.world" in world specified instead of world where they sent command
-//                                if (!player.hasPermission(SimplePVPTogglePermissions.SETWORLDDEFAULT.getPermission())) {
-//                                    player.sendMessage(localisation.get(LocalisationEntry.ERR_PERMISSION_DENIED));
-//                                    return true;
-//                                }
-//                            }
-//                            
-//                            PVPConfigUtils.setWorldStatus(sender, world, newState, plugin);
-//                            return true;
-//                        }
-//                    } else {
-//                        sender.sendMessage(localisation.get(LocalisationEntry.ERR_SPECIFY_PVP_STATUS));
-//                    }
-//                }
-//            } else {
-//                // /pvp setworlddefault <on / off>
-//                final Player player = (Player) sender;
-//                
-//                if (player == null) {
-//                    sender.sendMessage(localisation.get(LocalisationEntry.ERR_PLAYER_ONLY_COMMAND));
-//                    return true;
-//                }
-//                
-//                // TODO check player has perm "spt.setdefault.world" in world specified instead of world where they sent command
-//                if (!player.hasPermission(SimplePVPTogglePermissions.SETWORLDDEFAULT.getPermission())) {
-//                    player.sendMessage(localisation.get(LocalisationEntry.ERR_PERMISSION_DENIED));
-//                    return true;
-//                }
-//                
-//                PVPConfigUtils.setWorldStatus(player, player.getWorld(), newState, plugin);
-//                return true;
-//            }
-//        } else {
-//            sender.sendMessage(localisation.get(LocalisationEntry.ERR_SPECIFY_PVP_STATUS));
-//        }
-//        return false;
     }
 
     @Override
