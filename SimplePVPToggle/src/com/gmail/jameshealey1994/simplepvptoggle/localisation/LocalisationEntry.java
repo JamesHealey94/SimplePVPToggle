@@ -8,7 +8,6 @@ package com.gmail.jameshealey1994.simplepvptoggle.localisation;
 public enum LocalisationEntry {
     // TODO Perhaps change to Messages.messagehere and Commands.CommandName.Description
     // TODO Perhaps change to different classes for each section (messages, each command)
-    // TODO test and update javadocs for %1$s %2$s %2$s %3$s
     
     /**
      * Message telling player they do not have permission to use a command.
@@ -27,15 +26,15 @@ public enum LocalisationEntry {
 
     /**
      * Message telling user that the player specified cannot be found.
-     * Use %s if / where you would like to enter the invalid player name
+     * %1$s - invalid player name
      */
-    ERR_PLAYER_NOT_FOUND ("MsgPlayerNotFound", "Use %s if / where you would like to enter the invalid player name", "&cPlayer is not online or is invalid: '%s'"),
+    ERR_PLAYER_NOT_FOUND ("MsgPlayerNotFound", "%1$s - invalid player name", "&cPlayer is not online or is invalid: '%1$s'"),
 
     /**
      * Message telling user that the world specified cannot be found.
-     * Use %s if / where you would like to enter the invalid world name
+     * %1$s - invalid world name
      */
-    ERR_WORLD_NOT_FOUND ("MsgWorldNotFound", "Use %s if / where you would like to enter the invalid world name", "&cWorld not found: '%s'"),
+    ERR_WORLD_NOT_FOUND ("MsgWorldNotFound", "%1$s - invalid world name", "&cWorld not found: '%1$s'"),
 
     /**
      * Message telling user that they need to specify a world.
@@ -58,18 +57,20 @@ public enum LocalisationEntry {
      * they inflicted on that player.
      * Only shown when in debug mode.
      *
-     * Use %s for the attacked player's name, then a second %s for the damage inflicted
+     * %1$s - attacked player's name
+     * %2$s - damage inflicted
      */
-    DEBUG_ATTACKED_PLAYERNAME_FOR_DAMAGEAMOUNT_DAMAGE ("DebugAttackedPLAYERNAMEForDAMAGEAMOUNTDamage", "Use %s for the attacked player's name, then a second %s for the damage inflicted", "&7Attacked %s for %s damage"),
+    DEBUG_ATTACKED_PLAYERNAME_FOR_DAMAGEAMOUNT_DAMAGE ("DebugAttackedPLAYERNAMEForDAMAGEAMOUNTDamage", "%1$s - attacked player's name\n# %2$s - damage inflicted", "&7Attacked %1$s for %2$s damage"),
 
     /**
      * Message telling player they have been attacked by another player, and how
      * much damage they have been inflicted by that player.
      * Only shown when in debug mode.
      *
-     * Use a %s for the attacker's name, and a second %s for the damage they inflicted
+     * %1$s - attacker's name
+     * %2$s - damage inflicted
      */
-    DEBUG_ATTACKED_BY_PLAYERNAME_FOR_DAMAGEAMOUNT_DAMAGE ("DebugAttackedByPLAYERNAMEForDAMAGEAMOUNTDamage", "Use a %s for the attacker's name, and a second %s for the damage they inflicted", "&7Attacked by %s for %s damage"),
+    DEBUG_ATTACKED_BY_PLAYERNAME_FOR_DAMAGEAMOUNT_DAMAGE ("DebugAttackedByPLAYERNAMEForDAMAGEAMOUNTDamage", "%1$s - attacker's name\n# %2$s - damage inflicted", "&7Attacked by %1$s for %2$s damage"),
 
     /**
      * Message telling player that they cannot attack, as they do not have PVP
@@ -80,40 +81,45 @@ public enum LocalisationEntry {
     /**
      * Message telling player that they cannot attack, as they the player they
      * are attacking does not have PVP enabled.
+     * %1$s - attacked player's name
      */
-    MSG_ATTACK_CANCELLED_PLAYERNAME_DOES_NOT_HAVE_PVP_ENABLED ("MsgAttackCancelledPLAYERNAMEDoesNotHavePVPEnabled", "Use %s for the name of the player who does not have PVP enabled", "&7Attack Cancelled - %s does not have PVP enabled"),
+    MSG_ATTACK_CANCELLED_PLAYERNAME_DOES_NOT_HAVE_PVP_ENABLED ("MsgAttackCancelledPLAYERNAMEDoesNotHavePVPEnabled", "%1$s - attacked player's name", "&7Attack Cancelled - %1$s does not have PVP enabled"),
 
     /**
      * Message telling user the default PVP status of the server has been set.
-     * Use %s if / where you would like to enter the server's default PVP status
+     * %1$s - server's default PVP status
      */
-    MSG_SERVER_DEFAULT_SET_TO ("MsgServerDefaultSetTo", "Use %s if / where you would like to enter the server's default PVP status", "&7Server default PVP status set to '%s'"),
+    MSG_SERVER_DEFAULT_SET_TO ("MsgServerDefaultSetTo", "%1$s - server's default PVP status", "&7Server default PVP status set to '%1$s'"),
 
     /**
      * Message telling user the default PVP status of a world has been set.
-     * Use %s for the world name, and a second for the world's PVP value.
+     * %1$s - world name
+     * %2$s - world's default PVP status
      */
-    MSG_WORLD_DEFAULT_SET_TO("MsgWorldDefaultSetTo", "Use %s for the world name, and a second for the world's PVP value.", "&7Default PVP status of '%s' set to '%s'"),
+    MSG_WORLD_DEFAULT_SET_TO("MsgWorldDefaultSetTo", "%1$s - world name\n# %2$s - world's default PVP status", "&7Default PVP status of '%1$s' set to '%2$s'"),
 
     /**
-     * Message telling user their PVP status in a world.
-     * Use %s for the world name, and another %s for the PVP value.
+     * Message telling player their PVP status in a world.
+     * %1$s - world name
+     * %2$s - PVP status
      */
-    MSG_YOU_SET_YOUR_PVP_STATUS_IN_WORLDNAME_TO_STATUS ("MsgYouSetYourPVPStatusInWORLDNAMEToSTATUS", "Use %s for the world name, and another %s for the PVP value", "&7You set your PVP status in '%s' to '%s'"),
+    MSG_YOU_SET_YOUR_PVP_STATUS_IN_WORLDNAME_TO_STATUS ("MsgYouSetYourPVPStatusInWORLDNAMEToSTATUS", "%1$s - world name\n# %2$s - PVP status", "&7You set your PVP status in '%1$s' to '%2$s'"),
 
     /**
      * Message telling user they set the PVP status of a player in a world.
-     * Use %s for the player name, a second for the world name, and a third for
-     * the PVP value.
+     * %1$s - player name
+     * %2$s - world name
+     * %3$s - PVP status
      */
-    MSG_YOU_SET_THE_PVP_STATUS_OF_PLAYERNAME_IN_WORLDNAME_TO_STATUS ("MsgYouSetThePVPStatusOfPLAYERNAMEInWORLDNAMEToSTATUS", "Use %s for the player name, a second for the world name, and a third for the PVP value", "&7You set the PVP status of '%s' in '%s' to '%s'"),
+    MSG_YOU_SET_THE_PVP_STATUS_OF_PLAYERNAME_IN_WORLDNAME_TO_STATUS ("MsgYouSetThePVPStatusOfPLAYERNAMEInWORLDNAMEToSTATUS", "%1$s - player name\n# %2$s - world name\n# %3$s - PVP status", "&7You set the PVP status of '%1$s' in '%2$s' to '%3$s'"),
 
     /**
-     * Message telling user that a user set their PVP status in a world.
-     * Use %s for the user's name, a second for the world name, and a third for
-     * the PVP value.
+     * Message telling player that a user set their PVP status in a world.
+     * %1$s - sender name
+     * %2$s - world name
+     * %3$s - PVP status
      */
-    MSG_SENDERNAME_SET_YOUR_PVP_STATUS_IN_WORLDNAME_TO_STATUS ("MsgSENDERNAMESetYourPVPStatusInWORLDNAMEToSTATUS", "Use %s for the user's name, a second for the world name, and a third for the PVP value.", "&7%s set your PVP status in '%s' to '%s'"),
+    MSG_SENDERNAME_SET_YOUR_PVP_STATUS_IN_WORLDNAME_TO_STATUS ("MsgSENDERNAMESetYourPVPStatusInWORLDNAMEToSTATUS", "%1$s - sender name\n# %2$s - world name\n# %3$s - PVP status", "&7%1$s set your PVP status in '%2$s' to '%3$s'"),
 
     /**
      * Message telling user the configuration has been reloaded.
@@ -121,17 +127,19 @@ public enum LocalisationEntry {
     MSG_CONFIG_RELOADED ("MsgConfigReloaded", null, "&7Configuration reloaded."),
 
     /**
-     * Message telling user their current PVP status.
-     * Use %s for the the world, and a second %s for the PVP value.
+     * Message telling player their PVP status in a world.
+     * %1$s - world name
+     * %2$s - PVP status
      */
-    MSG_YOUR_PVP_STATUS_IN_WORLDNAME_IS_STATUS ("MsgYourPVPStatusInWORLDNAMEIsSTATUS", "Use %s for the the world, and a second %s for the PVP value.", "&7Your PVP status in '%s' is '%s'"),
+    MSG_YOUR_PVP_STATUS_IN_WORLDNAME_IS_STATUS ("MsgYourPVPStatusInWORLDNAMEIsSTATUS", "%1$s - world name\n# %2$s - PVP status", "&7Your PVP status in '%1$s' is '%2$s'"),
 
     /**
-     * Message telling user the current PVP status of a user.
-     * Use %s for the player name, a second %s for the world, and a third %s for
-     * the PVP value.
+     * Message telling user the PVP status of a player in a world.
+     * %1$s - player name
+     * %2$s - world name
+     * %3$s - PVP status
      */
-    MSG_CURRENT_PVP_STATUS_OF_PLAYERNAME_IN_WORLDNAME_IS_STATUS ("MsgCurrentPVPStatusOfPLAYERNAMEInWORLDNAMEIsSTATUS", "Use %s for the player name, a second %s for the world, and a third %s for the PVP value", "&7PVP status of '%s' in '%s' is '%s'"),
+    MSG_CURRENT_PVP_STATUS_OF_PLAYERNAME_IN_WORLDNAME_IS_STATUS ("MsgCurrentPVPStatusOfPLAYERNAMEInWORLDNAMEIsSTATUS", "%1$s - player name\n# %2$s - world name\n# %3$s - PVP status", "&7PVP status of '%1$s' in '%2$s' is '%3$s'"),
 
     /**
      * Description for Help command.
@@ -175,28 +183,29 @@ public enum LocalisationEntry {
 
     /**
      * The server's default PVP status.
-     * Use %s if / where you would like to enter the server's default PVP status
+     * %1$s - server's default PVP status
      */
-    INFO_SERVER ("InfoServer", "Use %s if / where you would like to enter the server's default PVP status", "&dServer: %s"),
+    INFO_SERVER ("InfoServer", "%1$s - server's default PVP status", "&dServer: %1$s"),
 
     /**
-     * A world's default PVP status.
-     * Use %s for the world name, and a second %s for the world's default PVP
-     * status
+     * A world and it's default PVP status.
+     * %1$s - world name
+     * %2$s - world's default PVP status
      */
-    INFO_WORLD ("InfoWorld", "Use %s for the world name, and a second %s for the world's default PVP status", "&d%s: %s"),
+    INFO_WORLD ("InfoWorld", "%1$s - world name\n# %2$s - world's default PVP status", "&d%1$s: %2$s"),
 
     /**
      * Displayed at the top of the Help command.
-     * Use %s if / where you would like to enter a description of the plugin
+     * %1$s - plugin description
      */
-    HELP_HEADER ("HelpHeader", "Use %s if / where you would like to enter a description of the plugin", "&7------ %s ------"),
+    HELP_HEADER ("HelpHeader", "%1$s - plugin description", "&7------ %1$s ------"),
 
     /**
      * Displayed for each command in the help command.
-     * Use %s for the plugin name, and a second %s for the description
+     * %1$s - command name
+     * %2$s - command description
      */
-    HELP_ENTRY ("HelpSeparator", "Use %s for the plugin name, and a second %s for the description", "%s - %s");
+    HELP_ENTRY ("HelpSeparator", "%1$s - command name\n# %2$s - command description", "%1$s - %2$s");
 
     /**
      * The name of the entry, as found in the localisation file.
