@@ -82,7 +82,7 @@ public class SetWorldDefaultCommand extends SimplePVPToggleCommand {
         }
 
         if (status == null) {
-            sender.sendMessage(localisation.get(LocalisationEntry.ERR_SPECIFY_PVP_STATUS));
+            sender.sendMessage(localisation.get(LocalisationEntry.ERR_SPECIFY_STATUS));
             return false;
         }
 

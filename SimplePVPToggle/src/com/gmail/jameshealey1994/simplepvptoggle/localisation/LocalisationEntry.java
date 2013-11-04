@@ -20,9 +20,9 @@ public enum LocalisationEntry {
     ERR_PLAYER_ONLY_COMMAND("MsgOnlyPlayersCanUseThisCommand", null, "&cOnly players can use this command"),
 
     /**
-     * Message telling user to specify a valid PvP status ('true' or 'false').
+     * Message telling user to specify a valid status ('true' or 'false').
      */
-    ERR_SPECIFY_PVP_STATUS("MsgSpecifyPVPStatus", null, "&cPlease specify a PVP status ('true' or 'false')"),
+    ERR_SPECIFY_STATUS("MsgSpecifyPVPStatus", null, "&cPlease specify a status ('true' or 'false')"),
 
     /**
      * Message telling user that the player specified cannot be found.
@@ -142,6 +142,12 @@ public enum LocalisationEntry {
     MSG_CURRENT_PVP_STATUS_OF_PLAYERNAME_IN_WORLDNAME_IS_STATUS ("MsgCurrentPVPStatusOfPLAYERNAMEInWORLDNAMEIsSTATUS", "%1$s - player name\n# %2$s - world name\n# %3$s - PVP status", "&7PVP status of '%1$s' in '%2$s' is '%3$s'"),
 
     /**
+     * Message telling user the debug status has been set to a new value.
+     * %1$s - debug status
+     */
+    MSG_DEBUG_SET_TO_STATUS ("MsgDebugSetToSTATUS", "%1$s - debug status", "&7Debug status set to '%1$s'"),
+    
+    /**
      * Description for Help command.
      */
     DESCRIPTION_HELP ("DescHelp", null, "Shows help menu"),
@@ -156,6 +162,11 @@ public enum LocalisationEntry {
      */
     DESCRIPTION_RELOAD ("DescReload", null, "Reloads config values"),
 
+    /**
+     * Description for Debug command.
+     */
+    DESCRIPTION_DEBUG ("DescDebug", null, "Changes debug status"),
+    
     /**
      * Description for Set command.
      */

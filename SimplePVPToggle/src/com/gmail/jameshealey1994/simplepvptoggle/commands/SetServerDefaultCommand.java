@@ -38,7 +38,7 @@ public class SetServerDefaultCommand extends SimplePVPToggleCommand {
             // Using Boolean instead of boolean as it can be null (if player gives something other than 'true' or 'false')
             final Boolean newValue = BooleanParser.parse(args[0]);
             if (newValue == null) {
-                sender.sendMessage(localisation.get(LocalisationEntry.ERR_SPECIFY_PVP_STATUS));
+                sender.sendMessage(localisation.get(LocalisationEntry.ERR_SPECIFY_STATUS));
                 return true;
             }
             
@@ -48,7 +48,7 @@ public class SetServerDefaultCommand extends SimplePVPToggleCommand {
             sender.sendMessage(localisation.get(LocalisationEntry.MSG_SERVER_DEFAULT_SET_TO, new Object[] {plugin.getConfig().getBoolean(path)}));
             return true;
         } else {
-            sender.sendMessage(localisation.get(LocalisationEntry.ERR_SPECIFY_PVP_STATUS));
+            sender.sendMessage(localisation.get(LocalisationEntry.ERR_SPECIFY_STATUS));
             return false;
         }
     }
