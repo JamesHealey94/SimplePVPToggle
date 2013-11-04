@@ -3,7 +3,7 @@ package com.gmail.jameshealey1994.simplepvptoggle.commands;
 import com.gmail.jameshealey1994.simplepvptoggle.SimplePVPToggle;
 import com.gmail.jameshealey1994.simplepvptoggle.localisation.Localisation;
 import com.gmail.jameshealey1994.simplepvptoggle.localisation.LocalisationEntry;
-import com.gmail.jameshealey1994.simplepvptoggle.utils.BooleanValuesUtils;
+import com.gmail.jameshealey1994.simplepvptoggle.utils.BooleanParser;
 import org.bukkit.command.CommandSender;
 
 /**
@@ -36,7 +36,7 @@ public class SetServerDefaultCommand extends SimplePVPToggleCommand {
 
         if (args.length > 0) {
             // Using Boolean instead of boolean as it can be null (if player gives something other than 'true' or 'false')
-            final Boolean newValue = BooleanValuesUtils.parse(args[0]);
+            final Boolean newValue = BooleanParser.parse(args[0]);
             if (newValue == null) {
                 sender.sendMessage(localisation.get(LocalisationEntry.ERR_SPECIFY_PVP_STATUS));
                 return true;

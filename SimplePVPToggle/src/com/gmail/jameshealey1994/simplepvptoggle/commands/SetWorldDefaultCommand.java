@@ -3,7 +3,7 @@ package com.gmail.jameshealey1994.simplepvptoggle.commands;
 import com.gmail.jameshealey1994.simplepvptoggle.SimplePVPToggle;
 import com.gmail.jameshealey1994.simplepvptoggle.localisation.Localisation;
 import com.gmail.jameshealey1994.simplepvptoggle.localisation.LocalisationEntry;
-import com.gmail.jameshealey1994.simplepvptoggle.utils.BooleanValuesUtils;
+import com.gmail.jameshealey1994.simplepvptoggle.utils.BooleanParser;
 import com.gmail.jameshealey1994.simplepvptoggle.utils.PVPConfigUtils;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
@@ -61,7 +61,7 @@ public class SetWorldDefaultCommand extends SimplePVPToggleCommand {
                     return false;
                 }
 
-                status = BooleanValuesUtils.parse(args[0]);
+                status = BooleanParser.parse(args[0]);
                 break;
             }
             case 2: {
@@ -72,7 +72,7 @@ public class SetWorldDefaultCommand extends SimplePVPToggleCommand {
                     return false;
                 }
 
-                status = BooleanValuesUtils.parse(args[1]);
+                status = BooleanParser.parse(args[1]);
                 break;
             }
             default: {

@@ -6,7 +6,7 @@ package com.gmail.jameshealey1994.simplepvptoggle.utils;
  * 
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
-public abstract class BooleanValuesUtils {
+public abstract class BooleanParser {
     
     /**
      * Strings representing a positive value.

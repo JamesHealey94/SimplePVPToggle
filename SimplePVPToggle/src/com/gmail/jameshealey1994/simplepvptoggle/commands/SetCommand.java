@@ -3,7 +3,7 @@ package com.gmail.jameshealey1994.simplepvptoggle.commands;
 import com.gmail.jameshealey1994.simplepvptoggle.SimplePVPToggle;
 import com.gmail.jameshealey1994.simplepvptoggle.localisation.Localisation;
 import com.gmail.jameshealey1994.simplepvptoggle.localisation.LocalisationEntry;
-import com.gmail.jameshealey1994.simplepvptoggle.utils.BooleanValuesUtils;
+import com.gmail.jameshealey1994.simplepvptoggle.utils.BooleanParser;
 import com.gmail.jameshealey1994.simplepvptoggle.utils.PVPConfigUtils;
 import java.util.Arrays;
 import org.bukkit.World;
@@ -29,8 +29,8 @@ public class SetCommand extends SimplePVPToggleCommand {
      */
     public SetCommand() {
         this.aliases.add(TOGGLE);
-        this.aliases.addAll(Arrays.asList(BooleanValuesUtils.POSITIVE_VALUES));
-        this.aliases.addAll(Arrays.asList(BooleanValuesUtils.NEGATIVE_VALUES));
+        this.aliases.addAll(Arrays.asList(BooleanParser.POSITIVE_VALUES));
+        this.aliases.addAll(Arrays.asList(BooleanParser.NEGATIVE_VALUES));
 
         this.permissions.add(SimplePVPTogglePermissions.CHANGE_SELF.getPermission());
         this.permissions.add(SimplePVPTogglePermissions.CHANGE_OTHERS.getPermission());
@@ -112,7 +112,7 @@ public class SetCommand extends SimplePVPToggleCommand {
         if (TOGGLE.equals(commandLabel)) {
             status = !(PVPConfigUtils.getPlayerStatus(target, world, plugin));
         } else {
-            status = BooleanValuesUtils.parse(commandLabel);
+            status = BooleanParser.parse(commandLabel);
             if (status == null) {
                 sender.sendMessage(localisation.get(LocalisationEntry.ERR_SPECIFY_PVP_STATUS));
                 return false;

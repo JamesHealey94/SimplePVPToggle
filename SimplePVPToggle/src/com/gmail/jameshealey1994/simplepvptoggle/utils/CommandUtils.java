@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.permissions.Permission;
 
 /**
- * Utility methods that with the commands and permissions.
+ * Utility methods that relate to commands and permissions.
  *
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
