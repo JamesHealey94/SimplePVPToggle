@@ -205,7 +205,7 @@ public enum LocalisationEntry {
      * %1$s - command name
      * %2$s - command description
      */
-    HELP_ENTRY ("HelpSeparator", "%1$s - command name\n# %2$s - command description", "%1$s - %2$s");
+    HELP_ENTRY ("HelpSeparator", "%1$s - command name\n# %2$s - command description", "%1$s: &7%2$s");
 
     /**
      * The name of the entry, as found in the localisation file.
