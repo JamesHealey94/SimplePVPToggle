@@ -20,6 +20,7 @@ public class DefaultSimplePVPToggleCommandEnvironment extends SimplePVPToggleCom
             new SetCommand(),
             new SetServerDefaultCommand(),
             new SetWorldDefaultCommand(),
-            new StatusCommand()});
+            new StatusCommand(),
+            new DebugCommand()});
     }
 }

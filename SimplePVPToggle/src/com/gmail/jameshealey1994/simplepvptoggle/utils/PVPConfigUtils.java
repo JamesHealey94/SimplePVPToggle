@@ -8,12 +8,12 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 /**
- * Utility methods that interface with the config for PVP values.
+ * Utility methods that interact with a configuration file for PVP values.
  *
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
 public abstract class PVPConfigUtils {
-
+    
     /**
      * Sets PVP status of the passed player in the passed world to the passed
      * state, saves the config, then sends a message to the player.
@@ -116,15 +116,5 @@ public abstract class PVPConfigUtils {
         plugin.getConfig().set(path, status);
         plugin.saveConfig();
         sender.sendMessage(plugin.getLocalisation().get(LocalisationEntry.MSG_WORLD_DEFAULT_SET_TO, new Object[] {world.getName(), plugin.getConfig().getBoolean(path)}));
-    }
-
-    /**
-     * Returns if debug mode is enabled, by checking the configuration file.
-     * 
-     * @param plugin    plugin with associated configuration file
-     * @return          if debug mode is enabled
-     */
-    public static boolean isDebugEnabled(SimplePVPToggle plugin) {
-        return plugin.getConfig().getBoolean("debug", false);
     }
 }

@@ -3,6 +3,7 @@ package com.gmail.jameshealey1994.simplepvptoggle.listeners;
 import com.gmail.jameshealey1994.simplepvptoggle.SimplePVPToggle;
 import com.gmail.jameshealey1994.simplepvptoggle.localisation.Localisation;
 import com.gmail.jameshealey1994.simplepvptoggle.localisation.LocalisationEntry;
+import com.gmail.jameshealey1994.simplepvptoggle.utils.DebugConfigUtils;
 import com.gmail.jameshealey1994.simplepvptoggle.utils.PVPConfigUtils;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
@@ -67,7 +68,7 @@ public class SimplePVPToggleListener implements Listener {
             final Localisation localisation = new Localisation(plugin);
             if (PVPConfigUtils.getPlayerStatus(attacker, attacker.getWorld(), plugin)) {
                 if (PVPConfigUtils.getPlayerStatus(attackedPlayer, attackedPlayer.getWorld(), plugin)) {
-                    if (PVPConfigUtils.isDebugEnabled(plugin)) {
+                    if (DebugConfigUtils.getDebugEnabled(plugin)) {
                         attacker.sendMessage(localisation.get(LocalisationEntry.DEBUG_ATTACKED_PLAYERNAME_FOR_DAMAGEAMOUNT_DAMAGE, new Object[] {attackedPlayer.getDisplayName(), event.getDamage()}));
                         attackedPlayer.sendMessage(localisation.get(LocalisationEntry.DEBUG_ATTACKED_BY_PLAYERNAME_FOR_DAMAGEAMOUNT_DAMAGE, new Object[] {attacker.getDisplayName(), event.getDamage()}));
                     }
