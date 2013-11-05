@@ -20,15 +20,10 @@ import org.bukkit.entity.Player;
 public class SetCommand extends SimplePVPToggleCommand {
 
     /**
-     * String used in command to signify a toggle.
-     */
-    private static final String TOGGLE = "toggle";
-
-    /**
      * Constructor to add aliases and permissions.
      */
     public SetCommand() {
-        this.aliases.add(TOGGLE);
+        this.aliases.addAll(Arrays.asList(BooleanParser.TOGGLE_VALUES));
         this.aliases.addAll(Arrays.asList(BooleanParser.POSITIVE_VALUES));
         this.aliases.addAll(Arrays.asList(BooleanParser.NEGATIVE_VALUES));
 
@@ -109,16 +104,13 @@ public class SetCommand extends SimplePVPToggleCommand {
             }
         }
 
-        if (TOGGLE.equals(commandLabel)) {
-            status = !(PVPConfigUtils.getPlayerStatus(target, world, plugin));
-        } else {
-            status = BooleanParser.parse(commandLabel);
-            if (status == null) {
-                sender.sendMessage(localisation.get(LocalisationEntry.ERR_SPECIFY_STATUS));
-                return false;
-            }
+        status = BooleanParser.parse(commandLabel, PVPConfigUtils.getPlayerStatus(target, world, plugin));
+
+        if (status == null) {
+            sender.sendMessage(localisation.get(LocalisationEntry.ERR_SPECIFY_STATUS));
+            return false;
         }
-        
+
         // If the sender is a player, and the target is either someone else or in another world
         if ((sender instanceof Player)
                 && ((!(sender.equals(target))) || (!(((Player) sender).getWorld().equals(world))))) {

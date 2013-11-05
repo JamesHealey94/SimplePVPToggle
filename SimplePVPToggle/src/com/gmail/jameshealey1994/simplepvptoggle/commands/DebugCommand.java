@@ -11,7 +11,7 @@ import org.bukkit.command.CommandSender;
  * Class representing a debug command.
  * Allows you to change the debug status
  *
- * /... debug <on / off>    Changes debug status
+ * /... debug <on / off / toggle>    Changes debug status
  *
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
@@ -40,7 +40,8 @@ public class DebugCommand extends SimplePVPToggleCommand {
             return false;
         }
 
-        final Boolean debugStatus = BooleanParser.parse(args[0]);
+        final boolean current = DebugConfigUtils.getDebugEnabled(plugin);
+        final Boolean debugStatus = BooleanParser.parse(args[0], current);
         if (debugStatus == null) {
             sender.sendMessage(localisation.get(LocalisationEntry.ERR_SPECIFY_STATUS));
             return false;

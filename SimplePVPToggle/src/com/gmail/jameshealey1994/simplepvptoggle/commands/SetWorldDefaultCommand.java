@@ -13,8 +13,8 @@ import org.bukkit.entity.Player;
  * Abstract class representing a SimplePVPToggle set world default command.
  * Allows you to set the default PVP status of a world
  *
- * /pvp setworlddefault [world] <on / off>      Sets default PVP status for
- *                                              [world] to <on / off>
+ * /pvp setworlddefault [world] <on / off / toggle>     Changes default PVP
+ *                                                      status for [world]
  *
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
@@ -43,7 +43,7 @@ public class SetWorldDefaultCommand extends SimplePVPToggleCommand {
          * /pvp setworlddefault <on / off>
          */
         final Localisation localisation = plugin.getLocalisation();
-        final Boolean status;
+        final String booleanString;
         final World world;
 
         switch (args.length) {
@@ -61,7 +61,7 @@ public class SetWorldDefaultCommand extends SimplePVPToggleCommand {
                     return false;
                 }
 
-                status = BooleanParser.parse(args[0]);
+                booleanString = args[0];
                 break;
             }
             case 2: {
@@ -72,7 +72,7 @@ public class SetWorldDefaultCommand extends SimplePVPToggleCommand {
                     return false;
                 }
 
-                status = BooleanParser.parse(args[1]);
+                booleanString = args[1];
                 break;
             }
             default: {
@@ -81,6 +81,8 @@ public class SetWorldDefaultCommand extends SimplePVPToggleCommand {
             }
         }
 
+        final boolean current = PVPConfigUtils.getWorldStatus(world, plugin);
+        final Boolean status = BooleanParser.parse(booleanString, current);
         if (status == null) {
             sender.sendMessage(localisation.get(LocalisationEntry.ERR_SPECIFY_STATUS));
             return false;
