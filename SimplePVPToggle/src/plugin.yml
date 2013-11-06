@@ -10,38 +10,33 @@ commands:
         aliases: [pvp, pvptoggle, simplepvptoggle, togglepvp]
         usage: Command used incorrectly! Use /<command> help for help!
 permissions:
-    spt.*:
-        description: Gives access to all commands
-        default: false
-        children:
-            spt.change.*: true
-            spt.setdefault.*: true
-            spt.reload: true
-
-    spt.change.*:
-        description: Gives access to all toggle commands
-        default: false
-        children:
-            spt.change.self: true
-            spt.change.other: true
     spt.change.self:
         description: Allows you to change your PVP status for that world
         default: false
-    spt.change.other:
+    spt.change.others:
         description: Allows you to change someone elses PVP status for that world
         default: false
 
-    spt.setdefault.*:
-        description: Gives access to all setdefault commands
-        default: false
-        children:
-            spt.setdefault.world: true
-            spt.setdefault.server: true
-    spt.setdefault.world:
+    spt.setworlddefault:
         description: Allows you to set the default PVP status of that world
         default: false
-    spt.setdefault.server:
+    spt.setserverdefault:
         description: Allows you to set the default PVP status of the server
+        default: false
+
+    spt.status.self:
+        description: Allows you to see your own PVP status
+        default: false
+    spt.status.others:
+        description: Allows you to see the PVP status of other players
+        default: false
+
+    spt.info:
+        description: Allows you to see the default PVP status of the server and it's worlds
+        default: false
+
+    spt.debug:
+        description: Allows you to change the status of debug mode
         default: false
 
     spt.reload:
