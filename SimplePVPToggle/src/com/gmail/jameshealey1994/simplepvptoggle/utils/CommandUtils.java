@@ -14,7 +14,7 @@ import org.bukkit.permissions.Permission;
 public abstract class CommandUtils {
     /**
      * Returns if a sender is allowed to execute a command.
-     * 
+     *
      * @param command       the command with permissions being checked
      * @param sender        sender of the command
      * @param allowConsole  true if the command is allowed to be executed by
@@ -41,7 +41,7 @@ public abstract class CommandUtils {
 
     /**
      * Returns if a sender has a certain permission.
-     * 
+     *
      * @param sender        sender of the command
      * @param permission    permission being checked
      * @param allowConsole  true if the command is allowed to be executed by
@@ -49,7 +49,7 @@ public abstract class CommandUtils {
      * @return              if a player has permissions for the command
      */
     public static boolean canExecute(CommandSender sender, SimplePVPTogglePermissions permission, boolean allowConsole) {
-        if (sender instanceof Player) {            
+        if (sender instanceof Player) {
             final Player player = (Player) sender;
             return player.hasPermission(permission.getPermission());
         } else {

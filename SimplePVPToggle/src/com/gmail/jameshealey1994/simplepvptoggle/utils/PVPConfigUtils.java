@@ -13,7 +13,7 @@ import org.bukkit.entity.Player;
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
 public abstract class PVPConfigUtils {
-    
+
     /**
      * Sets PVP status of the passed player in the passed world to the passed
      * state, saves the config, then sends a message to the player.
@@ -101,11 +101,11 @@ public abstract class PVPConfigUtils {
         return  plugin.getConfig().getBoolean("Server.Default",
                 false);
     }
-    
+
     /**
      * Sets the default PVP status of the passed world to the passed state,
      * saves the config, then sends a message to the sender.
-     * 
+     *
      * @param sender    sender of the command, to be sent a confirmation message
      * @param world     world to set the default PVP status of
      * @param status    status to change to

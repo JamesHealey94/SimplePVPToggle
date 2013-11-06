@@ -10,8 +10,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 /**
+ * Class to represent a status command.
  * Allows you to see your current PVP status for your current world.
- * /pvp status [username] [world]   Displays PVP status of [username] in [world]
+ *
+ * /... status [username] [world]   Displays PVP status of [username] in [world]
  *
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
@@ -30,24 +32,13 @@ public class StatusCommand extends SimplePVPToggleCommand {
 
     @Override
     public boolean execute(SimplePVPToggle plugin, CommandSender sender, String commandLabel, String[] args) {
-
-        /*
-         * Command can be used by console, and any players with the correct permission.
-         * Although it depends on the arguments given.
-         */
         final Localisation localisation = plugin.getLocalisation();
-//
-//        if (!(CommandUtils.canExecute(this, sender, true))) {
-//            sender.sendMessage(localisation.get(LocalisationEntry.ERR_PERMISSION_DENIED));
-//            return true;
-//        }
-
         final Player target;
         final World world;
 
         switch (args.length) {
             case 0: {
-                // /pvp status
+                // /... status
                 if (!(sender instanceof Player)) {
                     sender.sendMessage(localisation.get(LocalisationEntry.ERR_SPECIFY_PLAYER));
                     return false;
@@ -57,10 +48,10 @@ public class StatusCommand extends SimplePVPToggleCommand {
                 break;
             }
             case 1: {
-                // /pvp status ([username] or [world] or error)
-                // /pvp status username - current status of username in username's current world
-                // /pvp status world - senders current status in specified world, unless sender isnt player
-                // /pvp status somethingelse - error
+                // /... status ([username] or [world] or error)
+                // /... status username         Current status of username in username's current world
+                // /... status world            Senders current status in specified world, unless sender isnt player
+                // /... status somethingelse    Error
                 if (plugin.getServer().getPlayer(args[0]) == null) {
                     if (!(sender instanceof Player)) {
                         sender.sendMessage(localisation.get(LocalisationEntry.ERR_PLAYER_NOT_FOUND, new Object[] {args[0]}));
@@ -81,7 +72,7 @@ public class StatusCommand extends SimplePVPToggleCommand {
                 break;
             }
             case 2: {
-                // /pvp status [username] [world]
+                // /... status [username] [world]
                 target = plugin.getServer().getPlayer(args[0]);
                 if (target == null) {
                     sender.sendMessage(localisation.get(LocalisationEntry.ERR_PLAYER_NOT_FOUND, new Object[] {args[0]}));

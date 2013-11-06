@@ -1,7 +1,8 @@
 package com.gmail.jameshealey1994.simplepvptoggle.localisation;
 
 /**
- * Enum to represent a single entry in a Localisation, holds Faction and related deathPoints variable.
+ * Enum to represent a single entry in a Localisation.
+ * Holds the config key, the usage, and the default value.
  *
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
@@ -146,7 +147,7 @@ public enum LocalisationEntry {
      * %1$s - debug status
      */
     MSG_DEBUG_SET_TO_STATUS ("MsgDebugSetToSTATUS", "%1$s - debug status", "&7Debug status set to '%1$s'"),
-    
+
     /**
      * Description for Help command.
      */
@@ -166,7 +167,7 @@ public enum LocalisationEntry {
      * Description for Debug command.
      */
     DESCRIPTION_DEBUG ("DescDebug", null, "Changes debug status"),
-    
+
     /**
      * Description for Set command.
      */

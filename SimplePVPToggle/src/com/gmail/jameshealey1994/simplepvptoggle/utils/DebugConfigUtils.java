@@ -18,7 +18,7 @@ public abstract class DebugConfigUtils {
 
     /**
      * Returns if debug mode is enabled, by checking the configuration file.
-     * 
+     *
      * @param plugin    plugin with associated configuration file
      * @return          if debug mode is enabled
      */
@@ -29,7 +29,7 @@ public abstract class DebugConfigUtils {
     /**
      * Sets the debug mode for the plugin, saves the config file, then sends a
      * message to the sender.
-     * 
+     *
      * @param sender        sender of the status
      * @param debugStatus   new debug status
      * @param plugin        plugin with associated config file

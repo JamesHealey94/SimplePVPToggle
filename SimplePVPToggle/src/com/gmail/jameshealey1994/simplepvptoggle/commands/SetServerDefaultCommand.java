@@ -7,11 +7,11 @@ import com.gmail.jameshealey1994.simplepvptoggle.utils.BooleanParser;
 import org.bukkit.command.CommandSender;
 
 /**
- * Class representing a SimplePVPToggle set server default command.
+ * Class representing a setserverdefault command.
  * Allows you to set the default PVP status of the server
  *
- * /pvp setserverdefault <on / off / toggle>    Changes default PVP status for
- *                                              server
+ * /... setserverdefault <status>       Sets default PVP status for server to
+ *                                      <status>
  *
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
@@ -28,10 +28,6 @@ public class SetServerDefaultCommand extends SimplePVPToggleCommand {
 
     @Override
     public boolean execute(SimplePVPToggle plugin, CommandSender sender, String commandLabel, String[] args) {
-
-        /*
-         * Command can be used by console and players with the correct permission.
-         */
         final Localisation localisation = plugin.getLocalisation();
 
         if (args.length > 0) {

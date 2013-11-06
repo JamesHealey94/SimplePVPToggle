@@ -12,8 +12,9 @@ import org.bukkit.entity.Player;
 
 /**
  * Allows you to change the PVP status of players.
- * /pvp <on / off / toggle> [username] [world]      Changes PVP status for
- *                                                  [username] in [world]
+ * 
+ * /... <status> [username] [world]         Sets PVP status for [username] in
+ *                                          [world] to <status>
  *
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
@@ -33,11 +34,6 @@ public class SetCommand extends SimplePVPToggleCommand {
 
     @Override
     public boolean execute(SimplePVPToggle plugin, CommandSender sender, String commandLabel, String[] args) {
-
-        /*
-         * Command can be used by console, and any players with the correct permission.
-         * Although it depends on the arguments given.
-         */
         final Localisation localisation = plugin.getLocalisation();
 
         final Boolean status;
@@ -46,7 +42,7 @@ public class SetCommand extends SimplePVPToggleCommand {
 
         switch (args.length) {
             case 0: {
-                // /pvp on/off/toggle - Only used by players (with correct permissions)
+                // /... <status>        Only used by players (with correct permissions)
                 if (!(sender instanceof Player)) {
                     sender.sendMessage(localisation.get(LocalisationEntry.ERR_SPECIFY_PLAYER));
                     return false;
@@ -56,10 +52,10 @@ public class SetCommand extends SimplePVPToggleCommand {
                 break;
             }
             case 1: {
-                // /pvp on/off/toggle ([username] or [world] or error)
-                // /pvp on/off/toggle world - change senders current status in specified world, unless sender isnt player
-                // /pvp on/off/toggle username - change current status of username in username's current world
-                // /pvp on/off/toggle somethingelse - error
+                // /... <status> ([username] or [world] or error)
+                // /... <status> world              Change senders current status in specified world, unless sender isnt player
+                // /... <status> username           Change current status of username in username's current world
+                // /... <status> somethingelse      Error
                 if (plugin.getServer().getPlayer(args[0]) == null) {
                     if (!(sender instanceof Player)) {
                         sender.sendMessage(localisation.get(LocalisationEntry.ERR_PLAYER_NOT_FOUND, new Object[] {args[0]}));
@@ -116,7 +112,7 @@ public class SetCommand extends SimplePVPToggleCommand {
                 && ((!(sender.equals(target))) || (!(((Player) sender).getWorld().equals(world))))) {
             final Player player = (Player) sender;
             if (!(player.hasPermission(SimplePVPTogglePermissions.CHANGE_OTHERS.getPermission()))) {
-                sender.sendMessage(localisation.get(LocalisationEntry.ERR_PERMISSION_DENIED)); // TODO test on setting your own status in another world (whioh you dont have perms for)
+                sender.sendMessage(localisation.get(LocalisationEntry.ERR_PERMISSION_DENIED)); // TODO Test on setting your own status in another world (which you don't have perms for)
                 return true;
             }
         }

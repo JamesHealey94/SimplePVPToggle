@@ -8,11 +8,11 @@ import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 
 /**
- * Class representing a SimplePVPToggle info command.
+ * Class representing an info command.
  * Allows you to see the default PVP status of the server and it's worlds
- * 
- * /pvp info        Displays default PVP status of server and worlds
- * 
+ *
+ * /... info        Displays default PVP status of server and worlds
+ *
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
 public class InfoCommand extends SimplePVPToggleCommand {
@@ -23,16 +23,12 @@ public class InfoCommand extends SimplePVPToggleCommand {
     public InfoCommand() {
         this.aliases.add("info");
         this.aliases.add("i");
-        
+
         this.permissions.add(SimplePVPTogglePermissions.INFO.getPermission());
     }
 
     @Override
     public boolean execute(SimplePVPToggle plugin, CommandSender sender, String commandLabel, String[] args) {
-
-        /*
-         * Command can be used by anyone.
-         */        
         final Localisation localisation = plugin.getLocalisation();
         sender.sendMessage(localisation.get(LocalisationEntry.INFO_HEADER));
         sender.sendMessage(localisation.get(LocalisationEntry.INFO_SERVER, new Object[] {PVPConfigUtils.getServerStatus(plugin)}));

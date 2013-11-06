@@ -42,13 +42,6 @@ public class SimplePVPToggleListener implements Listener {
      */
     @EventHandler (priority = EventPriority.LOWEST)
     public void onEntityDamageByEntityEvent(EntityDamageByEntityEvent event) {
-
-        /*
-         * Works with melee, arrows and potions, but not from dispensers.
-         * Should it work with dispensers?
-         * Perhaps some config values for dispensers?.
-         */
-
         if (event.getEntity() instanceof Player) {
             final Player attackedPlayer = (Player) event.getEntity();
             final Player attacker;

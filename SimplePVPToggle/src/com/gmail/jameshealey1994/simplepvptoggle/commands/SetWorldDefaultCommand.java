@@ -10,11 +10,11 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 /**
- * Abstract class representing a SimplePVPToggle set world default command.
+ * Class representing a setworlddefault command.
  * Allows you to set the default PVP status of a world
  *
- * /pvp setworlddefault [world] <on / off / toggle>     Changes default PVP
- *                                                      status for [world]
+ * /... setworlddefault [world] <status>    Sets default PVP status for [world]
+ *                                          to <status>
  *
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
@@ -39,8 +39,8 @@ public class SetWorldDefaultCommand extends SimplePVPToggleCommand {
     public boolean execute(SimplePVPToggle plugin, CommandSender sender, String commandLabel, String[] args) {
         /*
          * Possible:
-         * /pvp setworlddefault [world] <on / off>
-         * /pvp setworlddefault <on / off>
+         * /... setworlddefault [world] <status>
+         * /... setworlddefault <status>
          */
         final Localisation localisation = plugin.getLocalisation();
         final String booleanString;
@@ -48,12 +48,12 @@ public class SetWorldDefaultCommand extends SimplePVPToggleCommand {
 
         switch (args.length) {
             case 0: {
-                // /pvp setworlddefault
+                // /... setworlddefault
                 return false;
             }
             case 1: {
-                // /pvp setworlddefault <on / off>              if player, set world default, else error
-                // /pvp setworlddefault error                   specify PVP status, or world if sender is not a player
+                // /... setworlddefault <status>    if player, set world default, else error
+                // /... setworlddefault error       specify PVP status, or world if sender is not a player
                 if (sender instanceof Player) {
                     world = ((Player) sender).getWorld();
                 } else {
@@ -65,7 +65,7 @@ public class SetWorldDefaultCommand extends SimplePVPToggleCommand {
                 break;
             }
             case 2: {
-                // /pvp setworlddefault [world] <on / off>      set world default
+                // /... setworlddefault [world] <status>    set [world] default to <status>
                 world = plugin.getServer().getWorld(args[0]);
                 if (world == null) {
                     sender.sendMessage(localisation.get(LocalisationEntry.ERR_WORLD_NOT_FOUND, new Object[] {args[0]}));

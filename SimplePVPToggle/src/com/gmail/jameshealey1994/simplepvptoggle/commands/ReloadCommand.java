@@ -8,9 +8,9 @@ import org.bukkit.command.CommandSender;
 /**
  * Class representing a SimplePVPToggle reload command.
  * Allows you to reload the config
- * 
- * /pvp reload      Reloads config values
- * 
+ *
+ * /... reload      Reloads config values
+ *
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
 public class ReloadCommand extends SimplePVPToggleCommand {
@@ -27,10 +27,6 @@ public class ReloadCommand extends SimplePVPToggleCommand {
 
     @Override
     public boolean execute(SimplePVPToggle plugin, CommandSender sender, String commandLabel, String[] args) {
-        
-        /*
-         * Command can be used by console, and any players with the correct permission.
-         */
         plugin.reloadConfig();
         sender.sendMessage(plugin.getLocalisation().get(LocalisationEntry.MSG_CONFIG_RELOADED));
         return true;
@@ -40,4 +36,4 @@ public class ReloadCommand extends SimplePVPToggleCommand {
     public String getDescription(Localisation localisation) {
         return localisation.get(LocalisationEntry.DESCRIPTION_RELOAD);
     }
- }
+}

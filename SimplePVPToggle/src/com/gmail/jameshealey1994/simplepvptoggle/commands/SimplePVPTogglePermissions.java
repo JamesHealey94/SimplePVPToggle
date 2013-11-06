@@ -52,7 +52,7 @@ public enum SimplePVPTogglePermissions {
      * Permission for DebugCommand.
      */
     DEBUG ("spt.debug"),
-    
+
     /**
      * Permission for ReloadCommand.
      */

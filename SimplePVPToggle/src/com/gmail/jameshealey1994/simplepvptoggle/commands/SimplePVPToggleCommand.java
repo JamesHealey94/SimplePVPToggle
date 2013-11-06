@@ -8,7 +8,7 @@ import org.bukkit.permissions.Permission;
 
 /**
  * Abstract class to represent a SimplePVPToggle command.
- * /spt <commandnamehere> [args]
+ * /... <commandnamehere> [args]
  *
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */

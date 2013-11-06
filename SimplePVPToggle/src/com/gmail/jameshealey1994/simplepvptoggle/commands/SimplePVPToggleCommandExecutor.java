@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 
 /**
  * Command executor for the SimplePVPToggle plugin.
- * 
+ *
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
 public class SimplePVPToggleCommandExecutor implements CommandExecutor {
@@ -20,7 +20,7 @@ public class SimplePVPToggleCommandExecutor implements CommandExecutor {
      * Plugin the commands are executed for.
      */
     private SimplePVPToggle plugin;
-    
+
     /**
      * The default command, executed when no arguments are given.
      * Can be null, in which case no command is executed.
@@ -29,7 +29,7 @@ public class SimplePVPToggleCommandExecutor implements CommandExecutor {
 
     /**
      * Constructor to set plugin instance variable.
-     * 
+     *
      * @param plugin            plugin used to set internal plugin value
      * @param defaultCommand    default command, executed when no args are given
      */
@@ -39,7 +39,7 @@ public class SimplePVPToggleCommandExecutor implements CommandExecutor {
     }
 
     @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String commandlabel, String[] args) {        
+    public boolean onCommand(CommandSender sender, Command cmd, String commandlabel, String[] args) {
         if (args.length > 0) {
             for (SimplePVPToggleCommand command : plugin.getCommands()) {
                 if (command.getAliases().contains(args[0].toLowerCase())) {
@@ -65,10 +65,10 @@ public class SimplePVPToggleCommandExecutor implements CommandExecutor {
      * Returns if there's a chance the sender can execute the command.
      * Some commands could pass this check, but then be denied from within the
      * command's execute method.
-     * 
+     *
      * @param command   the command being executed
      * @param sender    the sender of the command
-     * @return if there's a chance the sender can execute the command
+     * @return          if there's a chance the sender can execute the command
      */
     private boolean canExecuteCommand(SimplePVPToggleCommand command, CommandSender sender) {
         return ((!(sender instanceof Player))

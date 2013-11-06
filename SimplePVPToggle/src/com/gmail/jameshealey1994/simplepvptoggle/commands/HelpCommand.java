@@ -7,9 +7,9 @@ import com.gmail.jameshealey1994.simplepvptoggle.utils.CommandUtils;
 import org.bukkit.command.CommandSender;
 
 /**
- * Class representing a SimplePVPToggle help command.
+ * Class representing a help command.
  *
- * /pvp [help]      Shows help menu
+ * /... [help]      Shows help menu
  *
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */

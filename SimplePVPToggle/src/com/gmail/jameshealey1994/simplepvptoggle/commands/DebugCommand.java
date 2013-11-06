@@ -11,7 +11,7 @@ import org.bukkit.command.CommandSender;
  * Class representing a debug command.
  * Allows you to change the debug status
  *
- * /... debug <on / off / toggle>    Changes debug status
+ * /... debug <status>      Sets debug status to <status>
  *
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
@@ -29,10 +29,6 @@ public class DebugCommand extends SimplePVPToggleCommand {
 
     @Override
     public boolean execute(SimplePVPToggle plugin, CommandSender sender, String commandLabel, String[] args) {
-
-        /*
-         * Command can be used by console, and any players with the correct permission.
-         */
         final Localisation localisation = plugin.getLocalisation();
 
         if (args.length == 0) {

@@ -12,7 +12,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 /**
  * Plugin to simply and easily set the PVP status of players, worlds, or the
  * entire server.
- * 
+ *
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
 public class SimplePVPToggle extends JavaPlugin {
@@ -22,12 +22,12 @@ public class SimplePVPToggle extends JavaPlugin {
      * accessible from the current state of the plugin).
      */
     private SimplePVPToggleCommandEnvironment commandEnvironment = new DefaultSimplePVPToggleCommandEnvironment();
-    
+
     /**
      * The current localisation for the plugin.
      */
     private Localisation localisation = new Localisation(this);
-    
+
     @Override
     public void onEnable() {
 
@@ -43,8 +43,8 @@ public class SimplePVPToggle extends JavaPlugin {
 
     /**
      * Returns an array of commands belonging to the plugin.
-     * 
-     * @return  commands belonging to the plugin
+     *
+     * @return      commands belonging to the plugin
      */
     public SimplePVPToggleCommand[] getCommands() {
         return commandEnvironment.getCommands();
@@ -52,16 +52,16 @@ public class SimplePVPToggle extends JavaPlugin {
 
     /**
      * Gets the current command environment for the plugin.
-     * 
-     * @return  the current command environment for the plugin
+     *
+     * @return      the current command environment for the plugin
      */
     public SimplePVPToggleCommandEnvironment getCommandEnvironment() {
         return commandEnvironment;
     }
-    
+
     /**
      * Sets the current command environment for the plugin.
-     * 
+     *
      * @param commandEnvironment    the new command environment for the plugin
      */
     public void setCommandEnvironment(SimplePVPToggleCommandEnvironment commandEnvironment) {
@@ -70,8 +70,8 @@ public class SimplePVPToggle extends JavaPlugin {
 
     /**
      * Gets the current localisation for the plugin.
-     * 
-     * @return the current localisation for the plugin
+     *
+     * @return      the current localisation for the plugin
      */
     public Localisation getLocalisation() {
         return localisation;
@@ -79,8 +79,8 @@ public class SimplePVPToggle extends JavaPlugin {
 
     /**
      * Sets the current command environment for the plugin.
-     * 
-     * @param localisation  the new localisation for the plugin
+     *
+     * @param localisation      the new localisation for the plugin
      */
     public void setLocalisation(Localisation localisation) {
         this.localisation = localisation;
