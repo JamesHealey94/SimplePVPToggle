@@ -2,12 +2,11 @@ package com.gmail.jameshealey1994.simplepvptoggle.commands;
 
 import com.gmail.jameshealey1994.simplepvptoggle.SimplePVPToggle;
 import com.gmail.jameshealey1994.simplepvptoggle.localisation.LocalisationEntry;
-import com.gmail.jameshealey1994.simplepvptoggle.utils.CommandUtils;
+import com.gmail.jameshealey1994.simplepvptoggle.utils.PermissionUtils;
 import java.util.Arrays;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 
 /**
  * Command executor for the SimplePVPToggle plugin.
@@ -43,7 +42,7 @@ public class SimplePVPToggleCommandExecutor implements CommandExecutor {
         if (args.length > 0) {
             for (SimplePVPToggleCommand command : plugin.getCommands()) {
                 if (command.getAliases().contains(args[0].toLowerCase())) {
-                    if (canExecuteCommand(command, sender)) {
+                    if (PermissionUtils.canExecute(command, sender)) {
                         return command.execute(plugin, sender, args[0], Arrays.copyOfRange(args, 1, args.length));
                     } else {
                         sender.sendMessage(plugin.getLocalisation().get(LocalisationEntry.ERR_PERMISSION_DENIED));
@@ -59,19 +58,5 @@ public class SimplePVPToggleCommandExecutor implements CommandExecutor {
             }
         }
         return false;
-    }
-
-    /**
-     * Returns if there's a chance the sender can execute the command.
-     * Some commands could pass this check, but then be denied from within the
-     * command's execute method.
-     *
-     * @param command   the command being executed
-     * @param sender    the sender of the command
-     * @return          if there's a chance the sender can execute the command
-     */
-    private boolean canExecuteCommand(SimplePVPToggleCommand command, CommandSender sender) {
-        return ((!(sender instanceof Player))
-                || ((sender instanceof Player) && (CommandUtils.canExecute(command, sender, true))));
     }
 }

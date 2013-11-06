@@ -3,7 +3,7 @@ package com.gmail.jameshealey1994.simplepvptoggle.commands;
 import com.gmail.jameshealey1994.simplepvptoggle.SimplePVPToggle;
 import com.gmail.jameshealey1994.simplepvptoggle.localisation.Localisation;
 import com.gmail.jameshealey1994.simplepvptoggle.localisation.LocalisationEntry;
-import com.gmail.jameshealey1994.simplepvptoggle.utils.CommandUtils;
+import com.gmail.jameshealey1994.simplepvptoggle.utils.PermissionUtils;
 import org.bukkit.command.CommandSender;
 
 /**
@@ -33,7 +33,7 @@ public class HelpCommand extends SimplePVPToggleCommand {
                 new Object[] {plugin.getDescription().getFullName()}));
 
         for (SimplePVPToggleCommand command : plugin.getCommands()) {
-            if (CommandUtils.canExecute(command, sender, true)) {
+            if (PermissionUtils.canExecute(command, sender, true)) {
                 sender.sendMessage(localisation.get(LocalisationEntry.HELP_ENTRY, new Object[] {command.aliases.get(0), command.getDescription(localisation)}));
             }
         }

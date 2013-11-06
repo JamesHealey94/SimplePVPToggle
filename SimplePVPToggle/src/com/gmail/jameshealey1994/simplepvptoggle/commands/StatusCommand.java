@@ -3,7 +3,7 @@ package com.gmail.jameshealey1994.simplepvptoggle.commands;
 import com.gmail.jameshealey1994.simplepvptoggle.SimplePVPToggle;
 import com.gmail.jameshealey1994.simplepvptoggle.localisation.Localisation;
 import com.gmail.jameshealey1994.simplepvptoggle.localisation.LocalisationEntry;
-import com.gmail.jameshealey1994.simplepvptoggle.utils.CommandUtils;
+import com.gmail.jameshealey1994.simplepvptoggle.utils.PermissionUtils;
 import com.gmail.jameshealey1994.simplepvptoggle.utils.PVPConfigUtils;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
@@ -78,7 +78,7 @@ public class StatusCommand extends SimplePVPToggleCommand {
                     sender.sendMessage(localisation.get(LocalisationEntry.ERR_PLAYER_NOT_FOUND, new Object[] {args[0]}));
                     return false;
                 } else {
-                    if (!(CommandUtils.canExecute(sender, SimplePVPTogglePermissions.STATUS_OTHERS, true))) {
+                    if (!(PermissionUtils.canExecute(sender, SimplePVPTogglePermissions.STATUS_OTHERS, true))) {
                         sender.sendMessage(localisation.get(LocalisationEntry.ERR_PERMISSION_DENIED));
                         return true;
                     }

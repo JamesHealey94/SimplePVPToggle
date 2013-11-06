@@ -11,7 +11,22 @@ import org.bukkit.permissions.Permission;
  *
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
-public abstract class CommandUtils {
+public abstract class PermissionUtils {
+
+    /**
+     * Returns if there's a chance the sender can execute the command.
+     * Some commands could pass this check, but then be denied from within the
+     * command's execute method.
+     *
+     * @param command   the command being executed
+     * @param sender    the sender of the command
+     * @return          if there's a chance the sender can execute the command
+     */
+    public static boolean canExecute(SimplePVPToggleCommand command, CommandSender sender) {
+        return ((!(sender instanceof Player))
+                || ((sender instanceof Player) && (canExecute(command, sender, true))));
+    }
+
     /**
      * Returns if a sender is allowed to execute a command.
      *
