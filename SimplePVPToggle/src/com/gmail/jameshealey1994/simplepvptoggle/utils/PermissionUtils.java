@@ -1,10 +1,13 @@
 package com.gmail.jameshealey1994.simplepvptoggle.utils;
 
 import com.gmail.jameshealey1994.simplepvptoggle.commands.SimplePVPToggleCommand;
-import com.gmail.jameshealey1994.simplepvptoggle.commands.SimplePVPTogglePermissions;
+import java.util.logging.Level;
+import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.Permission;
+import org.bukkit.plugin.RegisteredServiceProvider;
+import org.bukkit.plugin.java.JavaPlugin;
 
 /**
  * Utility methods that relate to commands and permissions.
@@ -55,20 +58,51 @@ public abstract class PermissionUtils {
     }
 
     /**
-     * Returns if a sender has a certain permission.
+     * Returns if a sender has a certain permission in a certain world.
      *
-     * @param sender        sender of the command
-     * @param permission    permission being checked
-     * @param allowConsole  true if the command is allowed to be executed by
-     *                      console, else false
-     * @return              if a player has permissions for the command
+     * @param sender            sender of the command
+     * @param permission        permission being checked
+     * @param world             world the player's permissions are being checked
+     *                          in
+     * @param allowConsole      true if the command is allowed to be executed by
+     *                          console, else false
+     * @param plugin            plugin with associated Vault permissions
+     * @return                  if a player has permissions for the command in
+     *                          the world specified
      */
-    public static boolean canExecute(CommandSender sender, SimplePVPTogglePermissions permission, boolean allowConsole) {
+    public static boolean canExecute(CommandSender sender, Permission permission, World world, boolean allowConsole, JavaPlugin plugin) {
         if (sender instanceof Player) {
             final Player player = (Player) sender;
-            return player.hasPermission(permission.getPermission());
+            if (player.getWorld().equals(world)) {
+                return player.hasPermission(permission);
+            } else {
+                final net.milkbowl.vault.permission.Permission vaultPerms = getVaultPerms(plugin);
+                if (vaultPerms == null) {
+                    sender.sendMessage("Vault not found - Tell your administrator to add Vault!");
+                    return false;
+                }
+                return getVaultPerms(plugin).playerHas(world, player.getName(), permission.getName());
+            }
         } else {
             return allowConsole;
         }
+    }
+
+    /**
+     * Returns Vault permissions for a specified plugin.
+     *
+     * @param plugin    plugin with associated Vault permissions
+     * @return          Vault permissions associated with the plugin passed
+     */
+    public static net.milkbowl.vault.permission.Permission getVaultPerms(JavaPlugin plugin) {
+        final RegisteredServiceProvider<net.milkbowl.vault.permission.Permission> rsp;
+        try {
+            rsp = plugin.getServer().getServicesManager().getRegistration(net.milkbowl.vault.permission.Permission.class);
+        } catch (NoClassDefFoundError ex) {
+            plugin.getLogger().severe("ERROR - Vault not found");
+            plugin.getLogger().severe("Commands using Vault will default to false");
+            return null;
+        }
+        return rsp.getProvider();
     }
 }

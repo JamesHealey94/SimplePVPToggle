@@ -5,9 +5,11 @@ import com.gmail.jameshealey1994.simplepvptoggle.localisation.Localisation;
 import com.gmail.jameshealey1994.simplepvptoggle.localisation.LocalisationEntry;
 import com.gmail.jameshealey1994.simplepvptoggle.utils.BooleanParser;
 import com.gmail.jameshealey1994.simplepvptoggle.utils.PVPConfigUtils;
+import com.gmail.jameshealey1994.simplepvptoggle.utils.PermissionUtils;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.permissions.Permission;
 
 /**
  * Class representing a setworlddefault command.
@@ -27,12 +29,6 @@ public class SetWorldDefaultCommand extends SimplePVPToggleCommand {
         this.aliases.add("setworlddefault");
 
         this.permissions.add(SimplePVPTogglePermissions.SETWORLDDEFAULT.getPermission());
-
-        // TODO - Try to fix:
-        // if a player has spt.setdefault.world in another world,
-        // then does /spt setworlddefault thatworld true,
-        // it won't work currently, but would be nice to
-        // -- Vault will fix, but will mean adding a dependency --
     }
 
     @Override
@@ -88,6 +84,11 @@ public class SetWorldDefaultCommand extends SimplePVPToggleCommand {
             return false;
         }
 
+        final Permission permission = SimplePVPTogglePermissions.SETWORLDDEFAULT.getPermission();
+        if (!(PermissionUtils.canExecute(sender, permission, world, true, plugin))) {
+            sender.sendMessage(localisation.get(LocalisationEntry.ERR_PERMISSION_DENIED));
+            return true;
+        }
         PVPConfigUtils.setWorldStatus(sender, world, status, plugin);
         return true;
     }

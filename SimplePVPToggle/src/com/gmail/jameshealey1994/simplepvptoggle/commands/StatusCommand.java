@@ -8,6 +8,7 @@ import com.gmail.jameshealey1994.simplepvptoggle.utils.PVPConfigUtils;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.permissions.Permission;
 
 /**
  * Class to represent a status command.
@@ -77,11 +78,6 @@ public class StatusCommand extends SimplePVPToggleCommand {
                 if (target == null) {
                     sender.sendMessage(localisation.get(LocalisationEntry.ERR_PLAYER_NOT_FOUND, new Object[] {args[0]}));
                     return false;
-                } else {
-                    if (!(PermissionUtils.canExecute(sender, SimplePVPTogglePermissions.STATUS_OTHERS, true))) {
-                        sender.sendMessage(localisation.get(LocalisationEntry.ERR_PERMISSION_DENIED));
-                        return true;
-                    }
                 }
 
                 world = plugin.getServer().getWorld(args[1]);
@@ -95,6 +91,18 @@ public class StatusCommand extends SimplePVPToggleCommand {
                 sender.sendMessage(localisation.get(LocalisationEntry.ERR_TOO_MANY_ARGUMENTS));
                 return false;
             }
+        }
+
+        final Permission permission;
+        if (sender.equals(target)) {
+            permission = SimplePVPTogglePermissions.STATUS_SELF.getPermission();
+        } else {
+            permission = SimplePVPTogglePermissions.STATUS_OTHERS.getPermission();
+        }
+
+        if (!(PermissionUtils.canExecute(sender, permission, world, true, plugin))) {
+            sender.sendMessage(localisation.get(LocalisationEntry.ERR_PERMISSION_DENIED));
+            return true;
         }
 
         sendStatus(sender, target, world, plugin);

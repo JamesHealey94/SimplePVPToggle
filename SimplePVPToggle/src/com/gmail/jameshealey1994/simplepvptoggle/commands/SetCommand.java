@@ -5,14 +5,16 @@ import com.gmail.jameshealey1994.simplepvptoggle.localisation.Localisation;
 import com.gmail.jameshealey1994.simplepvptoggle.localisation.LocalisationEntry;
 import com.gmail.jameshealey1994.simplepvptoggle.utils.BooleanParser;
 import com.gmail.jameshealey1994.simplepvptoggle.utils.PVPConfigUtils;
+import com.gmail.jameshealey1994.simplepvptoggle.utils.PermissionUtils;
 import java.util.Arrays;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.permissions.Permission;
 
 /**
  * Allows you to change the PVP status of players.
- * 
+ *
  * /... <status> [username] [world]         Sets PVP status for [username] in
  *                                          [world] to <status>
  *
@@ -35,8 +37,6 @@ public class SetCommand extends SimplePVPToggleCommand {
     @Override
     public boolean execute(SimplePVPToggle plugin, CommandSender sender, String commandLabel, String[] args) {
         final Localisation localisation = plugin.getLocalisation();
-
-        final Boolean status;
         final Player target;
         final World world;
 
@@ -100,21 +100,22 @@ public class SetCommand extends SimplePVPToggleCommand {
             }
         }
 
-        status = BooleanParser.parse(commandLabel, PVPConfigUtils.getPlayerStatus(target, world, plugin));
-
+        final Boolean status = BooleanParser.parse(commandLabel, PVPConfigUtils.getPlayerStatus(target, world, plugin));
         if (status == null) {
             sender.sendMessage(localisation.get(LocalisationEntry.ERR_SPECIFY_STATUS));
             return false;
         }
 
-        // If the sender is a player, and the target is either someone else or in another world
-        if ((sender instanceof Player)
-                && ((!(sender.equals(target))) || (!(((Player) sender).getWorld().equals(world))))) {
-            final Player player = (Player) sender;
-            if (!(player.hasPermission(SimplePVPTogglePermissions.CHANGE_OTHERS.getPermission()))) {
-                sender.sendMessage(localisation.get(LocalisationEntry.ERR_PERMISSION_DENIED)); // TODO Test on setting your own status in another world (which you don't have perms for)
-                return true;
-            }
+        final Permission permission;
+        if (sender.equals(target)) {
+            permission = SimplePVPTogglePermissions.CHANGE_SELF.getPermission();
+        } else {
+            permission = SimplePVPTogglePermissions.CHANGE_OTHERS.getPermission();
+        }
+
+        if (!(PermissionUtils.canExecute(sender, permission, world, true, plugin))) {
+            sender.sendMessage(localisation.get(LocalisationEntry.ERR_PERMISSION_DENIED));
+            return true;
         }
 
         PVPConfigUtils.setPlayerStatus(sender, target, world, status, plugin);
