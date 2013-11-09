@@ -3,6 +3,7 @@ package com.gmail.jameshealey1994.simplepvptoggle.commands;
 import com.gmail.jameshealey1994.simplepvptoggle.SimplePVPToggle;
 import com.gmail.jameshealey1994.simplepvptoggle.localisation.Localisation;
 import com.gmail.jameshealey1994.simplepvptoggle.localisation.LocalisationEntry;
+import com.gmail.jameshealey1994.simplepvptoggle.utils.TagUtils;
 import org.bukkit.command.CommandSender;
 
 /**
@@ -28,6 +29,7 @@ public class ReloadCommand extends SimplePVPToggleCommand {
     @Override
     public boolean execute(SimplePVPToggle plugin, CommandSender sender, String commandLabel, String[] args) {
         plugin.reloadConfig();
+        TagUtils.reload(plugin);
         sender.sendMessage(plugin.getLocalisation().get(LocalisationEntry.MSG_CONFIG_RELOADED));
         return true;
     }

@@ -5,14 +5,16 @@
 Localisation Filename: localisation.yml
 Debug: false
 
-Prefix: '&4'
-
 Server:
   Default: false
+# If a player has PVP enabled, their tag is red
+  Prefix: '&4'
   Worlds:
 #   ExampleCreativeWorld --------  Unnecessary, as it uses the server's default.
     ExampleSurvivalWorld:
       Default: false
+# If a player has PVP enabled, their tag is red and has [PVP] in front, this changes their skin, unfortunatly
+      Prefix: '&4[PVP] '
       Players:
         AS1LV3RN1NJA: true
         skillchickenz75: false

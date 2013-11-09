@@ -3,6 +3,10 @@ package com.gmail.jameshealey1994.simplepvptoggle.listeners;
 import com.gmail.jameshealey1994.simplepvptoggle.SimplePVPToggle;
 import com.gmail.jameshealey1994.simplepvptoggle.utils.ColorUtils;
 import com.gmail.jameshealey1994.simplepvptoggle.utils.PVPConfigUtils;
+import com.gmail.jameshealey1994.simplepvptoggle.utils.PrefixConfigUtils;
+import java.util.IllegalFormatException;
+import java.util.logging.Level;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -40,9 +44,16 @@ public class TagListener implements Listener {
     @EventHandler (priority = EventPriority.HIGH)
     public void onNameTag(PlayerReceiveNameTagEvent event) {
         final Player playerSeen = event.getNamedPlayer();
-        final String path = "Prefix";
+        final Object[] formatObjects = {playerSeen.getDisplayName()};
+
         if (PVPConfigUtils.getPlayerStatus(playerSeen, playerSeen.getWorld(), plugin)) {
-            event.setTag(ColorUtils.addColor(plugin.getConfig().getString(path, "")) + playerSeen.getDisplayName());
+            try {
+                event.setTag(String.format(ColorUtils.addColor(PrefixConfigUtils.getPlayerPrefix(playerSeen, playerSeen.getWorld(), plugin)) + "%s", formatObjects));
+            } catch (IllegalFormatException ex) {
+                plugin.getLogger().log(Level.WARNING, "{0}Invalid prefix in config", ChatColor.RED);
+                plugin.getLogger().log(Level.WARNING, "{0}Player tags not changed", ChatColor.RED);
+                plugin.getLogger().log(Level.WARNING, "{0}Edit or update your config to resolve", ChatColor.RED);
+            }
         }
     }
 }
