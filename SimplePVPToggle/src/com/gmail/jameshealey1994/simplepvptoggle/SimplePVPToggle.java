@@ -1,5 +1,6 @@
 package com.gmail.jameshealey1994.simplepvptoggle;
 
+import com.gmail.jameshealey1994.simplepvptoggle.localisation.Localisable;
 import com.gmail.jameshealey1994.simplepvptoggle.commands.SimplePVPToggleCommandEnvironment;
 import com.gmail.jameshealey1994.simplepvptoggle.commands.DefaultSimplePVPToggleCommandEnvironment;
 import com.gmail.jameshealey1994.simplepvptoggle.commands.HelpCommand;
@@ -15,7 +16,7 @@ import org.bukkit.plugin.java.JavaPlugin;
  *
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
-public class SimplePVPToggle extends JavaPlugin {
+public class SimplePVPToggle extends JavaPlugin implements Localisable {
 
     /**
      * The current command environment for the plugin (subset of commands
@@ -68,20 +69,12 @@ public class SimplePVPToggle extends JavaPlugin {
         this.commandEnvironment = commandEnvironment;
     }
 
-    /**
-     * Gets the current localisation for the plugin.
-     *
-     * @return      the current localisation for the plugin
-     */
+    @Override
     public Localisation getLocalisation() {
         return localisation;
     }
 
-    /**
-     * Sets the current command environment for the plugin.
-     *
-     * @param localisation      the new localisation for the plugin
-     */
+    @Override
     public void setLocalisation(Localisation localisation) {
         this.localisation = localisation;
     }
