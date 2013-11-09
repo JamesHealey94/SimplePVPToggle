@@ -1,6 +1,7 @@
 package com.gmail.jameshealey1994.simplepvptoggle.localisation;
 
 import com.gmail.jameshealey1994.simplepvptoggle.SimplePVPToggle;
+import com.gmail.jameshealey1994.simplepvptoggle.utils.ColorUtils;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -55,11 +56,11 @@ public class Localisation {
         final HashMap<String, Object> localisations = getLocalisations();
 
         if (localisations.containsKey(key.getName())) {
-            return addColor(String.valueOf(localisations.get(key.getName())));
+            return ColorUtils.addColor(String.valueOf(localisations.get(key.getName())));
         } else {
             plugin.getLogger().log(Level.WARNING, ChatColor.RED + "Missing localisation: ''{0}''", key.getName());
             plugin.getLogger().log(Level.WARNING, "{0}Edit or update your localisation config to resolve", ChatColor.RED);
-            return addColor(key.getDefaultValue());
+            return ColorUtils.addColor(key.getDefaultValue());
         }
     }
 
@@ -78,18 +79,8 @@ public class Localisation {
         } catch (IllegalFormatException  ex) {
             plugin.getLogger().log(Level.WARNING, ChatColor.RED + "Error in localisation: ''{0}''", key.getName());
             plugin.getLogger().log(Level.WARNING, "{0}Edit or update your localisation config to resolve", ChatColor.RED);
-            return addColor(String.format(key.getDefaultValue(), formatObjects));
+            return ColorUtils.addColor(String.format(key.getDefaultValue(), formatObjects));
         }
-    }
-
-    /**
-     * Adds colours to the passed string.
-     *
-     * @param string    string to add colours to
-     * @return          passed string with colours added
-     */
-    public static String addColor(String string) {
-        return ChatColor.translateAlternateColorCodes('&', string);
     }
 
     /**
