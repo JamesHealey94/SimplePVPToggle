@@ -4,7 +4,10 @@ import com.gmail.jameshealey1994.simplepvptoggle.SimplePVPToggle;
 import com.gmail.jameshealey1994.simplepvptoggle.localisation.Localisation;
 import com.gmail.jameshealey1994.simplepvptoggle.localisation.LocalisationEntry;
 import com.gmail.jameshealey1994.simplepvptoggle.utils.BooleanParser;
+import com.gmail.jameshealey1994.simplepvptoggle.utils.TagUtils;
+import java.util.HashSet;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 /**
  * Class representing a setserverdefault command.
@@ -43,6 +46,11 @@ public class SetServerDefaultCommand extends SimplePVPToggleCommand {
             plugin.getConfig().set(path, newValue.booleanValue());
             plugin.saveConfig();
             sender.sendMessage(localisation.get(LocalisationEntry.MSG_SERVER_DEFAULT_SET_TO, new Object[] {plugin.getConfig().getBoolean(path)}));
+            
+            for (Player p : plugin.getServer().getOnlinePlayers()) {
+                TagUtils.refreshPlayer(p, new HashSet<>(p.getWorld().getPlayers()), plugin);
+            }
+
             return true;
         } else {
             sender.sendMessage(localisation.get(LocalisationEntry.ERR_SPECIFY_STATUS));

@@ -6,6 +6,9 @@ import com.gmail.jameshealey1994.simplepvptoggle.localisation.LocalisationEntry;
 import com.gmail.jameshealey1994.simplepvptoggle.utils.BooleanParser;
 import com.gmail.jameshealey1994.simplepvptoggle.utils.PVPConfigUtils;
 import com.gmail.jameshealey1994.simplepvptoggle.utils.PermissionUtils;
+import com.gmail.jameshealey1994.simplepvptoggle.utils.TagUtils;
+import java.util.HashSet;
+import java.util.List;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -90,6 +93,12 @@ public class SetWorldDefaultCommand extends SimplePVPToggleCommand {
             return true;
         }
         PVPConfigUtils.setWorldStatus(sender, world, status, plugin);
+
+        final List<Player> playersInWorld = world.getPlayers();
+        for (Player p : playersInWorld) {
+                TagUtils.refreshPlayer(p, new HashSet(playersInWorld), plugin);
+        }
+
         return true;
     }
 

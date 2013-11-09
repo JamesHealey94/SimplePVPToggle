@@ -5,6 +5,8 @@
 Localisation Filename: localisation.yml
 Debug: false
 
+Prefix: '&4'
+
 Server:
   Default: false
   Worlds:

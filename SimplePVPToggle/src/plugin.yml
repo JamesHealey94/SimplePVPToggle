@@ -5,6 +5,7 @@ name: SimplePVPToggle
 main: com.gmail.jameshealey1994.simplepvptoggle.SimplePVPToggle
 version: 0.1
 softdepend: [Vault]
+softdepend: [TagAPI]
 
 commands:
     spt:

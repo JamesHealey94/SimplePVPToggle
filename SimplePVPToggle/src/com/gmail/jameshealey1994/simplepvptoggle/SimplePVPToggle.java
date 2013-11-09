@@ -7,7 +7,9 @@ import com.gmail.jameshealey1994.simplepvptoggle.commands.HelpCommand;
 import com.gmail.jameshealey1994.simplepvptoggle.commands.SimplePVPToggleCommand;
 import com.gmail.jameshealey1994.simplepvptoggle.commands.SimplePVPToggleCommandExecutor;
 import com.gmail.jameshealey1994.simplepvptoggle.listeners.SimplePVPToggleListener;
+import com.gmail.jameshealey1994.simplepvptoggle.listeners.TagListener;
 import com.gmail.jameshealey1994.simplepvptoggle.localisation.Localisation;
+import com.gmail.jameshealey1994.simplepvptoggle.utils.TagUtils;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
@@ -37,6 +39,11 @@ public class SimplePVPToggle extends JavaPlugin implements Localisable {
 
         // Register events
         getServer().getPluginManager().registerEvents(new SimplePVPToggleListener(this), this);
+        if (TagUtils.isEnabled(this)) {
+            getServer().getPluginManager().registerEvents(new TagListener(this), this);
+        } else {
+            this.getLogger().info("TagAPI not found - No changes to player tags will be made");
+        }
 
         // Set command executors and default command
         getCommand("spt").setExecutor(new SimplePVPToggleCommandExecutor(this, new HelpCommand()));
