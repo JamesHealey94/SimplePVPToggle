@@ -25,12 +25,12 @@ public abstract class PVPConfigUtils {
      * @param plugin    plugin with the config storing PVP status values
      */
     public static void setPlayerStatus(CommandSender sender, Player player, World world, boolean status, SimplePVPToggle plugin) {
-        final String path = "Server.Worlds." + world.getName() + ".Players." + player.getName();
+        final String path = "Server.Worlds." + world.getName() + ".Players." + player.getName() + ".PVP";
         plugin.getConfig().set(path, status);
         plugin.saveConfig();
+        
         final boolean newStatus = PVPConfigUtils.getPlayerStatus(player, world, plugin);
         final Localisation localisation = new Localisation(plugin);
-
         if (sender.equals(player)) {
             // player set their own PVP status
             final Object[] formatObject = {world.getName(), newStatus};
@@ -60,8 +60,9 @@ public abstract class PVPConfigUtils {
      * @return          the PVP status of player in world
      */
     public static boolean getPlayerStatus(Player player, World world, SimplePVPToggle plugin) {
-        return (plugin.getConfig().getBoolean("Server.Worlds." + world.getName() + ".Players." + player.getName(),
-                getWorldStatus(world, plugin)));
+        return (plugin.getConfig().getBoolean("Server.Worlds." + world.getName() + ".Players." + player.getName() + ".PVP",
+                plugin.getConfig().getBoolean("Server.Worlds." + world.getName() + ".Players." + player.getName(),
+                getWorldStatus(world, plugin))));
     }
 
     /**
@@ -80,7 +81,7 @@ public abstract class PVPConfigUtils {
      * @return          the default PVP status of world
      */
     public static boolean getWorldStatus(World world, SimplePVPToggle plugin) {
-        return  plugin.getConfig().getBoolean("Server.Worlds." + world.getName() + ".Default",
+        return  plugin.getConfig().getBoolean("Server.Worlds." + world.getName() + ".PVP",
                 plugin.getConfig().getBoolean("Server.Worlds." + world.getName(),
                 getServerStatus(plugin)));
     }
@@ -98,8 +99,9 @@ public abstract class PVPConfigUtils {
      * @return          the default PVP status of the server
      */
     public static boolean getServerStatus(SimplePVPToggle plugin) {
-        return  plugin.getConfig().getBoolean("Server.Default",
-                false);
+        return  plugin.getConfig().getBoolean("Server.PVP",
+                plugin.getConfig().getBoolean("Server",
+                false));
     }
 
     /**
@@ -112,7 +114,7 @@ public abstract class PVPConfigUtils {
      * @param plugin    plugin with the config storing PVP status values
      */
     public static void setWorldStatus(CommandSender sender, World world, boolean status, SimplePVPToggle plugin) {
-        final String path = "Server.Worlds." + world.getName() + ".Default";
+        final String path = "Server.Worlds." + world.getName() + ".PVP";
         plugin.getConfig().set(path, status);
         plugin.saveConfig();
         sender.sendMessage(plugin.getLocalisation().get(LocalisationEntry.MSG_WORLD_DEFAULT_SET_TO, new Object[] {world.getName(), plugin.getConfig().getBoolean(path)}));
