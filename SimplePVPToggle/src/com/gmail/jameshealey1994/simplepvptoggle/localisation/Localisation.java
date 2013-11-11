@@ -1,6 +1,5 @@
 package com.gmail.jameshealey1994.simplepvptoggle.localisation;
 
-import com.gmail.jameshealey1994.simplepvptoggle.SimplePVPToggle;
 import com.gmail.jameshealey1994.simplepvptoggle.utils.ColorUtils;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -15,6 +14,7 @@ import org.bukkit.ChatColor;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.plugin.Plugin;
 
 /**
  * Class to help with localisation and custom messages.
@@ -31,14 +31,14 @@ public class Localisation {
     /**
      * Plugin associated with the localisation.
      */
-    private final SimplePVPToggle plugin;
+    private final Plugin plugin;
 
     /**
      * Initialises plugin variable and localisations.
      *
      * @param plugin    plugin used for config file, used for filename
      */
-    public Localisation(SimplePVPToggle plugin) {
+    public Localisation(Plugin plugin) {
         if (plugin == null) {
             throw new IllegalArgumentException("plugin cannot be null");
         }
