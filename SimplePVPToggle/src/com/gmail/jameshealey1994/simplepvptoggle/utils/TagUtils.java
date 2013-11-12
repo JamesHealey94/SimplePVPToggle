@@ -100,7 +100,9 @@ public abstract class TagUtils {
                     }
                 }
                 
-                TagAPI.refreshPlayer(player, tagsToUpdate);
+                if (!tagsToUpdate.isEmpty()) {
+                    TagAPI.refreshPlayer(player, tagsToUpdate);
+                }
             }
         }
     }
