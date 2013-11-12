@@ -4,7 +4,9 @@ import com.gmail.jameshealey1994.simplepvptoggle.SimplePVPToggle;
 import com.gmail.jameshealey1994.simplepvptoggle.localisation.Localisation;
 import com.gmail.jameshealey1994.simplepvptoggle.localisation.LocalisationEntry;
 import com.gmail.jameshealey1994.simplepvptoggle.utils.DebugConfigUtils;
+import com.gmail.jameshealey1994.simplepvptoggle.utils.LastPVPActionTimeConfigUtils;
 import com.gmail.jameshealey1994.simplepvptoggle.utils.PVPConfigUtils;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
@@ -58,20 +60,22 @@ public class SimplePVPToggleListener implements Listener {
                 return;
             }
 
-            final Localisation localisation = new Localisation(plugin);
-            if (PVPConfigUtils.getPlayerStatus(attacker, attacker.getWorld(), plugin)) {
-                if (PVPConfigUtils.getPlayerStatus(attackedPlayer, attackedPlayer.getWorld(), plugin)) {
+            final World world = attacker.getWorld();
+            final Localisation localisation = plugin.getLocalisation();
+            if (PVPConfigUtils.getPlayerStatus(attacker, world, plugin)) {
+                if (PVPConfigUtils.getPlayerStatus(attackedPlayer, world, plugin)) {
+                    LastPVPActionTimeConfigUtils.update(attacker, world, plugin);
                     if (DebugConfigUtils.getDebugEnabled(plugin)) {
-                        attacker.sendMessage(localisation.get(LocalisationEntry.DEBUG_ATTACKED_PLAYERNAME_FOR_DAMAGEAMOUNT_DAMAGE, new Object[] {attackedPlayer.getDisplayName(), event.getDamage()}));
-                        attackedPlayer.sendMessage(localisation.get(LocalisationEntry.DEBUG_ATTACKED_BY_PLAYERNAME_FOR_DAMAGEAMOUNT_DAMAGE, new Object[] {attacker.getDisplayName(), event.getDamage()}));
+                        attacker.sendMessage(localisation.get(LocalisationEntry.DEBUG_ATTACKED_PLAYER, new Object[] {attackedPlayer.getDisplayName(), event.getDamage()}));
+                        attackedPlayer.sendMessage(localisation.get(LocalisationEntry.DEBUG_ATTACKED_BY_PLAYER, new Object[] {attacker.getDisplayName(), event.getDamage()}));
                     }
                 } else {
                     event.setCancelled(true);
-                    attacker.sendMessage(localisation.get(LocalisationEntry.MSG_ATTACK_CANCELLED_PLAYERNAME_DOES_NOT_HAVE_PVP_ENABLED, new Object[] {attackedPlayer.getDisplayName()}));
+                    attacker.sendMessage(localisation.get(LocalisationEntry.MSG_ATTACK_CANCELLED_PLAYER_DOES_NOT_HAVE_PVP_ENABLED, new Object[] {attackedPlayer.getDisplayName()}));
                 }
             } else {
                 event.setCancelled(true);
-                attacker.sendMessage(localisation.get(LocalisationEntry.MSG_ATTACK_CANCELLED_YOU_DO_NOT_HAVE_PVP_ENABLED));
+                attacker.sendMessage(localisation.get(LocalisationEntry.MSG_ATTACK_CANCELLED_PVP_NOT_ENABLED));
             }
 
             // Stop arrows bouncing back, possibly hitting you.

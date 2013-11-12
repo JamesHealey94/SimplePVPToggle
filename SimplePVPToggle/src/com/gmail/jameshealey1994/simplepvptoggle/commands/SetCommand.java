@@ -4,6 +4,7 @@ import com.gmail.jameshealey1994.simplepvptoggle.SimplePVPToggle;
 import com.gmail.jameshealey1994.simplepvptoggle.localisation.Localisation;
 import com.gmail.jameshealey1994.simplepvptoggle.localisation.LocalisationEntry;
 import com.gmail.jameshealey1994.simplepvptoggle.utils.BooleanParser;
+import com.gmail.jameshealey1994.simplepvptoggle.utils.LastPVPActionTimeConfigUtils;
 import com.gmail.jameshealey1994.simplepvptoggle.utils.PVPConfigUtils;
 import com.gmail.jameshealey1994.simplepvptoggle.utils.PermissionUtils;
 import com.gmail.jameshealey1994.simplepvptoggle.utils.TagUtils;
@@ -120,7 +121,27 @@ public class SetCommand extends SimplePVPToggleCommand {
             return true;
         }
 
-        PVPConfigUtils.setPlayerStatus(sender, target, world, status, plugin);
+        if (sender.equals(target)) {
+            final long cooldownTimeLeft = LastPVPActionTimeConfigUtils.getCooldownTimeLeft(target, world, plugin);
+            if (cooldownTimeLeft > 0) {
+                final int secondsLeft = (int) (cooldownTimeLeft / 1000);
+                sender.sendMessage(localisation.get(LocalisationEntry.MSG_CHANGE_CANCELLED_DUE_TO_COOLDOWN, new Object[] {secondsLeft, world.getName()}));
+                return true;
+            }
+        }
+
+        PVPConfigUtils.setPlayerStatus(target, world, status, plugin);
+
+        final boolean newStatus = PVPConfigUtils.getPlayerStatus(target, world, plugin);
+        if (sender.equals(target)) {
+            // player set their own PVP status
+            LastPVPActionTimeConfigUtils.update(target, world, plugin);
+            target.sendMessage(localisation.get(LocalisationEntry.MSG_YOU_SET_YOUR_PVP_STATUS_IN_WORLDNAME_TO_STATUS, new Object[] {world.getName(), newStatus}));
+        } else {
+            sender.sendMessage(localisation.get(LocalisationEntry.MSG_YOU_SET_THE_PVP_STATUS_OF_PLAYERNAME_IN_WORLDNAME_TO_STATUS, new Object[] {target.getDisplayName(), world.getName(), newStatus}));
+            target.sendMessage(localisation.get(LocalisationEntry.MSG_SENDERNAME_SET_YOUR_PVP_STATUS_IN_WORLDNAME_TO_STATUS, new Object[] {sender.getName(), world.getName(), newStatus}));
+        }
+
         TagUtils.refreshPlayer(target, new HashSet<>(world.getPlayers()), plugin);
         return true;
     }

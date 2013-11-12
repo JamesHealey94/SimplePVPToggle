@@ -92,11 +92,13 @@ public class SetWorldDefaultCommand extends SimplePVPToggleCommand {
             sender.sendMessage(localisation.get(LocalisationEntry.ERR_PERMISSION_DENIED));
             return true;
         }
-        PVPConfigUtils.setWorldStatus(sender, world, status, plugin);
+
+        PVPConfigUtils.setWorldStatus(world, status, plugin);
+        sender.sendMessage(localisation.get(LocalisationEntry.MSG_WORLD_PVP_SET, new Object[] {world.getName(), PVPConfigUtils.getWorldStatus(world, plugin)}));
 
         final List<Player> playersInWorld = world.getPlayers();
         for (Player p : playersInWorld) {
-                TagUtils.refreshPlayer(p, new HashSet(playersInWorld), plugin);
+                TagUtils.refreshPlayer(p, new HashSet<>(playersInWorld), plugin);
         }
 
         return true;

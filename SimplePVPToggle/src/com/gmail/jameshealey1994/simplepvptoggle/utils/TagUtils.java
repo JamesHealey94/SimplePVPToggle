@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Set;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.plugin.Plugin;
 import org.kitteh.tag.TagAPI;
 
 /**
@@ -24,14 +24,14 @@ public abstract class TagUtils {
      * The width of a Minecraft chunk.
      */
     public static final int CHUNK_WIDTH = 16;
-    
+
     /**
      * Returns if TagAPI is enabled.
      *
      * @param plugin    plugin with related server and plugin manager
      * @return          if TagAPI is enabled
      */
-    public static boolean isEnabled(JavaPlugin plugin) {
+    public static boolean isEnabled(Plugin plugin) {
         return plugin.getServer().getPluginManager().isPluginEnabled(NAME);
     }
 
@@ -41,7 +41,7 @@ public abstract class TagUtils {
      * @param player    player with tag to refresh
      * @param plugin    plugin with possible TagAPI
      */
-    public static void refreshPlayer(Player player, JavaPlugin plugin) {
+    public static void refreshPlayer(Player player, Plugin plugin) {
         if (isEnabled(plugin)) {
             TagAPI.refreshPlayer(player);
         }
@@ -54,7 +54,7 @@ public abstract class TagUtils {
      * @param forWhom   player to update display to
      * @param plugin    plugin with possible TagAPI
      */
-    public static void refreshPlayer(Player player, Player forWhom, JavaPlugin plugin) {
+    public static void refreshPlayer(Player player, Player forWhom, Plugin plugin) {
         if (isEnabled(plugin)) {
             TagAPI.refreshPlayer(player, forWhom);
         }
@@ -67,7 +67,7 @@ public abstract class TagUtils {
      * @param forWhom   players to update display to
      * @param plugin    plugin with possible TagAPI
      */
-    public static void refreshPlayer(Player player, Set<Player> forWhom, JavaPlugin plugin) {
+    public static void refreshPlayer(Player player, Set<Player> forWhom, Plugin plugin) {
         if (isEnabled(plugin)) {
             TagAPI.refreshPlayer(player, forWhom);
         }
@@ -79,17 +79,17 @@ public abstract class TagUtils {
      *
      * Only refreshes nearby players that are visible (and not all player's in
      * that world) to improve security against hacked clients.
-     * 
+     *
      * @param plugin    plugin with possible TagAPI
      */
-    public static void reload(JavaPlugin plugin) {
+    public static void reload(Plugin plugin) {
         if (isEnabled(plugin)) {
             final int maxPlayerViewDistance = plugin.getServer().getViewDistance() * CHUNK_WIDTH;
-            
+
             for (Player player : plugin.getServer().getOnlinePlayers()) {
                 final int maxWorldHeight = player.getWorld().getMaxHeight();
-                final Set<Player> tagsToUpdate = new HashSet();
-                
+                final Set<Player> tagsToUpdate = new HashSet<>();
+
                 final List<Entity> nearbyEntities = player.getNearbyEntities(maxPlayerViewDistance, maxWorldHeight, maxPlayerViewDistance);
                 for (Entity e : nearbyEntities) {
                     if (e instanceof Player) {
@@ -99,7 +99,7 @@ public abstract class TagUtils {
                         }
                     }
                 }
-                
+
                 if (!tagsToUpdate.isEmpty()) {
                     TagAPI.refreshPlayer(player, tagsToUpdate);
                 }

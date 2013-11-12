@@ -45,7 +45,7 @@ public class SetServerDefaultCommand extends SimplePVPToggleCommand {
 
             plugin.getConfig().set(path, newValue.booleanValue());
             plugin.saveConfig();
-            sender.sendMessage(localisation.get(LocalisationEntry.MSG_SERVER_DEFAULT_SET_TO, new Object[] {plugin.getConfig().getBoolean(path)}));
+            sender.sendMessage(localisation.get(LocalisationEntry.MSG_SERVER_PVP_SET, new Object[] {plugin.getConfig().getBoolean(path)}));
             
             for (Player p : plugin.getServer().getOnlinePlayers()) {
                 TagUtils.refreshPlayer(p, new HashSet<>(p.getWorld().getPlayers()), plugin);

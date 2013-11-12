@@ -18,7 +18,7 @@ public enum LocalisationEntry {
     /**
      * Message telling user the command can only be used by players.
      */
-    ERR_PLAYER_ONLY_COMMAND("MsgOnlyPlayersCanUseThisCommand", null, "&cOnly players can use this command"),
+    ERR_PLAYER_ONLY_COMMAND("MsgPlayerOnlyCommand", null, "&cOnly players can use this command"),
 
     /**
      * Message telling user to specify a valid status ('true' or 'false').
@@ -61,7 +61,7 @@ public enum LocalisationEntry {
      * %1$s - attacked player's name
      * %2$s - damage inflicted
      */
-    DEBUG_ATTACKED_PLAYERNAME_FOR_DAMAGEAMOUNT_DAMAGE ("DebugAttackedPLAYERNAMEForDAMAGEAMOUNTDamage", "%1$s - attacked player's name\n# %2$s - damage inflicted", "&7Attacked %1$s for %2$s damage"),
+    DEBUG_ATTACKED_PLAYER ("DebugAttackedPlayer", "%1$s - attacked player's name\n# %2$s - damage inflicted", "&7Attacked %1$s for %2$s damage"),
 
     /**
      * Message telling player they have been attacked by another player, and how
@@ -71,33 +71,41 @@ public enum LocalisationEntry {
      * %1$s - attacker's name
      * %2$s - damage inflicted
      */
-    DEBUG_ATTACKED_BY_PLAYERNAME_FOR_DAMAGEAMOUNT_DAMAGE ("DebugAttackedByPLAYERNAMEForDAMAGEAMOUNTDamage", "%1$s - attacker's name\n# %2$s - damage inflicted", "&7Attacked by %1$s for %2$s damage"),
+    DEBUG_ATTACKED_BY_PLAYER ("DebugAttackedByPlayer", "%1$s - attacker's name\n# %2$s - damage inflicted", "&7Attacked by %1$s for %2$s damage"),
 
     /**
      * Message telling player that they cannot attack, as they do not have PVP
      * enabled.
      */
-    MSG_ATTACK_CANCELLED_YOU_DO_NOT_HAVE_PVP_ENABLED ("MsgAttackCancelledYouDoNotHavePVPEnabled", null, "&7Attack Cancelled - You do not have PVP enabled"),
+    MSG_ATTACK_CANCELLED_PVP_NOT_ENABLED ("MsgAttackCancelledPVPNotEnabled", null, "&7Attack cancelled - You do not have PVP enabled"),
 
     /**
      * Message telling player that they cannot attack, as they the player they
      * are attacking does not have PVP enabled.
      * %1$s - attacked player's name
      */
-    MSG_ATTACK_CANCELLED_PLAYERNAME_DOES_NOT_HAVE_PVP_ENABLED ("MsgAttackCancelledPLAYERNAMEDoesNotHavePVPEnabled", "%1$s - attacked player's name", "&7Attack Cancelled - %1$s does not have PVP enabled"),
+    MSG_ATTACK_CANCELLED_PLAYER_DOES_NOT_HAVE_PVP_ENABLED ("MsgAttackCancelledPlayerDoesNotHavePVPEnabled", "%1$s - attacked player's name", "&7Attack cancelled - %1$s does not have PVP enabled"),
+
+    /**
+     * Message telling user that they cannot switch their PVP status, as they
+     * still have time until their cooldown is up.
+     * %1$s - seconds remaining
+     * %2$s - world name
+     */
+    MSG_CHANGE_CANCELLED_DUE_TO_COOLDOWN("MsgChangeCancelledDueToCooldown", "%1$s - seconds remaining\n# %2$s - world name", "&7Change cancelled - '%1$s' seconds till you can change your PVP status in '%2$s'"),
 
     /**
      * Message telling user the default PVP status of the server has been set.
      * %1$s - server's default PVP status
      */
-    MSG_SERVER_DEFAULT_SET_TO ("MsgServerDefaultSetTo", "%1$s - server's default PVP status", "&7Server default PVP status set to '%1$s'"),
+    MSG_SERVER_PVP_SET ("MsgServerDefaultSet", "%1$s - server's default PVP status", "&7Server default PVP status set to '%1$s'"),
 
     /**
      * Message telling user the default PVP status of a world has been set.
      * %1$s - world name
      * %2$s - world's default PVP status
      */
-    MSG_WORLD_DEFAULT_SET_TO("MsgWorldDefaultSetTo", "%1$s - world name\n# %2$s - world's default PVP status", "&7Default PVP status of '%1$s' set to '%2$s'"),
+    MSG_WORLD_PVP_SET("MsgWorldPVPSet", "%1$s - world name\n# %2$s - world's default PVP status", "&7Default PVP status of '%1$s' set to '%2$s'"),
 
     /**
      * Message telling player their PVP status in a world.

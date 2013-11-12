@@ -11,10 +11,12 @@ Server:
   Worlds:
     ExampleSurvivalWorld:
       PVP: false
+      Cooldown: 30
       Prefix: '&4[PVP] '
       Players:
         AS1LV3RN1NJA:
           PVP: true
+          LastPVPAction: 10120345
         skillchickenz75: false
     ExampleChaosWorld: true
     ExampleChaosWorld2:
