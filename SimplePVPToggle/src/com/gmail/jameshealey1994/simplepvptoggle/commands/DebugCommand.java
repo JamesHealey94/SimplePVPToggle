@@ -43,6 +43,7 @@ public class DebugCommand extends SimplePVPToggleCommand {
             return false;
         }
         DebugConfigUtils.setDebugEnabled(sender, debugStatus, plugin);
+        sender.sendMessage(localisation.get(LocalisationEntry.MSG_DEBUG_SET_TO_STATUS, new Object[] {DebugConfigUtils.getDebugEnabled(plugin)}));
         return true;
     }
 
