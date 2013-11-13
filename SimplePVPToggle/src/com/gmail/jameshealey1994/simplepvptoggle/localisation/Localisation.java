@@ -29,6 +29,11 @@ public class Localisation {
     public static final String DEFAULT_FILENAME = "localisation.yml";
 
     /**
+     * The config path to the localisation filename.
+     */
+    public static final String LOCALISATION_FILENAME_PATH = "Localisation Filename";
+
+    /**
      * Plugin associated with the localisation.
      */
     private final Plugin plugin;
@@ -143,6 +148,6 @@ public class Localisation {
      * @return  filename as specified in config.yml
      */
     public final String getFilename() {
-        return plugin.getConfig().getString("Localisation Filename", DEFAULT_FILENAME);
+        return plugin.getConfig().getString(LOCALISATION_FILENAME_PATH, DEFAULT_FILENAME);
     }
 }
