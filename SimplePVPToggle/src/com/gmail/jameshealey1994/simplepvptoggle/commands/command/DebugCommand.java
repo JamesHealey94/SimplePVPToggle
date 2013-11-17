@@ -1,6 +1,7 @@
-package com.gmail.jameshealey1994.simplepvptoggle.commands;
+package com.gmail.jameshealey1994.simplepvptoggle.commands.command;
 
 import com.gmail.jameshealey1994.simplepvptoggle.SimplePVPToggle;
+import com.gmail.jameshealey1994.simplepvptoggle.commands.SimplePVPTogglePermission;
 import com.gmail.jameshealey1994.simplepvptoggle.localisation.Localisation;
 import com.gmail.jameshealey1994.simplepvptoggle.localisation.LocalisationEntry;
 import com.gmail.jameshealey1994.simplepvptoggle.utils.BooleanParser;
@@ -24,7 +25,7 @@ public class DebugCommand extends SimplePVPToggleCommand {
         this.aliases.add("debug");
         this.aliases.add("d");
 
-        this.permissions.add(SimplePVPTogglePermissions.DEBUG.getPermission());
+        this.permissions.add(SimplePVPTogglePermission.DEBUG.getPermission());
     }
 
     @Override

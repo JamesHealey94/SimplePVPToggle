@@ -1,6 +1,7 @@
-package com.gmail.jameshealey1994.simplepvptoggle.commands;
+package com.gmail.jameshealey1994.simplepvptoggle.commands.command;
 
 import com.gmail.jameshealey1994.simplepvptoggle.SimplePVPToggle;
+import com.gmail.jameshealey1994.simplepvptoggle.commands.SimplePVPTogglePermission;
 import com.gmail.jameshealey1994.simplepvptoggle.localisation.Localisation;
 import com.gmail.jameshealey1994.simplepvptoggle.localisation.LocalisationEntry;
 import com.gmail.jameshealey1994.simplepvptoggle.utils.BooleanParser;
@@ -33,8 +34,8 @@ public class SetCommand extends SimplePVPToggleCommand {
         this.aliases.addAll(Arrays.asList(BooleanParser.POSITIVE_VALUES));
         this.aliases.addAll(Arrays.asList(BooleanParser.NEGATIVE_VALUES));
 
-        this.permissions.add(SimplePVPTogglePermissions.CHANGE_SELF.getPermission());
-        this.permissions.add(SimplePVPTogglePermissions.CHANGE_OTHERS.getPermission());
+        this.permissions.add(SimplePVPTogglePermission.CHANGE_SELF.getPermission());
+        this.permissions.add(SimplePVPTogglePermission.CHANGE_OTHERS.getPermission());
     }
 
     @Override
@@ -111,9 +112,9 @@ public class SetCommand extends SimplePVPToggleCommand {
 
         final Permission permission;
         if (sender.equals(target)) {
-            permission = SimplePVPTogglePermissions.CHANGE_SELF.getPermission();
+            permission = SimplePVPTogglePermission.CHANGE_SELF.getPermission();
         } else {
-            permission = SimplePVPTogglePermissions.CHANGE_OTHERS.getPermission();
+            permission = SimplePVPTogglePermission.CHANGE_OTHERS.getPermission();
         }
 
         if (!(PermissionUtils.canExecute(sender, permission, world, true, plugin))) {

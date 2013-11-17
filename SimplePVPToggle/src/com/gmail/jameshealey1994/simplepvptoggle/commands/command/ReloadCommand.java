@@ -1,6 +1,7 @@
-package com.gmail.jameshealey1994.simplepvptoggle.commands;
+package com.gmail.jameshealey1994.simplepvptoggle.commands.command;
 
 import com.gmail.jameshealey1994.simplepvptoggle.SimplePVPToggle;
+import com.gmail.jameshealey1994.simplepvptoggle.commands.SimplePVPTogglePermission;
 import com.gmail.jameshealey1994.simplepvptoggle.localisation.Localisation;
 import com.gmail.jameshealey1994.simplepvptoggle.localisation.LocalisationEntry;
 import com.gmail.jameshealey1994.simplepvptoggle.utils.TagUtils;
@@ -23,7 +24,7 @@ public class ReloadCommand extends SimplePVPToggleCommand {
         this.aliases.add("reload");
         this.aliases.add("r");
 
-        this.permissions.add(SimplePVPTogglePermissions.RELOAD.getPermission());
+        this.permissions.add(SimplePVPTogglePermission.RELOAD.getPermission());
     }
 
     @Override

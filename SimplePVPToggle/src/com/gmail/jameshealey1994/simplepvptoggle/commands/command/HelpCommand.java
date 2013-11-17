@@ -1,4 +1,4 @@
-package com.gmail.jameshealey1994.simplepvptoggle.commands;
+package com.gmail.jameshealey1994.simplepvptoggle.commands.command;
 
 import com.gmail.jameshealey1994.simplepvptoggle.SimplePVPToggle;
 import com.gmail.jameshealey1994.simplepvptoggle.localisation.Localisation;

@@ -7,7 +7,7 @@ import org.bukkit.permissions.Permission;
  *
  * @author JamesHealey94 <jameshealey1994.gmail.com>
  */
-public enum SimplePVPTogglePermissions {
+public enum SimplePVPTogglePermission {
 
     /**
      * Permission for the change command, specifically for changing your own
@@ -68,7 +68,7 @@ public enum SimplePVPTogglePermissions {
      *
      * @param name  the name of the permission
      */
-    SimplePVPTogglePermissions(String name) {
+    SimplePVPTogglePermission(String name) {
         this.name = name;
     }
 

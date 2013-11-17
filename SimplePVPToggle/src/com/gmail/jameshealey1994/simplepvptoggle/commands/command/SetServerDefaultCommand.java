@@ -1,6 +1,7 @@
-package com.gmail.jameshealey1994.simplepvptoggle.commands;
+package com.gmail.jameshealey1994.simplepvptoggle.commands.command;
 
 import com.gmail.jameshealey1994.simplepvptoggle.SimplePVPToggle;
+import com.gmail.jameshealey1994.simplepvptoggle.commands.SimplePVPTogglePermission;
 import com.gmail.jameshealey1994.simplepvptoggle.localisation.Localisation;
 import com.gmail.jameshealey1994.simplepvptoggle.localisation.LocalisationEntry;
 import com.gmail.jameshealey1994.simplepvptoggle.utils.BooleanParser;
@@ -26,7 +27,7 @@ public class SetServerDefaultCommand extends SimplePVPToggleCommand {
     public SetServerDefaultCommand() {
         this.aliases.add("setserverdefault");
 
-        this.permissions.add(SimplePVPTogglePermissions.SETSERVERDEFAULT.getPermission());
+        this.permissions.add(SimplePVPTogglePermission.SETSERVERDEFAULT.getPermission());
     }
 
     @Override

@@ -1,6 +1,7 @@
-package com.gmail.jameshealey1994.simplepvptoggle.commands;
+package com.gmail.jameshealey1994.simplepvptoggle.commands.command;
 
 import com.gmail.jameshealey1994.simplepvptoggle.SimplePVPToggle;
+import com.gmail.jameshealey1994.simplepvptoggle.commands.SimplePVPTogglePermission;
 import com.gmail.jameshealey1994.simplepvptoggle.localisation.Localisation;
 import com.gmail.jameshealey1994.simplepvptoggle.localisation.LocalisationEntry;
 import com.gmail.jameshealey1994.simplepvptoggle.utils.BooleanParser;
@@ -31,7 +32,7 @@ public class SetWorldDefaultCommand extends SimplePVPToggleCommand {
     public SetWorldDefaultCommand() {
         this.aliases.add("setworlddefault");
 
-        this.permissions.add(SimplePVPTogglePermissions.SETWORLDDEFAULT.getPermission());
+        this.permissions.add(SimplePVPTogglePermission.SETWORLDDEFAULT.getPermission());
     }
 
     @Override
@@ -87,7 +88,7 @@ public class SetWorldDefaultCommand extends SimplePVPToggleCommand {
             return false;
         }
 
-        final Permission permission = SimplePVPTogglePermissions.SETWORLDDEFAULT.getPermission();
+        final Permission permission = SimplePVPTogglePermission.SETWORLDDEFAULT.getPermission();
         if (!(PermissionUtils.canExecute(sender, permission, world, true, plugin))) {
             sender.sendMessage(localisation.get(LocalisationEntry.ERR_PERMISSION_DENIED));
             return true;

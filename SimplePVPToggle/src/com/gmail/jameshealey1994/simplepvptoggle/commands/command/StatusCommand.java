@@ -1,6 +1,7 @@
-package com.gmail.jameshealey1994.simplepvptoggle.commands;
+package com.gmail.jameshealey1994.simplepvptoggle.commands.command;
 
 import com.gmail.jameshealey1994.simplepvptoggle.SimplePVPToggle;
+import com.gmail.jameshealey1994.simplepvptoggle.commands.SimplePVPTogglePermission;
 import com.gmail.jameshealey1994.simplepvptoggle.localisation.Localisation;
 import com.gmail.jameshealey1994.simplepvptoggle.localisation.LocalisationEntry;
 import com.gmail.jameshealey1994.simplepvptoggle.utils.PermissionUtils;
@@ -27,8 +28,8 @@ public class StatusCommand extends SimplePVPToggleCommand {
         this.aliases.add("status");
         this.aliases.add("s");
 
-        this.permissions.add(SimplePVPTogglePermissions.STATUS_SELF.getPermission());
-        this.permissions.add(SimplePVPTogglePermissions.STATUS_OTHERS.getPermission());
+        this.permissions.add(SimplePVPTogglePermission.STATUS_SELF.getPermission());
+        this.permissions.add(SimplePVPTogglePermission.STATUS_OTHERS.getPermission());
     }
 
     @Override
@@ -95,9 +96,9 @@ public class StatusCommand extends SimplePVPToggleCommand {
 
         final Permission permission;
         if (sender.equals(target)) {
-            permission = SimplePVPTogglePermissions.STATUS_SELF.getPermission();
+            permission = SimplePVPTogglePermission.STATUS_SELF.getPermission();
         } else {
-            permission = SimplePVPTogglePermissions.STATUS_OTHERS.getPermission();
+            permission = SimplePVPTogglePermission.STATUS_OTHERS.getPermission();
         }
 
         if (!(PermissionUtils.canExecute(sender, permission, world, true, plugin))) {

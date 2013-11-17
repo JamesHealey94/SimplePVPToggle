@@ -1,6 +1,7 @@
-package com.gmail.jameshealey1994.simplepvptoggle.commands;
+package com.gmail.jameshealey1994.simplepvptoggle.commands.command;
 
 import com.gmail.jameshealey1994.simplepvptoggle.SimplePVPToggle;
+import com.gmail.jameshealey1994.simplepvptoggle.commands.SimplePVPTogglePermission;
 import com.gmail.jameshealey1994.simplepvptoggle.localisation.Localisation;
 import com.gmail.jameshealey1994.simplepvptoggle.localisation.LocalisationEntry;
 import com.gmail.jameshealey1994.simplepvptoggle.utils.PVPConfigUtils;
@@ -24,7 +25,7 @@ public class InfoCommand extends SimplePVPToggleCommand {
         this.aliases.add("info");
         this.aliases.add("i");
 
-        this.permissions.add(SimplePVPTogglePermissions.INFO.getPermission());
+        this.permissions.add(SimplePVPTogglePermission.INFO.getPermission());
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.gmail.jameshealey1994.simplepvptoggle.utils;
 
-import com.gmail.jameshealey1994.simplepvptoggle.commands.SimplePVPToggleCommand;
+import com.gmail.jameshealey1994.simplepvptoggle.commands.command.SimplePVPToggleCommand;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
