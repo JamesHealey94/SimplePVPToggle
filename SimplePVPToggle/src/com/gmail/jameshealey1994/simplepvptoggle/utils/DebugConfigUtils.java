@@ -1,6 +1,5 @@
 package com.gmail.jameshealey1994.simplepvptoggle.utils;
 
-import com.gmail.jameshealey1994.simplepvptoggle.SimplePVPToggle;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.Plugin;
 
@@ -38,7 +37,7 @@ public abstract class DebugConfigUtils {
      * @param debugStatus   new debug status
      * @param plugin        plugin with associated config file
      */
-    public static void setDebugEnabled(CommandSender sender, boolean debugStatus, SimplePVPToggle plugin) {
+    public static void setDebugEnabled(CommandSender sender, boolean debugStatus, Plugin plugin) {
         plugin.getConfig().set(PATH_DEBUG, debugStatus);
         plugin.saveConfig();
     }
