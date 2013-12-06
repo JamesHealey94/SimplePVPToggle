@@ -78,7 +78,7 @@ public class Localisation {
      * @return                  value obtained, or, if no valid value is found,
      *                          the default message belonging to key
      */
-    public String get(LocalisationEntry key, Object[] formatObjects) {
+    public String get(LocalisationEntry key, Object... formatObjects) {
         try {
             return String.format(get(key), formatObjects);
         } catch (IllegalFormatException  ex) {
@@ -101,7 +101,7 @@ public class Localisation {
     /**
      * Returns the FileConfiguration of getFile().
      *
-     * @return the FileConfiguration of getFile()
+     * @return      the FileConfiguration of getFile()
      */
     public FileConfiguration getConfig() {
         return YamlConfiguration.loadConfiguration(getFile());
@@ -112,25 +112,33 @@ public class Localisation {
      * If the file with the filename specified in the config.yml does not exist,
      * a file is created with that name and filled with default values.
      *
-     * @return  the file containing localisation values
+     * @return      the file containing localisation values
      */
-    private File getFile() {
-        final File file = new File(plugin.getDataFolder(), getFilename());
-        if (!(file.exists())) {
-            createDefaultConfig();
+    public File getFile() {
+        final File folder = plugin.getDataFolder();
+        if (!folder.exists()) {
+            folder.mkdir();
+            plugin.saveDefaultConfig();
         }
+
+        final File file = new File(folder, getFilename());
+        if (!(file.exists())) {
+            createDefaultConfig(file);
+        }
+
         return file;
     }
 
     /**
      * Fills the file specified in the config with default localisation values.
+     *
+     * @param file      file to contain default localisation values
      */
-    private void createDefaultConfig() {
+    private void createDefaultConfig(File file) {
         final String title = "# " + plugin.getName() + " localisation configuration\n";
         final String info = "# Generated with " + plugin.getDescription().getVersion() + " of the plugin\n";
-        final File file = new File(plugin.getDataFolder(), getFilename());
 
-        try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, true), StandardCharsets.UTF_8))) {
+        try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8))) {
             writer.write(title);
             writer.write(info);
             for (LocalisationEntry entry : LocalisationEntry.values()) {
@@ -145,7 +153,7 @@ public class Localisation {
     /**
      * Returns the filename as specified in config.yml.
      *
-     * @return  filename as specified in config.yml
+     * @return      filename as specified in config.yml
      */
     public final String getFilename() {
         return plugin.getConfig().getString(LOCALISATION_FILENAME_PATH, DEFAULT_FILENAME);
