@@ -137,10 +137,10 @@ public class SetCommand extends SimplePVPToggleCommand {
         if (sender.equals(target)) {
             // player set their own PVP status
             LastPVPActionTimeConfigUtils.update(target, world, plugin);
-            target.sendMessage(localisation.get(LocalisationEntry.MSG_YOU_SET_YOUR_PVP_STATUS_IN_WORLDNAME_TO_STATUS, new Object[] {world.getName(), newStatus}));
+            target.sendMessage(localisation.get(LocalisationEntry.MSG_YOU_SET_YOUR_PVP_STATUS_IN_WORLD, new Object[] {world.getName(), newStatus}));
         } else {
-            sender.sendMessage(localisation.get(LocalisationEntry.MSG_YOU_SET_THE_PVP_STATUS_OF_PLAYERNAME_IN_WORLDNAME_TO_STATUS, new Object[] {target.getDisplayName(), world.getName(), newStatus}));
-            target.sendMessage(localisation.get(LocalisationEntry.MSG_SENDERNAME_SET_YOUR_PVP_STATUS_IN_WORLDNAME_TO_STATUS, new Object[] {sender.getName(), world.getName(), newStatus}));
+            sender.sendMessage(localisation.get(LocalisationEntry.MSG_YOU_SET_PVP_STATUS_OF_PLAYER_IN_WORLD, new Object[] {target.getDisplayName(), world.getName(), newStatus}));
+            target.sendMessage(localisation.get(LocalisationEntry.MSG_SENDER_SET_YOUR_PVP_STATUS_IN_WORLD, new Object[] {sender.getName(), world.getName(), newStatus}));
         }
 
         TagUtils.refreshPlayer(target, new HashSet<>(world.getPlayers()), plugin);

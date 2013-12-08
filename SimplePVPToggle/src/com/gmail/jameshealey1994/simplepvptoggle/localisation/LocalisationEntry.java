@@ -155,8 +155,8 @@ public enum LocalisationEntry {
      * %1$s - world name
      * %2$s - PVP status
      */
-    MSG_YOU_SET_YOUR_PVP_STATUS_IN_WORLDNAME_TO_STATUS (
-            "MsgYouSetYourPVPStatusInWORLDNAMEToSTATUS",
+    MSG_YOU_SET_YOUR_PVP_STATUS_IN_WORLD (
+            "MsgYouSetYourPVPStatusInWorld",
             "%1$s - world name\n# %2$s - PVP status",
             "&7You set your PVP status in '%1$s' to '%2$s'"),
 
@@ -166,8 +166,8 @@ public enum LocalisationEntry {
      * %2$s - world name
      * %3$s - PVP status
      */
-    MSG_YOU_SET_THE_PVP_STATUS_OF_PLAYERNAME_IN_WORLDNAME_TO_STATUS (
-            "MsgYouSetThePVPStatusOfPLAYERNAMEInWORLDNAMEToSTATUS",
+    MSG_YOU_SET_PVP_STATUS_OF_PLAYER_IN_WORLD (
+            "MsgYouSetPVPStatusOfPlayerInWorld",
             "%1$s - player name\n# %2$s - world name\n# %3$s - PVP status",
             "&7You set the PVP status of '%1$s' in '%2$s' to '%3$s'"),
 
@@ -177,8 +177,8 @@ public enum LocalisationEntry {
      * %2$s - world name
      * %3$s - PVP status
      */
-    MSG_SENDERNAME_SET_YOUR_PVP_STATUS_IN_WORLDNAME_TO_STATUS (
-            "MsgSENDERNAMESetYourPVPStatusInWORLDNAMEToSTATUS",
+    MSG_SENDER_SET_YOUR_PVP_STATUS_IN_WORLD (
+            "MsgSenderSetYourPVPStatusInWorld",
             "%1$s - sender name\n# %2$s - world name\n# %3$s - PVP status",
             "&7%1$s set your PVP status in '%2$s' to '%3$s'"),
 
@@ -195,8 +195,8 @@ public enum LocalisationEntry {
      * %1$s - world name
      * %2$s - PVP status
      */
-    MSG_YOUR_PVP_STATUS_IN_WORLDNAME_IS_STATUS (
-            "MsgYourPVPStatusInWORLDNAMEIsSTATUS",
+    MSG_YOUR_PVP_STATUS_IN_WORLD (
+            "MsgYourPVPStatusInWorld",
             "%1$s - world name\n# %2$s - PVP status",
             "&7Your PVP status in '%1$s' is '%2$s'"),
 
@@ -206,8 +206,8 @@ public enum LocalisationEntry {
      * %2$s - world name
      * %3$s - PVP status
      */
-    MSG_CURRENT_PVP_STATUS_OF_PLAYERNAME_IN_WORLDNAME_IS_STATUS (
-            "MsgCurrentPVPStatusOfPLAYERNAMEInWORLDNAMEIsSTATUS",
+    MSG_PVP_STATUS_OF_PLAYER_IN_WORLD (
+            "MsgPVPStatusOfPlayerInWorld",
             "%1$s - player name\n# %2$s - world name\n# %3$s - PVP status",
             "&7PVP status of '%1$s' in '%2$s' is '%3$s'"),
 

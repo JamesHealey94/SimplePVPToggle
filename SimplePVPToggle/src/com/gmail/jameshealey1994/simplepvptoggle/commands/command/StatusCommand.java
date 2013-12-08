@@ -124,9 +124,9 @@ public class StatusCommand extends SimplePVPToggleCommand {
         final Localisation localisation = plugin.getLocalisation();
 
         if (sender.equals(player)) {
-            sender.sendMessage(localisation.get(LocalisationEntry.MSG_YOUR_PVP_STATUS_IN_WORLDNAME_IS_STATUS, new Object[] {world.getName(), status}));
+            sender.sendMessage(localisation.get(LocalisationEntry.MSG_YOUR_PVP_STATUS_IN_WORLD, new Object[] {world.getName(), status}));
         } else {
-            sender.sendMessage(localisation.get(LocalisationEntry.MSG_CURRENT_PVP_STATUS_OF_PLAYERNAME_IN_WORLDNAME_IS_STATUS, new Object[] {player.getDisplayName(), world.getName(), status}));
+            sender.sendMessage(localisation.get(LocalisationEntry.MSG_PVP_STATUS_OF_PLAYER_IN_WORLD, new Object[] {player.getDisplayName(), world.getName(), status}));
         }
     }
 
