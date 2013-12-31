@@ -24,7 +24,7 @@ public class SimplePVPToggleListener implements Listener {
     /**
      * Plugin with config file used to get PvP value.
      */
-    SimplePVPToggle plugin;
+    private SimplePVPToggle plugin;
 
     /**
      * Constructor used to set plugin.

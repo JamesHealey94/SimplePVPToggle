@@ -1,13 +1,13 @@
 package com.gmail.jameshealey1994.simplepvptoggle;
 
-import com.gmail.jameshealey1994.simplepvptoggle.localisation.Localisable;
-import com.gmail.jameshealey1994.simplepvptoggle.commands.SimplePVPToggleCommandEnvironment;
 import com.gmail.jameshealey1994.simplepvptoggle.commands.DefaultSimplePVPToggleCommandEnvironment;
+import com.gmail.jameshealey1994.simplepvptoggle.commands.SimplePVPToggleCommandEnvironment;
+import com.gmail.jameshealey1994.simplepvptoggle.commands.SimplePVPToggleCommandExecutor;
 import com.gmail.jameshealey1994.simplepvptoggle.commands.command.HelpCommand;
 import com.gmail.jameshealey1994.simplepvptoggle.commands.command.SimplePVPToggleCommand;
-import com.gmail.jameshealey1994.simplepvptoggle.commands.SimplePVPToggleCommandExecutor;
 import com.gmail.jameshealey1994.simplepvptoggle.listeners.SimplePVPToggleListener;
 import com.gmail.jameshealey1994.simplepvptoggle.listeners.TagListener;
+import com.gmail.jameshealey1994.simplepvptoggle.localisation.Localisable;
 import com.gmail.jameshealey1994.simplepvptoggle.localisation.Localisation;
 import com.gmail.jameshealey1994.simplepvptoggle.utils.TagUtils;
 import org.bukkit.plugin.java.JavaPlugin;

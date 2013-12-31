@@ -11,7 +11,6 @@ import java.util.HashMap;
 import java.util.IllegalFormatException;
 import java.util.logging.Level;
 import org.bukkit.ChatColor;
-
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;

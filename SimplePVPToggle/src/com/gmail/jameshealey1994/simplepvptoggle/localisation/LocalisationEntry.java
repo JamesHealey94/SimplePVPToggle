@@ -28,9 +28,25 @@ public enum LocalisationEntry {
      * Message telling user to specify a valid status ('true' or 'false').
      */
     ERR_SPECIFY_STATUS (
-            "MsgSpecifyPVPStatus",
+            "MsgSpecifyStatus",
             null,
             "&cPlease specify a status ('true' or 'false')"),
+
+    /**
+     * Message telling user that they need to specify a world.
+     */
+    ERR_SPECIFY_WORLD (
+            "MsgSpecifyWorld",
+            null,
+            "&cPlease specify a world"),
+
+    /**
+     * Message telling user that they need to specify a player.
+     */
+    ERR_SPECIFY_PLAYER (
+            "MsgSpecifyPlayer",
+            null,
+            "&cPlease specify a player"),
 
     /**
      * Message telling user that the player specified cannot be found.
@@ -49,22 +65,6 @@ public enum LocalisationEntry {
             "MsgWorldNotFound",
             "%1$s - invalid world name",
             "&cWorld not found: '%1$s'"),
-
-    /**
-     * Message telling user that they need to specify a world.
-     */
-    ERR_SPECIFY_WORLD (
-            "MsgSpecifyWorld",
-            null,
-            "&cPlease specify a world"),
-
-    /**
-     * Message telling user that they need to specify a player.
-     */
-    ERR_SPECIFY_PLAYER (
-            "MsgSpecifyPlayer",
-            null,
-            "&cPlease specify a player"),
 
     /**
      * Message telling user that they have sent too many arguments
@@ -216,7 +216,7 @@ public enum LocalisationEntry {
      * %1$s - debug status
      */
     MSG_DEBUG_SET_TO_STATUS (
-            "MsgDebugSetToSTATUS",
+            "MsgDebugSetToStatus",
             "%1$s - debug status",
             "&7Debug status set to '%1$s'"),
 
@@ -258,7 +258,7 @@ public enum LocalisationEntry {
     DESCRIPTION_SET (
             "DescSet",
             null,
-            "Changes PVP status for [username] in [world] to <on / off>"),
+            "Changes PVP status for [username] in [world] to <status>"),
 
     /**
      * Description for Set Server Default command.
@@ -266,7 +266,7 @@ public enum LocalisationEntry {
     DESCRIPTION_SET_SERVER_DEFAULT (
             "DescSetServerDefault",
             null,
-            "Sets default PVP status for server to <on / off>"),
+            "Sets default PVP status for server to <status>"),
 
     /**
      * Description for Set World Default command.
@@ -274,7 +274,7 @@ public enum LocalisationEntry {
     DESCRIPTION_SET_WORLD_DEFAULT (
             "DescSetWorldDefault",
             null,
-            "Sets default PVP status for [world] to <on / off>"),
+            "Sets default PVP status for [world] to <status>"),
 
     /**
      * Description for Status command.

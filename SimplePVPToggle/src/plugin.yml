@@ -3,7 +3,7 @@ website: https://github.com/JamesHealey94
 
 name: SimplePVPToggle
 main: com.gmail.jameshealey1994.simplepvptoggle.SimplePVPToggle
-version: 0.1
+version: 1.0
 softdepend: [Vault]
 softdepend: [TagAPI]
 
