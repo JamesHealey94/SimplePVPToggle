@@ -42,7 +42,7 @@ public class SimplePVPToggleListener implements Listener {
      *
      * @param event event being handled
      */
-    @EventHandler (priority = EventPriority.LOWEST)
+    @EventHandler (priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onEntityDamageByEntityEvent(EntityDamageByEntityEvent event) {
         if (event.getEntity() instanceof Player) {
             final Player attackedPlayer = (Player) event.getEntity();
