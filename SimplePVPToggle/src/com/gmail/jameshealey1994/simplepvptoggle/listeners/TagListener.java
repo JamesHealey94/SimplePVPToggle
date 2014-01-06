@@ -41,7 +41,7 @@ public class TagListener implements Listener {
      *
      * @param event event being handled
      */
-    @EventHandler (priority = EventPriority.HIGH)
+    @EventHandler (priority = EventPriority.HIGH, ignoreCancelled = true)
     public void onNameTag(PlayerReceiveNameTagEvent event) {
         final Player playerSeen = event.getNamedPlayer();
         final Object[] formatObjects = {playerSeen.getDisplayName()};
