@@ -42,7 +42,7 @@ public class SimplePVPToggle extends JavaPlugin implements Localisable {
         if (TagUtils.isEnabled(this)) {
             getServer().getPluginManager().registerEvents(new TagListener(this), this);
         } else {
-            this.getLogger().info("TagAPI not found - No changes to player tags will be made");
+            this.getLogger().warning("TagAPI not found - No changes to player tags will be made");
         }
 
         // Set command executors and default command
